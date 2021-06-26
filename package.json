@@ -1,0 +1,25 @@
+{
+  "name": "crm-tools",
+  "version": "1.0.0",
+  "description": "A CRM suite used to manage employees, clients, work orders, and invoicing",
+  "main": "server/server.js",
+  "dependencies": {
+    "if-env": "^1.0.4"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  },
+  "scripts": {
+    "test": "cd client && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shawnlittrel/CRM-Tools.git"
+  },
+  "author": "SL, BB, CW",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shawnlittrel/CRM-Tools/issues"
+  },
+  "homepage": "https://github.com/shawnlittrel/CRM-Tools#readme"
+}
