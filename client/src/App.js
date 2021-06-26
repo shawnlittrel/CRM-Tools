@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import { StoreProvider } from './state/State';
+import 'semantic-ui-css/semantic.min.css'
 
 const client = new  ApolloClient({
   request: (operation) => {
@@ -27,8 +28,6 @@ function App() {
           <StoreProvider>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
             </Switch>
           </StoreProvider>
         </div>
