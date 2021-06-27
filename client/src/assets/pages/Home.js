@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useMediaQuery } from '../utils/helpers';
+import { useMediaQuery } from '../../utils/helpers';
+import { SimpleGrid, Box } from '@chakra-ui/react';
+import Footer from '../components/FooterNav'
 
 function Home() {
      let isPageWide = useMediaQuery('(min-width: 800px)')
 
      if (isPageWide) {
           return(
-               <div>
+               <Box bg="brand.300">
                     Desktop
-               </div>
+               </Box>
           )
      }
 
@@ -16,6 +18,9 @@ function Home() {
           <div>
                Mobile
           </div>
+
+          
+
      )
      
 };

@@ -1,37 +1,57 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
-import Home from './pages/Home';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import { StoreProvider } from './state/State';
-import 'semantic-ui-css/semantic.min.css'
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient from "apollo-boost";
+import Home from "./assets/pages/Home";
+import Register from "./assets/pages/Register";
+import Login from "./assets/pages/Login";
+import { StoreProvider } from "./state/State";
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "./utils/theme";
+import Footer from "./assets/components/FooterNav";
 
-const client = new  ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem('id_token')
+const client = new ApolloClient({
+  request: operation => {
+    const token = localStorage.getItem("id_token");
     operation.setContext({
       headers: {
-        authorization: token ? `Bearer ${token}` : ''
+        authorization: token ? `Bearer ${token}` : ""
       }
-    })
+    });
   },
-  uri: '/graphql',
+  uri: "/graphql"
 });
 
 function App() {
+  document.body.style = "background: #E0FBFC";
+
+  const footerStyle = {
+    overflow: "hidden",
+    position: "fixed",
+    bottom: "0",
+    width: "100%"
+  };
+
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <div>
+      <ChakraProvider theme={theme}>
+        <Router>
           <StoreProvider>
-            <Switch>
-              <Route exact path="/" component={Home} />
-            </Switch>
+            <div
+              className="pageWrapper"
+              height="100%"
+              background-color="#E0FBFC"
+            >
+              <Switch>
+                <Route exact path="/" component={Home} />
+              </Switch>
+            </div>      
+            <div style={footerStyle}>
+              <Footer />
+            </div>
           </StoreProvider>
-        </div>
-      </Router>
+        </Router>
+      </ChakraProvider>
     </ApolloProvider>
   );
 }
