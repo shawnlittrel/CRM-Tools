@@ -2,7 +2,7 @@ import React, { useState, Redirect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { useMutation } from "@apollo/client";
 import { Box, Spinner, Container, Button } from "@chakra-ui/react";
-import Auth from "../../../utils/auth";
+import Auth from "../../utils/auth";
 import { QUERY_TIMECARD } from "../../database/queries";
 import { CLOCK_IN, CLOCK_OUT } from "../../database/mutations";
 import { useStoreContext } from "../../state/State";
@@ -20,6 +20,7 @@ function TimeCard() {
   const [isClockedIn, setIsClockedIn] = useState(false);
   const [state, dispatch] = useStoreContext();
 
+
   //TODO: Make error handling more robust -> user needs to know what happened
   const handleClockInSubmit = async event => {
     event.preventDefault();
@@ -27,6 +28,7 @@ function TimeCard() {
 
     try {
       await clockIn(newClockInTime);
+
 
       setClockInTime(newClockInTime);
       setIsClockedIn(true);
@@ -43,6 +45,7 @@ function TimeCard() {
   const handleClockOutSubmit = async event => {
     event.preventDefault();
     const newClockOutTime = event.target.value;
+
 
     try {
       await clockOut(newClockOutTime);
@@ -72,7 +75,7 @@ function TimeCard() {
                   backgroundColor="brand.300"
                   color="brand.200"
                   fontWeight="semibold"
-                  LetterSpacing="wide"
+                  letterSpacing="wide"
                   textTransform="uppercase"
                 >
                   {punch.type}
