@@ -4,7 +4,8 @@
   "description": "A CRM suite used to manage employees, clients, work orders, and invoicing",
   "main": "server/server.js",
   "dependencies": {
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "mongoose": "^5.12.15"
   },
   "devDependencies": {
     "concurrently": "^6.2.0"
