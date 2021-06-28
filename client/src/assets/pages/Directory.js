@@ -71,7 +71,7 @@ function Employees () {
                               {employee.name}
                          </Box>
                          <Box>
-                              {employee.address}
+                              {employee.email}
                          </Box>
                          </Box>
                ))}  

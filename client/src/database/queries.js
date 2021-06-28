@@ -36,8 +36,8 @@ export const QUERY_CLIENTS = gql`
 `;
 
 export const QUERY_CLIENTS_SHORT = gql`
-  query getClients($ID: ID) {
-       client(ID: $ID) {
+  query getClients($name: String) {
+       client(name: $name) {
             id,
             name,
             address,
@@ -46,3 +46,15 @@ export const QUERY_CLIENTS_SHORT = gql`
        }
   }
 `;
+
+export const QUERY_WAREHOUSE_SHORT = gql`
+  query getProducts($name: String!) {
+       product(name: $name) {
+            id,
+            name,
+            description,
+            purchasePrice
+       }
+  }
+`;
+
