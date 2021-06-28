@@ -3,13 +3,16 @@ import { useMediaQuery } from '../../utils/helpers';
 import { SimpleGrid, Box } from '@chakra-ui/react';
 import Login from './Login';
 import Timecard from './Timecard';
+import Calendar from  '../components/Calendar';
+
 
 function Home() {
      let isPageWide = useMediaQuery('(min-width: 800px)')
 
      if (isPageWide) {
           return(
-               <Login />
+               //<Login />
+               <Calendar />
           )
      }
 
