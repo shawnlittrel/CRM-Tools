@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "dependencies": {
     "if-env": "^1.0.4",
-    "mongoose": "^5.12.15"
+    "mongoose": "^5.13.0"
   },
   "devDependencies": {
     "concurrently": "^6.2.0"
