@@ -11,7 +11,7 @@ const EmployeeSchema = new Schema ({
     required: true,
     trim: trim
   },
-  adresss: {
+  address: {
     type: String,
     required: true,
   },
@@ -34,7 +34,7 @@ const EmployeeSchema = new Schema ({
   }
 )
 
-const Employee = mongoose. model('Employee', EmployeeSchema)
+const Employee = mongoose.model('Employee', EmployeeSchema)
 
 module.exports = Employee
 
