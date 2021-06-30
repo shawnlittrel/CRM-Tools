@@ -1,13 +1,18 @@
 const { Schema, model } = require("mongoose");
 
 
-workOrders {
-    id,
-    date,
-    description,
-    notes [],
-    parts [],
-    invoice
+const Workorders = new Schema ({
+  
+})
+
+
+// workOrders {
+//     id,
+//     date,
+//     description,
+//     notes [],
+//     parts [],
+//     invoice
    
    
    

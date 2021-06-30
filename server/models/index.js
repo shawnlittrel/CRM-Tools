@@ -1,12 +1,12 @@
 ;
 
 
-const Employee = require("./employee");
+const Employee = require("./Employee");
 
-const Client = require("./client")
+const Client = require("./Client")
 
-const LaborItem = require("./laboritems")
+const LaborItem = require("./Laboritems")
 
-const Warehouse = require('./warehouse')
+const Warehouse = require('./Warehouse')
 
 module.exports = { Employee, Client, LaborItem, Warehouse };
