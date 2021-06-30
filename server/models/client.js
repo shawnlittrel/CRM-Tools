@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+
 const workorderschema =require('./Workorders')
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const ClientSchema = new Schema(
   {
@@ -33,7 +33,7 @@ const ClientSchema = new Schema(
   }
 );
 
-const Client = mongoose.model("Client", ClientSchema);
+const Client = model("Client", ClientSchema);
 
 module.exports = Client;
 

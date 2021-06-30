@@ -7,9 +7,16 @@ const PartsSchema = new Schem({
   description: {
     type:String,
   },
+ purchasePrice:{
+   type:Number
+ } 
   
 })
 
+
+const Parts = model("Parts", PartsSchema);
+
+module.exports = Parts;
 
 // Parts {
 //   id,

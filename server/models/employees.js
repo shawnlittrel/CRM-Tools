@@ -1,40 +1,35 @@
-const mongoose =require('mongoose');
+const { Schema, model } = require("mongoose");
 
-
-const { Schema } = require("mongoose");
-
-
-const EmployeeSchema = new Schema ({
-
-  employeeName: {
-    type:String,
-    required: true,
-    trim: trim
+const EmployeesSchema = new Schema(
+  {
+    employeeName: {
+      type: String,
+      required: true,
+      trim: trim,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      unique: true,
+      match: [/.+@.+\..+/],
+    },
+    phone: {
+      type: Number,
+      required: true,
+    },
   },
-  address: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type:String,
-    unique: true,
-    match: [/.+@.+\..+/]
-  },
-  phone: {
-    type: Number,
-     required: true,
-  },
-},
-   {
+  {
     toJSON: {
       virtuals: true,
       getters: true,
     },
     id: false,
   }
-)
+);
 
-const Employee = mongoose.model('Employee', EmployeeSchema)
+const Employees = model("Employees", EmployeesSchema);
 
-module.exports = Employee
-
+module.exports = Employees;

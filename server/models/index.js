@@ -9,4 +9,6 @@ const LaborItem = require("./Laboritems")
 
 const Warehouse = require('./Warehouse')
 
-module.exports = { Employee, Client, LaborItem, Warehouse };
+const Parts = require ('./Warhouse')
+
+module.exports = { Employee, Client, LaborItem, Warehouse, Parts};

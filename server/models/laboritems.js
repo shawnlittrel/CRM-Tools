@@ -1,8 +1,6 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require('mongoose');
 
-const { Schema } = mongoose;
-
-const LaborItemsSchema = new Schema(
+const LaborItemsSchema = new Schema (
     {
   name: {
     type: String,
@@ -11,17 +9,21 @@ const LaborItemsSchema = new Schema(
   },
   description: {
     type: String,
+    required: true,
   },
    Rate: {
     type: Number,
     required: true,
    },
+   {
+    toJSON: {
+      getters: true
+    }
+  }
 )
 
 
-const Laboritems= mongoose.model('LaborItems', LaborItemsSchema);
 
-module.exports = Laboritems;
 
 
 
