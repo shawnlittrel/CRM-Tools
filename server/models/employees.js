@@ -1,5 +1,8 @@
-const { Schema, model } = require("mongoose");
-const dateFormat = require("../utils/dateFormat");
+const mongoose =require('mongoose');
+
+
+const { Schema } = require("mongoose");
+
 
 const EmployeeSchema = new Schema ({
 
@@ -14,10 +17,12 @@ const EmployeeSchema = new Schema ({
   },
   email: {
     type:String,
-    unique: true
+    unique: true,
+    match: [/.+@.+\..+/]
   },
   phone: {
-    type: Number
+    type: Number,
+     required: true,
   },
 },
    {
@@ -29,7 +34,7 @@ const EmployeeSchema = new Schema ({
   }
 )
 
-const Employee = model('Employee', EmployeeSchema)
+const Employee = mongoose. model('Employee', EmployeeSchema)
 
 module.exports = Employee
 

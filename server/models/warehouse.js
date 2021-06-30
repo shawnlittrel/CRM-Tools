@@ -1,18 +1,16 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 
+const { Schema } = mongoose;
 
 const WarehouseSchema = new Schema({
-    
-   Parts:{
-       parts:[]
-    },
-    Laboritems:{ 
-        laboritems:[]
-    }
-
-})
+  parts: [],
+  Laboritems: [],
+});
 
 
+const Warehouse = mongoose.model("Warehouse", WharehouseSchema);
+
+module.exports = Warehouse;
 // warehouse {
 // [Parts],
 // [LaborItems]

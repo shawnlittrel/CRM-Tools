@@ -1,42 +1,41 @@
-const { Schema, model } = require("mongoose");
-const dateFormat = require("../utils/dateFormat");
+const mongoose = require("mongoose");
+const workorderschema =require('./Workorders')
+const { Schema } = require("mongoose");
 
-const ClientSchema = new Schema({
-  
-  clientName:{
-    type: String,
-    required: true
+const ClientSchema = new Schema(
+  {
+    clientName: {
+      type: String,
+      required: true,
+    },
+    adresss: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/],
+    },
+    phone: {
+      type: Number,
+      required: true,
+    },
+    workorders: [workorderschema],
   },
-  adresss: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type:String,
-    unique: true
-  },
-  phone: {
-    type: Number
-  },
-  workorders:[
-    {
-    type: Schema.Types.ObjectId,
-    ref: 'Workorders'
-    }
-  ]
-},
-{
+  {
     toJSON: {
       virtuals: true,
       getters: true,
     },
     id: false,
   }
-)
+);
 
-const Client = model ("Client", ClientSchema)
+const Client = mongoose.model("Client", ClientSchema);
 
-module.exports = Comment;
+module.exports = Client;
 
 // clients: {
 //   {
@@ -53,9 +52,9 @@ module.exports = Comment;
 //     parts [],
 //     invoice
 //   //   timeClock {
-  //     dispatched
-  //     arrived
-  //     departed
-  //   }
-  // }
-  // }
+//     dispatched
+//     arrived
+//     departed
+//   }
+// }
+// }

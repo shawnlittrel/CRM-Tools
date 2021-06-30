@@ -2,7 +2,13 @@ const { Schema, model } = require("mongoose");
 
 
 const Workorders = new Schema ({
+  date: {
+    type: Date,
+    default: Date.now
+  },
   
+
+
 })
 
 
@@ -15,14 +21,9 @@ const Workorders = new Schema ({
 //     invoice
    
    
-   
-   
-   
-   
-   
-    timeClock {
-      dispatched
-      arrived
-      departed
-    }
-  }
+  //   timeClock {
+  //     dispatched
+  //     arrived
+  //     departed
+  //   }
+  // }
