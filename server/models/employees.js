@@ -1,5 +1,7 @@
 const { Schema, model } = require("mongoose");
 
+const timeCardSchema = require("./Timecard");
+
 const EmployeesSchema = new Schema(
   {
     employeeName: {
@@ -20,6 +22,7 @@ const EmployeesSchema = new Schema(
       type: Number,
       required: true,
     },
+    timeCard: [timeCardSchema],
   },
   {
     toJSON: {
