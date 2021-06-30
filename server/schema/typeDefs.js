@@ -20,8 +20,19 @@ type: Client {
 
 }
 
-type:Workorder {
-  
+type: Workorder {
+  _id: ID
+  date: Date
+  description: String
+  notes: Array
+  parts: Array
+invoice: String
+}
+
+type: tineclock {
+  dispatched: Date
+  arrived: Date
+  departed: Date
 }
 
 
