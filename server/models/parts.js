@@ -2,17 +2,21 @@ const { Schema, model } = require("mongoose");
 
 const PartsSchema = new Schem({
   partsName: {
-    type: String
+    type: String,
   },
   description: {
-    type:String,
+    type: String,
   },
- purchasePrice:{
-   type:Number
- } 
-  
-})
+  purchasePrice: {
+    type: Number,
+  },
 
+  toJSON: {
+    virtuals: true,
+    getters: true,
+  },
+  id: false,
+});
 
 const Parts = model("Parts", PartsSchema);
 

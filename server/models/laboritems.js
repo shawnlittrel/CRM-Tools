@@ -15,14 +15,19 @@ const LaborItemsSchema = new Schema (
     type: Number,
     required: true,
    },
+  },
    {
     toJSON: {
-      getters: true
-    }
+      virtuals: true,
+      getters: true,
+    },
+    id: false,
   }
 )
 
+const laborItems = model("laborItems",LaborItemsSchema );
 
+module.exports = laborItems;
 
 
 
