@@ -23,11 +23,47 @@ mutation login($email: String!, $password: String!) {
 
 
  export const CLOCK_OUT = gql`
-   mutation clockOut($time: [timestamptz]!) {
+   mutation clockOut($time: [timestamp]!) {
         clockOut(time: $time) {
              user {
                   timecard
              }
         }
+   }
+ `;
+
+ export const DISPATCH_TO_DB = gql`
+   mutation dispatchToDB($time: Int!, $id: ID!) {
+     dispatch(time: $time, id: $id) {
+       workOrders {
+         timeClock {
+            dispatched
+          }
+       }
+     }
+   }
+ `;
+
+ export const ARRIVE_TO_DB = gql`
+   mutation arriveToDB($time: Int!, $id: ID!) {
+     dispatch(time: $time, id: $id) {
+       workOrders {
+         timeClock {
+           arrived
+         }
+       }
+     }
+   }
+ `;
+
+ export const DEPART_TO_DB = gql`
+   mutation departToDB($time: Int!, $id: ID!) {
+     depart(time: $time, id: $id) {
+       workOrders {
+         timeClock {
+           departed
+         }
+       }
+     }
    }
  `;

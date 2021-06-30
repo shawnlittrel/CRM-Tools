@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Center, Box, SimpleGrid } from '@chakra-ui/react';
 import Search from '../components/Search';
 import { useQuery } from '@apollo/react-hooks';
-import QUERY_DOCUMENTS_SHORT from '../../database/queries';
+import { QUERY_DOCUMENTS_SHORT } from '../../database/queries';
 
 
 
