@@ -2,8 +2,12 @@ const { gql } = require("apollo-server-express");
 
 // create our typeDefs
 const typeDefs = gql`
-  
-type Employee {
+ 
+type: Login {
+
+}
+
+type: Employee {
   _id: ID
   employeeName: String
   address: String
@@ -17,7 +21,6 @@ type: Client {
   address: String
   email: String
   phone: Number
-
 }
 
 type: Workorder {
