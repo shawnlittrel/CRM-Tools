@@ -1,5 +1,15 @@
 import { useState, useContext } from "react";
-import { Box, Button, Center, Grid, GridItem, Input, Container, Divider, Textarea } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Grid,
+  GridItem,
+  Input,
+  Container,
+  Divider,
+  Textarea
+} from "@chakra-ui/react";
 import { useStoreContext } from "../../state/State";
 import { useMutation } from "@apollo/client";
 import {
@@ -12,6 +22,7 @@ import {
   ARRIVE_TO_DB,
   DEPART_TO_DB
 } from "../../database/mutations";
+import dateFormat from "dateformat";
 
 function WorkOrder() {
   const [currentWorkOrder, setCurrentWorkOrder] = useState();
@@ -19,6 +30,9 @@ function WorkOrder() {
   const [arrivedTime, setArrivedTime] = useState();
   const [departedTime, setDepartedTime] = useState();
   const [isDeparted, setIsDeparted] = useState(false);
+  const [dispatchString, setDispatchString] = useState("");
+  const [arriveString, setArriveString] = useState("");
+  const [departString, setDepartString] = useState("");
   const [recordDispatchToDB, { error1 }] = useMutation(DISPATCH_TO_DB);
   const [recordArriveToDB, { error2 }] = useMutation(ARRIVE_TO_DB);
   const [recordDepartToDB, { error3 }] = useMutation(DEPART_TO_DB);
@@ -27,16 +41,16 @@ function WorkOrder() {
 
   const handleDispatch = async event => {
     event.preventDefault();
-    const dispatchTime = event.target.value;
+    const dispatchTime = Date.now();
+
+    setDispatchString(dateFormat(dispatchTime, "mm/dd/yy | hh:MM tt"));
+    setDispatchedTime(dispatchTime);
 
     try {
       //await recordDispatchToDB(dispatchTime);
-
-      setDispatchedTime(dispatchTime);
-
       //dispatch({
-        //type: DISPATCH_WORK_ORDER,
-        //timestamp: dispatchTime
+      //type: DISPATCH_WORK_ORDER,
+      //timestamp: dispatchTime
       //});
     } catch (err) {
       console.error(err);
@@ -45,17 +59,16 @@ function WorkOrder() {
 
   const handleArrive = async event => {
     event.preventDefault();
-    const arriveTime = event.target.value;
+    const arriveTime = Date.now();
+    setArriveString(dateFormat(arriveTime, "mm/dd/yy | hh:MM tt"));
+    setArrivedTime(arriveTime);
 
     try {
       //await recordArriveToDB(arriveTime);
-
-      setArrivedTime(arriveTime);
-
-     //  dispatch({
-     //    type: ARRIVE_WORK_ORDER,
-     //    timestamp: arriveTime
-     //  });
+      //  dispatch({
+      //    type: ARRIVE_WORK_ORDER,
+      //    timestamp: arriveTime
+      //  });
     } catch (err) {
       console.error(err);
     }
@@ -63,61 +76,54 @@ function WorkOrder() {
 
   const handleDepart = async event => {
     event.preventDefault();
-    const departTime = event.target.value;
-    console.log(departTime);
+    const departTime = Date.now();
+    setDepartString(dateFormat(departTime, "mm/dd/yy | hh:MM tt"));
+    setDepartedTime(departTime);
+    setIsDeparted(true);
 
     try {
       //await recordDepartToDB(departTime
-      setDepartedTime(departTime);
-      setIsDeparted(true);
-
-     //  dispatch({
-     //    type: DEPART_WORK_ORDER,
-     //    timestamp: departTime
-     //  });
+      //  dispatch({
+      //    type: DEPART_WORK_ORDER,
+      //    timestamp: departTime
+      //  });
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-       <Container>
-               <Grid
-      gap={6}
-      templateRows="repeat(3, 1fr)"
-      templateColumns="repeat(5, 1fr)"
-    >
-      <GridItem colSpan={2} key="dispatchTimeInput">
-        <Input>{dispatchedTime}</Input>
-      </GridItem>
-      <GridItem colStart={4} colEnd={5} key="dispatchButton">
-        <Button value={Date.now()} onClick={handleDispatch}>
-          Dispatch
-        </Button>
-      </GridItem>
-      <GridItem colSpan={2} key="arriveTimeInput">
-        <Input>{arrivedTime}</Input>
-      </GridItem>
-      <GridItem colStart={4} colEnd={5} key="arriveButton">
-        <Button value={Date.now()} onClick={handleArrive}>
-          Arrive
-        </Button>
-      </GridItem>
-      <GridItem colSpan={2} key="departTimeInput">
-        <Input>{departedTime}</Input>
-      </GridItem>
-      <GridItem colStart={4} colEnd={5} key="departButton">
-        <Button value={Date.now()} onClick={handleDepart}>
-          Depart
-        </Button>
-      </GridItem>
-    </Grid> 
-    <Divider />
-          <Textarea placeholder={workOrderDescription}>
-          </Textarea>
-       </Container>
-
+    <Container>
+      <Grid
+        gap={6}
+        templateRows="repeat(3, 1fr)"
+        templateColumns="repeat(5, 1fr)"
+      >
+        <GridItem colSpan={2} key="dispatchTimeInput">
+          <Box>{dispatchString}</Box>
+        </GridItem>
+        <GridItem colStart={4} colEnd={5} key="dispatchButton">
+          <Button onClick={handleDispatch}>Dispatch</Button>
+        </GridItem>
+        <GridItem colSpan={2} key="arriveTimeInput">
+          <Box>{arriveString}</Box>
+        </GridItem>
+        <GridItem colStart={4} colEnd={5} key="arriveButton">
+          <Button onClick={handleArrive}>Arrive</Button>
+        </GridItem>
+        <GridItem colSpan={2} key="departTimeInput">
+          <Box>{departString}</Box>
+        </GridItem>
+        <GridItem colStart={4} colEnd={5} key="departButton">
+          <Button onClick={handleDepart}>Depart</Button>
+        </GridItem>
+      </Grid>
+      <Divider />
+      <br />
+      <br />
+      <Box>{workOrderDescription}</Box>
+    </Container>
   );
-};
+}
 
 export default WorkOrder;
