@@ -5,6 +5,7 @@ import Login from './Login';
 import Timecard from './Timecard';
 import Calendar from  '../components/Calendar';
 import Clients from './Clients';
+import Workorder from './WorkOrder'
 
 function Home() {
      let isPageWide = useMediaQuery('(min-width: 800px)')
@@ -13,13 +14,15 @@ function Home() {
           return(
                //<Login />
                //<Calendar />
-               <Clients />
+               //<Clients />
+               <Workorder />
           )
      }
 
      return (
           <div>
-               <Timecard />
+               
+               <Calendar />
           </div>
 
           

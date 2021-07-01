@@ -13,7 +13,7 @@ export const QUERY_TIMECARD = gql`
 export const QUERY_CLIENTS = gql`
   query getClients($ID: ID) {
        client(ID: $ID) {
-            id,
+            _id,
             name,
             address,
             email,
@@ -36,9 +36,9 @@ export const QUERY_CLIENTS = gql`
 `;
 
 export const QUERY_CLIENTS_SHORT = gql`
-  query getClients($ID: ID) {
-       client(ID: $ID) {
-            id,
+  query getClients($name: String) {
+       client(name: $name) {
+            _id,
             name,
             address,
             email,
@@ -46,3 +46,35 @@ export const QUERY_CLIENTS_SHORT = gql`
        }
   }
 `;
+
+export const QUERY_APPOINTMENTS = gql`
+  query getClients($name: String) {
+       client(name: $name) {
+            workOrders {
+                 id,
+                 date,
+                 description,
+                 notes,
+                 parts,
+                 invoice,
+                 timeClock {
+                      dispatched
+                      arrived
+                      departed
+                 }
+            }
+       }
+  }
+`;
+
+export const QUERY_WAREHOUSE_SHORT = gql`
+  query getProducts($name: String!) {
+       product(name: $name) {
+            _id,
+            name,
+            description,
+            purchasePrice
+       }
+  }
+`;
+
