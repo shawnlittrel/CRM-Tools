@@ -94,7 +94,7 @@ db.once('open', async () => {
     for (let i = 0; i < 50; i += 1) {
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
-        const address = faker.address.streetAddress(),
+        const address = faker.address.streetAddress();
         const username = faker.internet.userName();
         const email = faker.internet.email(username);
         const phone = faker.phone.phoneNumber();
@@ -145,7 +145,7 @@ db.once('open', async () => {
     for (let i = 0; i < 100; i += 1) {
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
-        const address = faker.address.streetAddress(),
+        const address = faker.address.streetAddress();
         const username = faker.internet.userName();
         const email = faker.internet.email(username);
         const phone = faker.phone.phoneNumber();

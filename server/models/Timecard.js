@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 
 
 
-const timecardSchema = new Schema({
+const timeCardSchema = new Schema({
   timecard: {
     type: Date,
     default: Date.now,

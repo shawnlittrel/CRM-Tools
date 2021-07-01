@@ -1,7 +1,7 @@
 ;
 
 
-const Employee = require("./Employee");
+const Employees = require("./Employees");
 
 const Client = require("./Client")
 
