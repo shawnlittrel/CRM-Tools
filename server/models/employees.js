@@ -7,7 +7,7 @@ const EmployeesSchema = new Schema(
     employeeName: {
       type: String,
       required: true,
-      trim: trim,
+      trim: true,
     },
     address: {
       type: String,
