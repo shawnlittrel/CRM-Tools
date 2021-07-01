@@ -34,17 +34,18 @@ type Client {
     _id: ID
     date: String
     description: String
-    notes: 
-    parts: 
-    invoice: 
+    notes: Array
+    parts: Array
+    invoice: String
     timeClocks: [TimeClock]
   }
 
-  type TimeClock {
-    dispatched: String
-    arrived: String
-    departed: String
+  type Warehouse {
+    parts: [Parts]
+    laborItems: [LaborItems]
   }
+
+  type 
 
   type Query {
     me: Employee
@@ -55,6 +56,12 @@ type Client {
 
 // export the typeDefs
 module.exports = typeDefs;
+
+  // type TimeClock {
+  //   dispatched: Date
+  //   arrived: Date
+  //   departed: Date
+  // }
 
 // employees: {
 //     {
