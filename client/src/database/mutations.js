@@ -67,3 +67,7 @@ mutation login($email: String!, $password: String!) {
      }
    }
  `;
+
+ export const NOTE_TO_DB = gql`
+ 
+ `;

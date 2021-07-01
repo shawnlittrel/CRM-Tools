@@ -4,7 +4,8 @@ import {
      DISPATCH_WORK_ORDER,
      ARRIVE_WORK_ORDER,
      DEPART_WORK_ORDER,
-     RESOLVE_WORK_ORDER
+     RESOLVE_WORK_ORDER,
+     NOTE_TO_DB
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -41,6 +42,14 @@ export const reducer = (state, action) => {
                return {
                     ...state,
                     isResolved: true
+               }
+          }
+
+          case NOTE_TO_DB: {
+               return {
+                    ...state,
+                    notes: [...action.notes]
+                    
                }
           }
 
