@@ -192,7 +192,7 @@ db.once('open', async () => {
 
     // create workorders
     let createdWorkOrders = []
-    for (let i = 0; i < 100; i += ) {
+    for (let i = 0; i < 100; i += 1) {
         const workOrderDate = faker.date.between('2021-06-28', '2021-08-15');
         const workOrderDescription = faker.lorem.words(Math.round(Math.random() * 10) + 1);
         const workOrderNotes = faker.lorem.words(Math.round(Math.random() * 20) + 1);
@@ -219,7 +219,7 @@ db.once('open', async () => {
     }
    
     let createdParts = []
-    for (let i = 0; i < 30; i += ) {
+    for (let i = 0; i < 30; i += 1) {
         const partDepartment = faker.commerce.department();
         const partProductName = faker.commerce.productName();
         const partProductDescription = faker.commerce.productDescription();
