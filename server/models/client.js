@@ -1,8 +1,8 @@
 
-const workorderschema =require('./Workorders')
+const workorderSchema =require('./workorders')
 const { Schema, model } = require("mongoose");
 
-const ClientSchema = new Schema(
+const clientSchema = new Schema(
   {
     clientName: {
       type: String,
@@ -22,7 +22,7 @@ const ClientSchema = new Schema(
       type: Number,
       required: true,
     },
-    workorders: [workorderschema],
+    workorders: [workorderSchema],
   },
   {
     toJSON: {
@@ -33,9 +33,9 @@ const ClientSchema = new Schema(
   }
 );
 
-const Client = model("Client", ClientSchema);
+const client = model("Client", clientSchema);
 
-module.exports = Client;
+module.exports = client;
 
 // clients: {
 //   {

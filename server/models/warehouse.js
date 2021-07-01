@@ -1,14 +1,14 @@
 const { Schema, model } = require("mongoose");
 
-const WarehouseSchema = new Schema({
+const warehouseSchema = new Schema({
   parts: [],
   Laboritems: [],
   
 });
 
-const Warehouse = model("Warehouse", WarehouseSchema);
+const warehouse = model("warehouse", warehouseSchema);
 
-module.exports = Warehouse;
+module.exports = warehouse;
 // warehouse {
 // [Parts],
 // [LaborItems]

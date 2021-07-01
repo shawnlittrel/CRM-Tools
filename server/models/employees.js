@@ -1,8 +1,8 @@
 const { Schema, model } = require("mongoose");
 
-const timeCardSchema = require("./Timecard");
+const timeCardSchema = require("./timecard");
 
-const EmployeesSchema = new Schema(
+const employeesSchema = new Schema(
   {
     employeeName: {
       type: String,
@@ -35,6 +35,6 @@ const EmployeesSchema = new Schema(
 
 
 
-const Employees = model("Employees", EmployeesSchema);
+const employees = model("employees", employeesSchema);
 
-module.exports = Employees;
+module.exports = employees;

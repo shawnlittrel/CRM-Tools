@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
-const timeClockSchema = require('./Timeclock')
+const timeClockSchema = require('./timeclock')
 
-const WorkordersSchema = new Schema(
+const workOrdersSchema = new Schema(
   {
     date: {
       type: Date,
@@ -25,9 +25,9 @@ const WorkordersSchema = new Schema(
   }
 );
 
-const Workorders = model("Workorders", WorkordersSchema);
+const workOrders = model("workOrder", workOrdersSchema);
 
-module.exports = Workorders;
+module.exports = workOrders;
 
 // workOrders {
 //     id,
