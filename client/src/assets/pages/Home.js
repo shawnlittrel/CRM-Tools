@@ -5,7 +5,8 @@ import Login from './Login';
 import Timecard from './Timecard';
 import Calendar from  '../components/Calendar';
 import Clients from './Clients';
-import Workorder from './WorkOrder'
+import Workorder from './WorkOrder';
+import Resolution from './Resolution';
 
 function Home() {
      let isPageWide = useMediaQuery('(min-width: 800px)')
@@ -15,7 +16,8 @@ function Home() {
                //<Login />
                //<Calendar />
                //<Clients />
-               <Workorder />
+               //<Workorder />
+               <Resolution />
           )
      }
 
