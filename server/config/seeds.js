@@ -82,7 +82,7 @@ const faker = require('faker');
 const db = require('./connection');
 const {
     Employee
-} = require('/..models');
+} = require('../models');
 
 db.once('open', async () => {
     await Employee.deleteMany({});
