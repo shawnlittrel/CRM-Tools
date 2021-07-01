@@ -1,33 +1,33 @@
-const { Schema, model } = require("mongoose");
-const timeClockSchema = require('./timeclock')
+// const { Schema, model } = require("mongoose");
+// const timeClockSchema = require('./timeclock')
 
-const workOrdersSchema = new Schema(
-  {
-    date: {
-      type: Date,
-      default: Date.now,
-    },
-    description: {
-      type: String,
-    },
-    notes: [],
-    parts: [],
+// const workOrdersSchema = new Schema(
+//   {
+//     date: {
+//       type: Date,
+//       default: Date.now,
+//     },
+//     description: {
+//       type: String,
+//     },
+//     notes: Array,
+//     parts: Array,
 
-    invoice: {
-      type: String,
-    },
-    timeclock: [timeClockSchema],
-  },
-  {
-    toJSON: {
-      getters: true,
-    },
-  }
-);
+//     invoice: {
+//       type: String,
+//     },
+//     timeclock: [timeClockSchema],
+//   },
+//   {
+//     toJSON: {
+//       getters: true,
+//     },
+//   }
+// );
 
-const workOrders = model("workOrder", workOrdersSchema);
+// const workOrders = model("workOrder", workOrdersSchema);
 
-module.exports = workOrders;
+// module.exports = workOrders;
 
 // workOrders {
 //     id,

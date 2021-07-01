@@ -15,7 +15,7 @@ const timeCardSchema = new Schema({
   },  
   {
     toJSON: {
-      getters: true
+      // getters: true
     }
   }
 );

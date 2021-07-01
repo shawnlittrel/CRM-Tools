@@ -18,8 +18,8 @@ const laborItemsSchema = new Schema (
   },
    {
     toJSON: {
-      virtuals: true,
-      getters: true,
+      // virtuals: true,
+      // getters: true,
     },
     id: false,
   }
