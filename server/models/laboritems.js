@@ -16,13 +16,7 @@ const laborItemsSchema = new Schema (
     required: true,
    },
   },
-   {
-    toJSON: {
-      // virtuals: true,
-      // getters: true,
-    },
-    id: false,
-  }
+   
 )
 
 const laborItems = model("laborItems",laborItemsSchema );

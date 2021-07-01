@@ -11,11 +11,6 @@ const partsSchema = new Schema({
     type: Number,
   },
 
-  toJSON: {
-    // virtuals: true,
-    // getters: true,
-  },
-  id: false,
 });
 
 const parts = model("parts", partsSchema);

@@ -18,11 +18,7 @@ const timeClockSchema =  new Schema ({
       get: timestamp => dateFormat(timestamp)
   },
 },
-  {
-    toJSON: {
-      // getters: true
-    }
-  }
+ 
 )
       
   

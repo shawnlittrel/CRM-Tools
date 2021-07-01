@@ -13,11 +13,7 @@ const timeCardSchema = new Schema({
     type: Boolean,
   },
   },  
-  {
-    toJSON: {
-      // getters: true
-    }
-  }
+  
 );
 
 

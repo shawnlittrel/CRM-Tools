@@ -24,13 +24,7 @@ const clientSchema = new Schema(
     },
     workorders: [workorderSchema],
   },
-  {
-    toJSON: {
-      // virtuals: true,
-      // getters: true,
-    },
-    id: false,
-  }
+  
 );
 
 const client = model("Client", clientSchema);

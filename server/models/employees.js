@@ -24,12 +24,7 @@ const employeesSchema = new Schema(
     },
     timeCard: [timeCardSchema],
   },
-  {
-    toJSON: {
-      // getters: true,
-    },
-    id: false,
-  }
+  
 );
 
 
