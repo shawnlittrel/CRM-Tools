@@ -94,16 +94,7 @@ db.once('open', async () => {
     for (let i = 0; i < 50; i += 1) {
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
-        const address = {
-            streetAddress = faker.address.streetAddress(),
-            cityName = faker.address.cityName(),
-            state = faker.address.state(),
-            zipCode = faker.address.zipCode()
-        };
-        // const streetAddress = faker.address.streetAddress();
-        // const cityName = faker.address.cityName();
-        // const state = faker.address.state();
-        // const zipCode = faker.address.zipCode();
+        const address = faker.address.streetAddress(),
         const username = faker.internet.userName();
         const email = faker.internet.email(username);
         const phone = faker.phone.phoneNumber();
@@ -154,16 +145,7 @@ db.once('open', async () => {
     for (let i = 0; i < 100; i += 1) {
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
-        const address = {
-            streetAddress = faker.address.streetAddress(),
-            cityName = faker.address.cityName(),
-            state = faker.address.state(),
-            zipCode = faker.address.zipCode()
-        };
-        // const streetAddress = faker.address.streetAddress();
-        // const cityName = faker.address.cityName();
-        // const state = faker.address.state();
-        // const zipCode = faker.address.zipCode();
+        const address = faker.address.streetAddress(),
         const username = faker.internet.userName();
         const email = faker.internet.email(username);
         const phone = faker.phone.phoneNumber();
