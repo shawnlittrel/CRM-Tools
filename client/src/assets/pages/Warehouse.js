@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { Center, Box, SimpleGrid } from "@chakra-ui/react";
+import { Center, Box, SimpleGrid, Button } from "@chakra-ui/react";
 import Search from "../components/Search";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_WAREHOUSE_SHORT } from "../../database/queries";
+import { useStoreContext } from '../../state/State'
+import { ADD_PART_TO_STATE } from '../../state/reducers/actions';
 
 function Warehouse() {
+     const [state, dispatch] = useStoreContext();
   //define search area
   const { search } = window.location;
   //query warehouse list from database
@@ -12,7 +15,7 @@ function Warehouse() {
 
   //search query is whatever is typed into searchbar
   const query = new URLSearchParams(search).get("searchbar");
-  //set state of warehouse
+  //set state of warehouse search
   const [searchQuery, setSearchQuery] = useState(query || "");
   const filterWarehouse = (warehouse, query) => {
     //return entire list if nothing is in search bar
@@ -25,8 +28,27 @@ function Warehouse() {
       return productName.includes(query);
     });
   };
-  console.log("query", query);
+  
+  const [selectedProduct, setSelectedProduct] = useState([]);
 
+  const handleAddProduct = async event => {
+       event.preventDefault();
+     setSelectedProduct(selectedProduct.push(event.target.value));
+
+     try {
+            dispatch({
+          type: ADD_PART_TO_STATE,
+          id: event.target.value
+     });   
+     } catch (err) {
+          console.error(err);
+     }
+
+  }
+  //TODO: add react Modal and make this handle modalClose
+  const warehouseComplete = async event => {
+
+  }
   //filter warehouse based on search text and populate on page
   const filteredWarehouse = filterWarehouse(warehouse, searchQuery);
   console.log(filteredWarehouse);
@@ -38,6 +60,11 @@ function Warehouse() {
         searchCategory="warehouse"
       />
       <Center>
+      <Button
+          onClick={warehouseComplete}
+          >
+          Finish Adding Parts
+          </Button>
         <SimpleGrid>
           {filteredWarehouse.map(product => (
             <Box
@@ -50,10 +77,13 @@ function Warehouse() {
             >
               <Box>{product.name}</Box>
               <Box>{product.description}</Box>
-              <Box>Add Part to Work Order</Box>
+              <Button value={product._id} onClick={handleAddProduct}>
+                Add Part to Work Order
+              </Button>
             </Box>
           ))}
         </SimpleGrid>
+
       </Center>
     </>
   );
