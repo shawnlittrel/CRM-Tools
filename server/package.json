@@ -1,0 +1,19 @@
+{
+  "name": "crm-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.25.2",
+    "faker": "^5.5.3",
+    "graphql": "^15.5.1",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.13.0"
+  }
+}
