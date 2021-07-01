@@ -45,10 +45,7 @@ function Warehouse() {
      }
 
   }
-  //TODO: add react Modal and make this handle modalClose
-  const warehouseComplete = async event => {
 
-  }
   //filter warehouse based on search text and populate on page
   const filteredWarehouse = filterWarehouse(warehouse, searchQuery);
   console.log(filteredWarehouse);
@@ -60,11 +57,6 @@ function Warehouse() {
         searchCategory="warehouse"
       />
       <Center>
-      <Button
-          onClick={warehouseComplete}
-          >
-          Finish Adding Parts
-          </Button>
         <SimpleGrid>
           {filteredWarehouse.map(product => (
             <Box
