@@ -1,8 +1,8 @@
 const { Schema, model } = require("mongoose");
 
 const warehouseSchema = new Schema({
-  parts: Array,
-  Laboritems: Array,
+  parts: [String],
+  Laboritems: [String],
   
 });
 

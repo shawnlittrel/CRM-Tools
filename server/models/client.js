@@ -8,7 +8,7 @@ const clientSchema = new Schema(
       type: String,
       required: true,
     },
-    adresss: {
+    address: {
       type: String,
       required: true,
     },
@@ -19,7 +19,7 @@ const clientSchema = new Schema(
       match: [/.+@.+\..+/],
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
     },
     workorders: [workorderSchema],

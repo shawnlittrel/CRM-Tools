@@ -14,7 +14,7 @@ type Employee {
     zipcode: Int
     email: String
     phone: String
-    timeCards: [TimeCard]
+    timeCards: [Int]
 }  
 
 type Client {
@@ -34,82 +34,31 @@ type Client {
     _id: ID
     date: String
     description: String
-    notes: Array
-    parts: Array
+    notes: [String]
+    parts: [String]
     invoice: String
-    timeClocks: [TimeClock]
+    timeClocks: [Int]
   }
 
   type Warehouse {
-    parts: [Parts]
-    laborItems: [LaborItems]
+    parts: [String]
+    laborItems: [String]
   }
-
-  type 
+ 
 
   type Query {
     me: Employee
-    employees: [Employee]
-    
+    employees(_id: ID): Employee
+    employee(_id: ID!): Employee
+    clients: Client
+    client(_id: ID!): Client
+  }
+
+  type Mutation {
+    addEmployee(Employee): Employee
   }
 `;
 
+
 // export the typeDefs
 module.exports = typeDefs;
-
-  // type TimeClock {
-  //   dispatched: Date
-  //   arrived: Date
-  //   departed: Date
-  // }
-
-// employees: {
-//     {
-//     id,
-//     name,
-//     address,
-//     email,
-//     phone,
-//     timecard
-//     }
-//   }
-//   clients: {
-//     {
-//     id,
-//     name,
-//     address,
-//     email,
-//     phone,
-//     workOrders {
-//       id,
-//       date,
-//       description,
-//       notes [],
-//       parts [],
-//       invoice
-//       timeClock {
-//         dispatched
-//         arrived
-//         departed
-//       }
-//     }
-//     }
-//   }
-//   warehouse {
-//   [Parts],
-//   [LaborItems]
-//   }
-//   Parts {
-//     id,
-//     name,
-//     description,
-//     purchasePrice,
-//     salePrice,
-//     quantityOnHand,
-//   }
-//   LaborItems {
-//   id,
-//   name,
-//   description,
-//   rate
-//   }

@@ -15,6 +15,7 @@
     "faker": "^5.5.3",
     "graphql": "^15.5.1",
     "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.0"
   }
 }
