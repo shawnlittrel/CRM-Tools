@@ -5,7 +5,8 @@ import {
      ARRIVE_WORK_ORDER,
      DEPART_WORK_ORDER,
      RESOLVE_WORK_ORDER,
-     NOTE_TO_DB
+     SAVE_NOTE_TEXT,
+     ADD_PART_TO_STATE
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -45,11 +46,18 @@ export const reducer = (state, action) => {
                }
           }
 
-          case NOTE_TO_DB: {
+          case SAVE_NOTE_TEXT: {
                return {
                     ...state,
                     notes: [...action.notes]
                     
+               }
+          }
+
+          case ADD_PART_TO_STATE: {
+               return {
+                    ...state,
+                    parts: [...action.parts]
                }
           }
 

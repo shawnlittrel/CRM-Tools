@@ -11,7 +11,19 @@ function Warehouse() {
   //define search area
   const { search } = window.location;
   //query warehouse list from database
-  const warehouse = useQuery(QUERY_WAREHOUSE_SHORT);
+  //const warehouse = useQuery(QUERY_WAREHOUSE_SHORT);
+  const warehouse = [
+    {
+      _id: '1',
+      name: 'test part 1',
+      description: 'some text',
+    },
+    {
+      _id: '2',
+      name: 'test part 2',
+      description: 'some other text'
+    }
+  ]
 
   //search query is whatever is typed into searchbar
   const query = new URLSearchParams(search).get("searchbar");

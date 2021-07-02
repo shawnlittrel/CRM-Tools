@@ -47,7 +47,7 @@ function ResolveWorkOrder() {
     event.preventDefault();
     console.log("handle add parts");
     //Open modal of /warehouse
-    setIsOpen(true);
+    setPartsModalIsOpen(true);
   };
 
   const closePartsModal = () => {
@@ -59,6 +59,11 @@ function ResolveWorkOrder() {
     setPartsModalIsOpen(false);
     //TODO: map saved parts on work order
   };
+
+  const handleInvoice = async event => {
+       event.preventDefault();
+       console.log(state);
+  }
 
 
   return (

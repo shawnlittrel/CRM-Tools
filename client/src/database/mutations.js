@@ -69,5 +69,15 @@ mutation login($email: String!, $password: String!) {
  `;
 
  export const NOTE_TO_DB = gql`
- 
+   mutation noteToDB($noteText: String!) {
+     noteToDB(notetext: $noteText) {
+       clients {
+         workorders {
+           notes {
+             noteText
+           }
+         }
+       }
+     }
+   }
  `;
