@@ -6,7 +6,8 @@ import {
      DEPART_WORK_ORDER,
      RESOLVE_WORK_ORDER,
      ADD_PART_TO_STATE,
-     SAVE_NOTE_TEXT
+     SAVE_NOTE_TEXT,
+     CLEAR_NOTES_ON_RESOLVE
 } from '../state/reducers/actions';
 
 const initialState = {
