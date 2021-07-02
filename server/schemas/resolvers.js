@@ -1,4 +1,4 @@
-const { Client } = require('../models');
+const { Client, Employee } = require('../models');
 
 const resolvers = {
     Query: {
@@ -11,7 +11,7 @@ const resolvers = {
             // get single client
         client: async (parent, { _id }) => {
             return Client.findOne({ _id })
-            .populate("workOrders");
+            //.populate("workOrders");
         },
 
         // get all employees

@@ -71,9 +71,31 @@ export const QUERY_WAREHOUSE_SHORT = gql`
   query getProducts($name: String!) {
        product(name: $name) {
             _id,
-            name,
-            description,
-            purchasePrice
+            partProductName,
+            partProductDescription,
+            partPrice
+       }
+  }
+`;
+
+export const QUERY_EMPLOYEES = gql`
+  query getEmployees($ID: ID) {
+       employee(ID: $ID) {
+            _id,
+            firstName,
+            lastName,
+            address,
+            email,
+            phone,
+            timeCards {
+                 id,
+                 date,
+                 timeClock {
+                      dispatched
+                      arrived
+                      departed
+                 }
+            }
        }
   }
 `;

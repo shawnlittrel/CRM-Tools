@@ -1,10 +1,15 @@
 const { Schema, model } = require("mongoose");
 
-const timeCardSchema = require("./Timecard");
+const timeCardSchema = require("./timecard");
 
-const EmployeesSchema = new Schema(
+const employeesSchema = new Schema(
   {
-    employeeName: {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    lastName: {
       type: String,
       required: true,
       trim: true,
@@ -19,22 +24,16 @@ const EmployeesSchema = new Schema(
       match: [/.+@.+\..+/],
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
     },
     timeCard: [timeCardSchema],
   },
-  {
-    toJSON: {
-      virtuals: true,
-      getters: true,
-    },
-    id: false,
-  }
+  
 );
 
 
 
-const Employees = model("Employees", EmployeesSchema);
+const employees = model("employees", employeesSchema);
 
-module.exports = Employees;
+module.exports = employees;

@@ -1,14 +1,20 @@
 
-const workorderschema =require('./Workorders')
+const workorderSchema =require('./workorders').schema
 const { Schema, model } = require("mongoose");
 
-const ClientSchema = new Schema(
+const clientSchema = new Schema(
   {
-    clientName: {
+    firstName: {
       type: String,
       required: true,
+      trim: true,
     },
-    adresss: {
+    lastName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    address: {
       type: String,
       required: true,
     },
@@ -19,23 +25,22 @@ const ClientSchema = new Schema(
       match: [/.+@.+\..+/],
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
     },
-    workorders: [workorderschema],
+    workorders: [
+      { 
+        type: Schema.Types.ObjectId,
+        ref: 'Workorder'
+      }
+    ],
   },
-  {
-    toJSON: {
-      virtuals: true,
-      getters: true,
-    },
-    id: false,
-  }
+  
 );
 
-const Client = model("Client", ClientSchema);
+const client = model("Client", clientSchema);
 
-module.exports = Client;
+module.exports = client;
 
 // clients: {
 //   {

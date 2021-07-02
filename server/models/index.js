@@ -1,14 +1,19 @@
-;
+const Employee = require("./employees");
+
+const Client = require("./client");
+
+const LaborItem = require("./laboritems");
+
+const Warehouse = require('./warehouse');
+
+const Part = require('./parts');
+
+const WorkOrder = require('./workorders');
+
+const TimeCard = require('./Timecard');
+
+const TimeClock = require('./Timeclock');
 
 
-const Employees = require("./Employees");
 
-const Client = require("./Client")
-
-const LaborItem = require("./Laboritems")
-
-const Warehouse = require('./Warehouse')
-
-const Parts = require ('./Parts')
-
-module.exports = { Employee, Client, LaborItem, Warehouse, Parts};
+module.exports = { Employee, Client, LaborItem, Warehouse, Part, WorkOrder, TimeCard, TimeClock };

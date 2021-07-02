@@ -1,26 +1,21 @@
 const { Schema, model } = require("mongoose");
 
-const PartsSchema = new Schem({
-  partsName: {
+const partsSchema = new Schema({
+  partProductName: {
     type: String,
   },
-  description: {
+  partProductDescription: {
     type: String,
   },
-  purchasePrice: {
-    type: Number,
+  partPrice: {
+    type: String,
   },
 
-  toJSON: {
-    virtuals: true,
-    getters: true,
-  },
-  id: false,
 });
 
-const Parts = model("Parts", PartsSchema);
+const parts = model("parts", partsSchema);
 
-module.exports = Parts;
+module.exports = parts;
 
 // Parts {
 //   id,
