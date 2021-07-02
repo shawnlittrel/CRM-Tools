@@ -14,6 +14,23 @@ const typeDefs = gql`
     timeCards: [Int]
   }
 
+  type Part {
+    _id: ID
+    partProductName: String
+    partProductDescription: String
+    partPrice: String
+  }
+
+  type WorkOrder {
+    _id: ID
+    workOrderDate: String
+    workOrderDescription: String
+    workOrderNotes: [String]
+    workOrderParts: [Part]
+    workOrderInvoice: [String]
+    workOrderTimeClock: [Int]
+  }
+
   type Client {
     _id: ID
     firstName: String
@@ -24,19 +41,14 @@ const typeDefs = gql`
     workOrders: [WorkOrder]
   }
 
-  type WorkOrder {
-    _id: ID
-    date: String
-    description: String
-    notes: [String]
-    parts: [String]
-    invoice: String
-    timeClocks: [Int]
+  type Warehouse {
+    parts: [Part]
+    laborItems: [String]
   }
 
-  type Warehouse {
-    parts: [String]
-    laborItems: [String]
+  type Auth {
+    token: ID
+    user: Employee
   }
 
   type Query {

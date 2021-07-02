@@ -38,9 +38,6 @@ db.once('open', async () => {
             firstName,
             lastName,
             address,
-            // cityName,
-            // state,
-            // zipCode,
             username,
             email,
             phone
@@ -89,9 +86,6 @@ db.once('open', async () => {
             firstName,
             lastName,
             address,
-            // cityName,
-            // state,
-            // zipCode,
             username,
             email,
             phone
@@ -123,70 +117,137 @@ db.once('open', async () => {
         });
     }
 
+    // let createdParts = []
+    const partData = [];
+
+    for (let i = 0; i < 30; i += 1) {
+        // const partDepartment = faker.commerce.department();
+        const partProductName = faker.commerce.productName();
+        const partProductDescription = faker.commerce.productDescription();
+        // const partPrice = faker.commence.price();
+
+        partData.push({
+            // partDepartment,
+            partProductName,
+            partProductDescription,
+            // partPrice
+        });
+    }
+
+    const createdParts = await Part.collection.insertMany(partData);
+
+    // create parts
+    for (let i = 0; i < 30; i += 1) {
+        const randomPartsIndex = Math.floor(Math.random() * createdParts.ops.length);
+        const {
+            _id: userId
+        } = createdParts.ops[randomPartsIndex];
+
+        let partId = userId;
+
+        while (partId === userId) {
+            const randomPartsIndex = Math.floor(Math.random() *  createdParts.ops.length);
+            partId = createdParts.ops[randomPartsIndex];
+        }
+
+        await Part.updateOne({
+            _id: userId
+        },
+        {
+            $addToSet: {
+                parts: partId
+            }
+        });
+
+        // const createdPart = await Part.create({ partDepartment, partProductName, partProductDescription, partPrice, username });
+
+        // const updatedWorkOrder = await Part.updateOne(
+        //     { _id: userId },
+        //     { $push: { Parts: createdPart._id } }
+        // );
+
+        // createdParts.push(createdPart);
+    }
+
     // create workorders
-    let createdWorkOrders = []
-    for (let i = 0; i < 100; i += 1) {
+    const workOrderData = []
+
+    for (let i = 0; i < 50; i += 1) {
         const workOrderDate = faker.date.between('2021-06-28', '2021-08-15');
         const workOrderDescription = faker.lorem.words(Math.round(Math.random() * 10) + 1);
         const workOrderNotes = faker.lorem.words(Math.round(Math.random() * 20) + 1);
         const workOrderParts = [createdParts];
         const workOrderInvoice = [];
         const workOrderTimeClock = [];
+        
+        workOrderData.push({
+            workOrderDate,
+            workOrderDescription,
+            workOrderNotes,
+            workOrderParts,
+            workOrderInvoice,
+            workOrderTimeClock
+        });
+    }
 
-        const randomClientIndex = Math.floor(Math.random() * createdClients.ops.length);
+    const createdWorkOrders = await WorkOrder.collection.insertMany(workOrderData);
+
+    for (let i = 0; i < 50; i += 1) {
+        const randomWorkOrderIndex = Math.floor(Math.random() * createdWorkOrders.ops.length);
         const { username,
             _id: userId
-        } = createdClients.ops[randomClientIndex];
+        } = createdWorkOrders.ops[randomWorkOrderIndex];
 
-        const createdWorkOrder = await WorkOrder.create({ workOrderDate, workOrderDescription, workOrderNotes, workOrderParts, workOrderInvoice, workOrderTimeClock, username });
+        let workOrderId = userId;
 
-        const updatedClient = await Client.updateOne(
-            { _id: userId },
-            { $push: { workOrders: createdWorkOrder._id } }
-        );
+        while (workOrderId === userId) {
+            const randomWorkOrderIndex = Math.floor(Math.random() * createdWorkOrders.ops.length);
+            workOrderId = createdWorkOrders.ops[randomWorkOrderIndex]
+        }
 
-        createdWorkOrders.push(createdWorkOrder);
+        await WorkOrder.updateOne({
+            _id: userId
+        },
+        {
+            $addToSet: {
+                workOrders: workOrderId
+            }
+        })
+
+        // const createdWorkOrder = await WorkOrder.create({ workOrderDate, workOrderDescription, workOrderNotes, workOrderParts, workOrderInvoice, workOrderTimeClock, username });
+
+        // const updatedClient = await Client.updateOne(
+        //     { _id: userId },
+        //     { $push: { workOrders: createdWorkOrder._id } }
+        // );
+
+        // createdWorkOrders.push(createdWorkOrder);
 
         // get random parts
         // link parts to workorder
     }
    
-    let createdParts = []
-    for (let i = 0; i < 30; i += 1) {
-        const partDepartment = faker.commerce.department();
-        const partProductName = faker.commerce.productName();
-        const partProductDescription = faker.commerce.productDescription();
-        const partPrice = faker.commence.price();
-
-        const randomWorkOrdersIndex = Math.floor(Math.random() * createdWorkOrders.ops.length);
-        const { username, // Not sure how to link these to workorders
-            _id: userId
-        } = createdWorkOrders.ops[randomWorkOrdersIndex];
-
-        const createdPart = await Part.create({ partDepartment, partProductName, partProductDescription, partPrice, username });
-
-        const updatedWorkOrder = await Part.updateOne(
-            { _id: userId },
-            { $push: { Parts: createdPart._id } }
-        );
-
-        createdParts.push(createdPart);
-    }
+    
 
     // create invoice
 
-
-    // const generatewWorkOrderData = clientsIds => {
-    //     let workOrderData = [];
-    //     let i = 0;
-
-    //     while (i < 100) {
-    //         const client_id = faker.random.arrayElement(clientsIds);
-    //         const workOrderObject = faker.random.arrayElement(workOrders);
-            // const date = faker
-            // const description = faker.lorem.words(Math.round(Math.random() * 20) + 1);
-    //     }
-    // }
+    // create timeClock
+    // const timeClockSchema =  new Schema ({
+    //     dispatched: {
+    //       type: Date,
+    //         default: Date.now,
+    //         get: timestamp => dateFormat(timestamp)
+    //     },
+    //     arrived:{
+    //       type: Date,
+    //         default: Date.now,
+    //         get: timestamp => dateFormat(timestamp)
+    //     },
+    //     departed:{
+    //       type: Date,
+    //         default: Date.now,
+    //         get: timestamp => dateFormat(timestamp)
+    //     },
 
     console.log('seeding complete');
     process.exit(0);
