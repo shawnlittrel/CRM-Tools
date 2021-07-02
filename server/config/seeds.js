@@ -84,6 +84,10 @@ const {
     Employee
 } = require('../models');
 
+const{
+    Client
+} = require('../models')
+
 db.once('open', async () => {
     await Employee.deleteMany({});
     await Client.deleteMany({});
