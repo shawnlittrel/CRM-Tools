@@ -1,46 +1,30 @@
 const { Schema, model } = require("mongoose");
-const timeClockSchema = require('./Timeclock').schema;
-const timeCardSchema = require('./Timecard').schema;
+// const timeClockSchema = require('./Timeclock').schema;
+// const timeCardSchema = require('./Timecard').schema;
+const partSchema = require('./parts');
+const timeClockSchema = require('./Timeclock');
 
-
-const workorderSchema = new Schema(
+const workOrderSchema = new Schema(
   {
     workOrderDate: {
-      type: Date,
-      default: Date.now,
+      type: String,
     },
     workOrderDescription: {
       type: String,
     },
     workOrderNotes: [
       { 
-        type: Schema.Types.ObjectId,
-        ref: 'Note'
+        type: String,
       }
     ],
-    workOrderParts: [
-      { 
-        type: Schema.Types.ObjectId,
-        ref: 'Part'
-      }
-    ],
+    workOrderParts: [partSchema],
     workOrderInvoice: [
       { 
-        type: Schema.Types.ObjectId,
-        ref: 'Invoice'
+        //TODO: run a test on Stripe checkout to see what kind of receipt is returned??
+        type: String
       }
     ],
-    workOrderTimeClock: [
-      { 
-        type: Schema.Types.ObjectId,
-        ref: 'Timeclock'
-      }
-    ],
-  },
-  {
-    toJSON: {
-      getters: true,
-    },
+    workOrderTimeClock: [timeClockSchema],
   }
 );
 
@@ -52,9 +36,9 @@ const workorderSchema = new Schema(
 //     invoice: String
 //     timeClocks: [Int]
 
-const workorders = model("workOrder", workorderSchema);
+//const workorders = model("workOrder", workorderSchema);
 
-module.exports = workorders;
+module.exports = workOrderSchema;
 
 // workOrders {
 //     id,

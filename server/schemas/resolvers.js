@@ -1,4 +1,5 @@
 const { Client, Employee } = require('../models');
+const client = require('../models/client');
 
 const resolvers = {
     Query: {
@@ -11,7 +12,7 @@ const resolvers = {
             // get single client
         client: async (parent, { _id }) => {
             return Client.findOne({ _id })
-            //.populate("workOrders");
+            .populate("workOrders");
         },
 
         // get all employees
@@ -30,6 +31,22 @@ const resolvers = {
     Mutation: {
         addEmployee: async (parent, args) => {
             const employee = await Employee.create(args);
+
+            return employee;
+        },
+
+        addWorkOrder: async (parent, args) => {
+            const updatedClient = await Client.findOneAndUpdate(
+                { _id: args.id},
+                { $push: { 
+                    workOrders: { 
+                        workOrderDate: args.date, 
+                        workOrderDescription: args.description,
+                    }}}
+
+            )
+
+            return updatedClient;
         }
     }
 };

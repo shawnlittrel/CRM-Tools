@@ -13,9 +13,9 @@ const partsSchema = new Schema({
 
 });
 
-const parts = model("parts", partsSchema);
+//const parts = model("parts", partsSchema);
 
-module.exports = parts;
+module.exports = partsSchema;
 
 // Parts {
 //   id,

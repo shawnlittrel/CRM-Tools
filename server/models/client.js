@@ -1,5 +1,5 @@
 
-const workorderSchema =require('./workorders').schema
+const workOrderSchema =require('./workorders');
 const { Schema, model } = require("mongoose");
 
 const clientSchema = new Schema(
@@ -28,12 +28,7 @@ const clientSchema = new Schema(
       type: String,
       required: true,
     },
-    workorders: [
-      { 
-        type: Schema.Types.ObjectId,
-        ref: 'Workorder'
-      }
-    ],
+    workorders: [workOrderSchema],
   },
   
 );

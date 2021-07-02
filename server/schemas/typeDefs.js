@@ -68,6 +68,12 @@ const typeDefs = gql`
       email: String
       phone: String
     ): Employee
+
+    addWorkOrder (
+      _id: ID!
+      workOrderDate: String!
+      workOrderDescription: String!
+      ): Client
   }
 `;
 

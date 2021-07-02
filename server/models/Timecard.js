@@ -7,7 +7,6 @@ const timeCardSchema = new Schema({
   timecard: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
   },
   clockedIn: {
     type: Boolean,
