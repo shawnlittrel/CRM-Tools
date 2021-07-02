@@ -4,7 +4,12 @@ const timeCardSchema = require("./timecard");
 
 const employeesSchema = new Schema(
   {
-    employeeName: {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    lastName: {
       type: String,
       required: true,
       trim: true,

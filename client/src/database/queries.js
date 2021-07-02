@@ -78,3 +78,24 @@ export const QUERY_WAREHOUSE_SHORT = gql`
   }
 `;
 
+export const QUERY_EMPLOYEES = gql`
+  query getEmployees($ID: ID) {
+       employee(ID: $ID) {
+            _id,
+            firstName,
+            lastName,
+            address,
+            email,
+            phone,
+            timeCards {
+                 id,
+                 date,
+                 timeClock {
+                      dispatched
+                      arrived
+                      departed
+                 }
+            }
+       }
+  }
+`;
