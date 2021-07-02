@@ -1,4 +1,4 @@
-const { Client } = require('../models');
+const { Client, Employee } = require('../models');
 
 const resolvers = {
     Query: {

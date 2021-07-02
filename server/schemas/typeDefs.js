@@ -8,10 +8,7 @@ type Employee {
   _id: ID
   firstName: String
     lastName: String
-    street: String
-    city: String
-    state: String
-    zipcode: Int
+    address: String
     email: String
     phone: String
     timeCards: [Int]
@@ -48,14 +45,14 @@ type Client {
 
   type Query {
     me: Employee
-    employees(_id: ID): Employee
+    employees(_id: ID): [Employee]
     employee(_id: ID!): Employee
-    clients: Client
+    clients: [Client]
     client(_id: ID!): Client
   }
 
   type Mutation {
-    addEmployee(Employee): Employee
+    addEmployee(_id: ID, firstName: String, lastName: String, address: String, email: String, phone: String): Employee
   }
 `;
 
