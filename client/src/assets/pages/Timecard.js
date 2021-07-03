@@ -1,7 +1,7 @@
 import React, { useState, Redirect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { useMutation } from "@apollo/client";
-import { Box, Spinner, Container, Button } from "@chakra-ui/react";
+import { Box, Spinner, Container, Button, Flex } from "@chakra-ui/react";
 import Auth from "../../utils/auth";
 import { QUERY_TIMECARD } from "../../database/queries";
 import { CLOCK_IN, CLOCK_OUT } from "../../database/mutations";
@@ -62,14 +62,16 @@ function TimeCard() {
     }
   };
 
-  if (Auth.loggedIn) {
-    if (loading) {
-      return <Spinner color="brand.400" />;
-    } else {
+  // if (Auth.loggedIn) {
+  //   if (loading) {
+  //     return <Spinner color="brand.400" />;
+  //   } else {
       return (
         <div>
           <Container centerContent>
-            {data.map(punch => (
+            {data ?
+            <div>
+              {data.map(punch => (
               <Box key={punch._id} _id={punch._id}>
                 <Box
                   backgroundColor="brand.300"
@@ -85,12 +87,17 @@ function TimeCard() {
                 </Box>
               </Box>
             ))}
+            </div>
+          : null }
           </Container>
-          <div>
+          <Flex justifyContent="center"
+          position="fixed"
+          width="100%"
+          bottom="20">
             {isClockedIn ? (
               <Button
                 backgroundColor="brand.100"
-                color="brand.100"
+                color="brand.200"
                 value={Date.now()}
                 onClick={handleClockOutSubmit}
               >
@@ -99,20 +106,21 @@ function TimeCard() {
             ) : (
               <Button
                 backgroundColor="brand.400"
-                color="brand.100"
+                color="brand.200"
                 value={Date.now()}
                 onClick={handleClockInSubmit}
+                w="60%"
               >
                 Clock In
               </Button>
             )}
-          </div>
+          </Flex>
         </div>
       );
-    }
-  } else {
-    return <Redirect to="/login" />;
-  }
+  //   }
+  // // } else {
+  // //   return <Redirect to="/login" />;
+  // // }
 }
 
 export default TimeCard;

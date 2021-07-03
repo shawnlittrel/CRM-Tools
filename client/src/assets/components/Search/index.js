@@ -1,29 +1,30 @@
+import { Center, Button } from "@chakra-ui/react";
 
+function Search(props) {
+  const { searchQuery, setSearchQuery, searchCategory } = props;
 
-function Search (props) {
-     const {
-          searchQuery,
-          setSearchQuery,
-          searchCategory
-     } = props;
-
-
-     return (
-          <form action="/" method="get">
-               <label htmlFor="header-search">
-                    <span className="visually-hidden">Search {searchCategory}</span>
-               </label>
-               <input
-                    type="text"
-                    id="searchbar"
-                    placeholder="Search"
-                    name="searchbar"
-                    onChange={e => setSearchQuery(e.target.value)}
-                    value={searchQuery}
-               />
-               <button type="submit">Search</button>
-          </form>
-     )
-};
+  return (
+    <Center>
+      <form action="/" method="get">
+        <Center>
+          <label htmlFor="header-search">
+            <span className="visually-hidden">Search {searchCategory}:</span>
+          </label>
+        </Center>
+        <input
+          type="text"
+          id="searchbar"
+          placeholder="Search"
+          name="searchbar"
+          onChange={e => setSearchQuery(e.target.value)}
+          value={searchQuery}
+        />
+        <Button type="submit" backgroundColor="brand.400" color="brand.200">
+          Search
+        </Button>
+      </form>
+    </Center>
+  );
+}
 
 export default Search;
