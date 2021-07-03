@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { NOTE_TO_DB } from "../../database/mutations";
 import { SAVE_NOTE_TEXT } from "../../state/reducers/actions";
-import Modal from "react-modal";
 import Warehouse from "../pages/Warehouse";
 import {
   Box,
@@ -78,11 +77,6 @@ function ResolveWorkOrder() {
       </Container>
       <Divider />
       <Button onClick={handleAddParts}>Add Parts</Button>
-      <Modal
-        isOpen={partsModalIsOpen}
-        onRequestClose={closePartsModal}
-        key={`partsModal`}
-      >
         <Flex>
           <Button
             onClick={closePartsModal}
@@ -104,9 +98,6 @@ function ResolveWorkOrder() {
             Save to Workorder
           </Button>
         </Flex>
-        <Divider />
-        <Warehouse />
-      </Modal>
       <Divider />
 
       <Button

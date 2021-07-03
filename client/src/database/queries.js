@@ -78,3 +78,28 @@ export const QUERY_WAREHOUSE_SHORT = gql`
   }
 `;
 
+export const QUERY_DOCUMENTS_SHORT = gql`
+  query getDocuments($id: ID) {
+       documents(id: $id) {
+            _id,
+            title,
+            text
+       }
+  }
+`;
+
+export const QUERY_EMPLOYEES_SHORT = gql`
+  query getEmployees($id: ID) {
+       employees(id: $id) {
+            _id,
+            firstName,
+            lastName,
+            street,
+            city,
+            state,
+            zipcode,
+            email,
+            phone
+       }
+  }
+`;

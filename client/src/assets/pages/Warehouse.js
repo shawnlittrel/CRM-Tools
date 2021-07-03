@@ -7,6 +7,7 @@ import { useStoreContext } from '../../state/State'
 import { ADD_PART_TO_STATE } from '../../state/reducers/actions';
 
 function Warehouse() {
+  //TODO: pass in workorder id to state to make buttons enabled
      const [state, dispatch] = useStoreContext();
   //define search area
   const { search } = window.location;
@@ -66,14 +67,14 @@ function Warehouse() {
       <Search
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        searchCategory="warehouse"
+        searchCategory="Warehouse"
       />
       <Center>
         <SimpleGrid>
           {filteredWarehouse.map(product => (
             <Box
               as="a"
-              backgroundColor="brand.400"
+              backgroundColor="brand.300"
               color="brand.200"
               key={product._id}
               name={product._id}
@@ -81,7 +82,7 @@ function Warehouse() {
             >
               <Box>{product.name}</Box>
               <Box>{product.description}</Box>
-              <Button value={product._id} onClick={handleAddProduct}>
+              <Button value={product._id} onClick={handleAddProduct} backgroundColor="brand.400">
                 Add Part to Work Order
               </Button>
             </Box>
