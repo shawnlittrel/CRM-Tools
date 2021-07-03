@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "A CRM suite used to manage employees, clients, work orders, and invoicing",
   "main": "server/server.js",
-  "dependencies": {},
+  "dependencies": {
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.15.1"
+  },
   "devDependencies": {
     "concurrently": "^6.2.0"
   },
