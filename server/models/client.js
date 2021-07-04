@@ -56,7 +56,7 @@ module.exports = client;
 //     notes [],
 //     parts [],
 //     invoice
-//   //   timeClock {
+  //   billableTime {
 //     dispatched
 //     arrived
 //     departed

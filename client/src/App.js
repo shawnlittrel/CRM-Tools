@@ -2,13 +2,21 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-import Home from "./assets/pages/Home";
-import Register from "./assets/pages/Register";
-import Login from "./assets/pages/Login";
 import { StoreProvider } from "./state/State";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./utils/theme";
+
+//import components and pages
+import Home from "./assets/pages/Home";
+import Register from "./assets/pages/Register";
+import Login from "./assets/pages/Login";
 import Footer from "./assets/components/FooterNav";
+import Schedule from './assets/components/Calendar';
+import Timecard from './assets/pages/Timecard';
+import Directory from './assets/pages/Directory';
+import Customers from './assets/pages/Clients';
+import Inventory from './assets/pages/Warehouse';
+import Documents from './assets/pages/Documents';
 
 const client = new ApolloClient({
   request: operation => {
@@ -29,7 +37,8 @@ function App() {
     overflow: "hidden",
     position: "fixed",
     bottom: "0",
-    width: "100%"
+    width: "100%",
+    height: "5vh"
   };
 
   return (
@@ -43,7 +52,13 @@ function App() {
               background-color="#E0FBFC"
             >
               <Switch>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/timecard" component={Timecard} />
+                <Route exact path="/schedule" component={Schedule} />
+                <Route exact path="/directory" component={Directory} />
+                <Route exact path="/clients" component={Customers} />
+                <Route exact path="/warehouse" component={Inventory} />
+                <Route exact path="/documents" component={Documents} />
               </Switch>
             </div>      
             <div style={footerStyle}>

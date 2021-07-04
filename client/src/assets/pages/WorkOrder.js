@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { Redirect } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -8,7 +9,7 @@ import {
   Input,
   Container,
   Divider,
-  Textarea
+  Textarea,
 } from "@chakra-ui/react";
 import { useStoreContext } from "../../state/State";
 import { useMutation } from "@apollo/client";
@@ -38,6 +39,10 @@ function WorkOrder() {
   const [recordDepartToDB, { error3 }] = useMutation(DEPART_TO_DB);
   const workOrderDescription = "test 123 here is some test data";
   const [state, dispatch] = useStoreContext();
+
+  /////
+  const id = 1
+  /////
 
   const handleDispatch = async event => {
     event.preventDefault();
@@ -122,6 +127,8 @@ function WorkOrder() {
       <br />
       <br />
       <Box>{workOrderDescription}</Box>
+
+      {isDeparted ? <Redirect to={`/resolve/${id}`} /> : null}
     </Container>
   );
 }

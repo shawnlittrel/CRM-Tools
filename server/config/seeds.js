@@ -178,7 +178,7 @@ db.once('open', async () => {
         const workOrderNotes = faker.lorem.words(Math.round(Math.random() * 20) + 1);
         const workOrderParts = [createdParts];
         const workOrderInvoice = [];
-        const workOrderTimeClock = [];
+        const workOrderBillableTime = [];
         
         workOrderData.push({
             workOrderDate,
@@ -186,7 +186,7 @@ db.once('open', async () => {
             workOrderNotes,
             workOrderParts,
             workOrderInvoice,
-            workOrderTimeClock
+            workOrderBillableTime
         });
     }
 
@@ -214,7 +214,7 @@ db.once('open', async () => {
             }
         })
 
-        // const createdWorkOrder = await WorkOrder.create({ workOrderDate, workOrderDescription, workOrderNotes, workOrderParts, workOrderInvoice, workOrderTimeClock, username });
+        // const createdWorkOrder = await WorkOrder.create({ workOrderDate, workOrderDescription, workOrderNotes, workOrderParts, workOrderInvoice, workOrderBillableTime, username });
 
         // const updatedClient = await Client.updateOne(
         //     { _id: userId },
@@ -231,8 +231,8 @@ db.once('open', async () => {
 
     // create invoice
 
-    // create timeClock
-    // const timeClockSchema =  new Schema ({
+    // create billableTime
+    // const billableTimeSchema =  new Schema ({
     //     dispatched: {
     //       type: Date,
     //         default: Date.now,
@@ -278,7 +278,7 @@ db.once('open', async () => {
 //       notes [],
 //       parts [],
 //       invoice
-//       timeClock {
+//       billableTime {
 //         dispatched
 //         arrived
 //         departed

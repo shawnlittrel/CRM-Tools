@@ -1,7 +1,7 @@
 const dateFormat = require('../utils/dateFormat');
 const { Schema, model } = require("mongoose");
 
-const timeClockSchema =  new Schema ({
+const billableTimeSchema =  new Schema ({
   dispatched: {
     type: Date,
       default: Date.now,
@@ -22,4 +22,4 @@ const timeClockSchema =  new Schema ({
 )
       
   
- module.exports = timeClockSchema; 
+ module.exports = billableTimeSchema; 

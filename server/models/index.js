@@ -12,8 +12,8 @@ const WorkOrder = require('./workorders');
 
 const TimeCard = require('./Timecard');
 
-const TimeClock = require('./Timeclock');
+const BillableTime = require('./BillableTime');
 
 
 
-module.exports = { Employee, Client, LaborItem, Warehouse, Part, WorkOrder, TimeCard, TimeClock };
+module.exports = { Employee, Client, LaborItem, Warehouse, Part, WorkOrder, TimeCard, BillableTime };

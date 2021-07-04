@@ -4,7 +4,10 @@ import {
      DISPATCH_WORK_ORDER,
      ARRIVE_WORK_ORDER,
      DEPART_WORK_ORDER,
-     RESOLVE_WORK_ORDER
+     RESOLVE_WORK_ORDER,
+     SAVE_NOTE_TEXT,
+     ADD_PART_TO_STATE,
+     CLEAR_STATUS_ON_RESOLVE
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -41,6 +44,34 @@ export const reducer = (state, action) => {
                return {
                     ...state,
                     isResolved: true
+               }
+          }
+
+          case SAVE_NOTE_TEXT: {
+               return {
+                    ...state,
+                    notes: [...action.notes]
+                    
+               }
+          }
+
+          case ADD_PART_TO_STATE: {
+               return {
+                    ...state,
+                    parts: [...action.parts]
+               }
+          }
+
+          case CLEAR_STATUS_ON_RESOLVE: {
+               return {
+                    ...state,
+                    isDispatched: false,
+                    isArrived: false,
+                    isDeparted: false,
+                    isResolved: false,
+                    notes: [],
+                    parts: [],
+                    
                }
           }
 

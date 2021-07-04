@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const timeClockSchema = require('./Timeclock').schema;
+const billableTimeSchema = require('./BillableTime').schema;
 const timeCardSchema = require('./Timecard').schema;
 
 
@@ -30,10 +30,10 @@ const workorderSchema = new Schema(
         ref: 'Invoice'
       }
     ],
-    workOrderTimeClock: [
+    workOrderBillableTime: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'Timeclock'
+        ref: 'BillableTime'
       }
     ],
   },
@@ -43,14 +43,6 @@ const workorderSchema = new Schema(
     },
   }
 );
-
-// _id: ID
-//     date: String
-//     description: String
-//     notes: [String]
-//     parts: [String]
-//     invoice: String
-//     timeClocks: [Int]
 
 const workorders = model("workOrder", workorderSchema);
 
@@ -65,9 +57,10 @@ module.exports = workorders;
 //     invoice
    
    
-  //   timeClock {
+  //   billableTime {
   //     dispatched
   //     arrived
   //     departed
   //   }
   // }
+
