@@ -57,6 +57,7 @@ const typeDefs = gql`
     employee(_id: ID!): Employee
     clients: [Client]
     client(_id: ID!): Client
+    parts: [Part]
   }
 
   type Mutation {

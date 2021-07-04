@@ -35,15 +35,16 @@ export const QUERY_CLIENTS = gql`
 `;
 
 export const QUERY_CLIENTS_SHORT = gql`
-  query getClients($name: String) {
-    client(name: $name) {
-      _id
-      name
-      address
-      email
-      phone
-    }
+query getClients {
+  clients {
+    _id
+    firstName
+    lastName
+    address
+    email
+    phone
   }
+}
 `;
 
 export const QUERY_APPOINTMENTS = gql`
@@ -67,13 +68,13 @@ export const QUERY_APPOINTMENTS = gql`
 `;
 
 export const QUERY_WAREHOUSE_SHORT = gql`
-  query getProducts($name: String!) {
-       product(name: $name) {
-            _id,
-            partProductName,
-            partProductDescription,
-            partPrice
-       }
+  query getProducts {
+    product {
+      _id
+      partProductName
+      partProductDescription
+      partPrice
+    }
   }
 `;
 
@@ -86,15 +87,7 @@ export const QUERY_EMPLOYEES = gql`
       address
       email
       phone
-      timeCards {
-        id
-        date
-        timeClock {
-          dispatched
-          arrived
-          departed
-        }
-      }
+      timeCard
     }
   }
 `;
@@ -111,14 +104,11 @@ export const QUERY_DOCUMENTS_SHORT = gql`
 
 export const QUERY_EMPLOYEES_SHORT = gql`
   query getEmployees($id: ID) {
-    employees(id: $id) {
+    employees(_id: $id) {
       _id
       firstName
       lastName
-      street
-      city
-      state
-      zipcode
+      address
       email
       phone
     }

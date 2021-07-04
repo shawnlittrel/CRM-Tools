@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Center, Box, SimpleGrid, Button } from "@chakra-ui/react";
+import { Center, Box, SimpleGrid, Button, Spinner } from "@chakra-ui/react";
 import Search from "../components/Search";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_WAREHOUSE_SHORT } from "../../database/queries";
@@ -12,19 +12,12 @@ function Warehouse() {
   //define search area
   const { search } = window.location;
   //query warehouse list from database
-  //const warehouse = useQuery(QUERY_WAREHOUSE_SHORT);
-  const warehouse = [
-    {
-      _id: '1',
-      name: 'test part 1',
-      description: 'some text',
-    },
-    {
-      _id: '2',
-      name: 'test part 2',
-      description: 'some other text'
-    }
-  ]
+  const { loading, data } = useQuery(QUERY_WAREHOUSE_SHORT);
+  let warehouse;
+
+  if(data) {
+    warehouse = data.warehouse
+  }
 
   //search query is whatever is typed into searchbar
   const query = new URLSearchParams(search).get("searchbar");
@@ -61,7 +54,19 @@ function Warehouse() {
 
   //filter warehouse based on search text and populate on page
   const filteredWarehouse = filterWarehouse(warehouse, searchQuery);
-  console.log(filteredWarehouse);
+
+
+  if(loading) return (
+    <Center>
+          <Spinner
+      thickness="5px"
+      emptyColor="brand.300"
+      color="brand.100"
+      size="xl"
+    />
+    </Center>
+  )
+  
   return (
     <>
       <Search

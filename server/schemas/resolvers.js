@@ -24,6 +24,11 @@ const resolvers = {
         employee: async(parent, { _id }) => {
             return Employee.findOne({ _id })
             .populate("timeCards");
+        },
+
+        //get parts
+        parts: async () => {
+            return Part.find()
         }
     },
 
