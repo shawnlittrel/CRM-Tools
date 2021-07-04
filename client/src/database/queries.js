@@ -68,12 +68,12 @@ export const QUERY_APPOINTMENTS = gql`
 
 export const QUERY_WAREHOUSE_SHORT = gql`
   query getProducts($name: String!) {
-    product(name: $name) {
-      _id
-      name
-      description
-      purchasePrice
-    }
+       product(name: $name) {
+            _id,
+            partProductName,
+            partProductDescription,
+            partPrice
+       }
   }
 `;
 

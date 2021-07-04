@@ -24,7 +24,7 @@ const employeesSchema = new Schema(
       match: [/.+@.+\..+/],
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
     },
     timeCard: [timeCardSchema],

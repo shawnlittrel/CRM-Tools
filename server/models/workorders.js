@@ -1,33 +1,60 @@
-// const { Schema, model } = require("mongoose");
-// const timeClockSchema = require('./timeclock')
+const { Schema, model } = require("mongoose");
+const timeClockSchema = require('./Timeclock').schema;
+const timeCardSchema = require('./Timecard').schema;
 
-// const workOrdersSchema = new Schema(
-//   {
-//     date: {
-//       type: Date,
-//       default: Date.now,
-//     },
-//     description: {
-//       type: String,
-//     },
-//     notes: Array,
-//     parts: Array,
 
-//     invoice: {
-//       type: String,
-//     },
-//     timeclock: [timeClockSchema],
-//   },
-//   {
-//     toJSON: {
-//       getters: true,
-//     },
-//   }
-// );
+const workorderSchema = new Schema(
+  {
+    workOrderDate: {
+      type: Date,
+      default: Date.now,
+    },
+    workOrderDescription: {
+      type: String,
+    },
+    workOrderNotes: [
+      { 
+        type: Schema.Types.ObjectId,
+        ref: 'Note'
+      }
+    ],
+    workOrderParts: [
+      { 
+        type: Schema.Types.ObjectId,
+        ref: 'Part'
+      }
+    ],
+    workOrderInvoice: [
+      { 
+        type: Schema.Types.ObjectId,
+        ref: 'Invoice'
+      }
+    ],
+    workOrderTimeClock: [
+      { 
+        type: Schema.Types.ObjectId,
+        ref: 'Timeclock'
+      }
+    ],
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
+);
 
-// const workOrders = model("workOrder", workOrdersSchema);
+// _id: ID
+//     date: String
+//     description: String
+//     notes: [String]
+//     parts: [String]
+//     invoice: String
+//     timeClocks: [Int]
 
-// module.exports = workOrders;
+const workorders = model("workOrder", workorderSchema);
+
+module.exports = workorders;
 
 // workOrders {
 //     id,
