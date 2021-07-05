@@ -5,7 +5,9 @@
   "main": "server/server.js",
   "dependencies": {
     "@stripe/react-stripe-js": "^1.4.1",
-    "@stripe/stripe-js": "^1.15.1"
+    "@stripe/stripe-js": "^1.15.1",
+    "axios": "^0.21.1",
+    "stripe": "^8.160.0"
   },
   "devDependencies": {
     "concurrently": "^6.2.0"
