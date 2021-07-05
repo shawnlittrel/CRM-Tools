@@ -1,21 +1,21 @@
 const { Schema, model } = require("mongoose");
 
-const partsSchema = new Schema({
-  partsName: {
+const PartSchema = new Schema({
+  partProductName: {
     type: String,
   },
-  description: {
+  partProductDescription: {
     type: String,
   },
-  purchasePrice: {
-    type: Number,
+  partPrice: {
+    type: String,
   },
 
 });
 
-const parts = model("parts", partsSchema);
+const Part = model("parts", PartSchema);
 
-module.exports = parts;
+module.exports = Part;
 
 // Parts {
 //   id,

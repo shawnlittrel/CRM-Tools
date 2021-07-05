@@ -24,7 +24,7 @@ export const QUERY_CLIENTS = gql`
         notes
         parts
         invoice
-        timeClock {
+        billableTime {
           dispatched
           arrived
           departed
@@ -35,15 +35,16 @@ export const QUERY_CLIENTS = gql`
 `;
 
 export const QUERY_CLIENTS_SHORT = gql`
-  query getClients($name: String) {
-    client(name: $name) {
-      _id
-      name
-      address
-      email
-      phone
-    }
+query getClients {
+  clients {
+    _id
+    firstName
+    lastName
+    address
+    email
+    phone
   }
+}
 `;
 
 export const QUERY_APPOINTMENTS = gql`
@@ -56,7 +57,7 @@ export const QUERY_APPOINTMENTS = gql`
         notes
         parts
         invoice
-        timeClock {
+        billableTime {
           dispatched
           arrived
           departed
@@ -68,12 +69,12 @@ export const QUERY_APPOINTMENTS = gql`
 
 export const QUERY_WAREHOUSE_SHORT = gql`
   query getProducts($name: String!) {
-    product(name: $name) {
-      _id
-      name
-      description
-      purchasePrice
-    }
+       product(name: $name) {
+            _id,
+            partProductName,
+            partProductDescription,
+            partPrice
+       }
   }
 `;
 
@@ -89,7 +90,7 @@ export const QUERY_EMPLOYEES = gql`
       timeCards {
         id
         date
-        timeClock {
+        billableTime {
           dispatched
           arrived
           departed
@@ -111,14 +112,11 @@ export const QUERY_DOCUMENTS_SHORT = gql`
 
 export const QUERY_EMPLOYEES_SHORT = gql`
   query getEmployees($id: ID) {
-    employees(id: $id) {
+    employees(_id: $id) {
       _id
       firstName
       lastName
-      street
-      city
-      state
-      zipcode
+      address
       email
       phone
     }

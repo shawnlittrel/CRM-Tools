@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
-export const LOGIN = gql`
-mutation login($email: String!, $password: String!) {
+export const LOGIN = gql `
+  mutation login($email: String!, $password: String!) {
      login(email: $email, password: $password) {
        token
        user {
@@ -11,7 +11,7 @@ mutation login($email: String!, $password: String!) {
    }
  `;
 
- export const CLOCK_IN = gql`
+export const CLOCK_IN = gql `
    mutation clockIn($time: [timestamptz]!) {
         clockIn(time: $time) {
              user {
@@ -22,7 +22,7 @@ mutation login($email: String!, $password: String!) {
  `;
 
 
- export const CLOCK_OUT = gql`
+export const CLOCK_OUT = gql `
    mutation clockOut($time: [timestamp]!) {
         clockOut(time: $time) {
              user {
@@ -32,11 +32,11 @@ mutation login($email: String!, $password: String!) {
    }
  `;
 
- export const DISPATCH_TO_DB = gql`
+export const DISPATCH_TO_DB = gql `
    mutation dispatchToDB($time: Int!, $id: ID!) {
      dispatch(time: $time, id: $id) {
        workOrders {
-         timeClock {
+         billableTime {
             dispatched
           }
        }
@@ -44,11 +44,11 @@ mutation login($email: String!, $password: String!) {
    }
  `;
 
- export const ARRIVE_TO_DB = gql`
+export const ARRIVE_TO_DB = gql `
    mutation arriveToDB($time: Int!, $id: ID!) {
      dispatch(time: $time, id: $id) {
        workOrders {
-         timeClock {
+        billableTime {
            arrived
          }
        }
@@ -56,11 +56,11 @@ mutation login($email: String!, $password: String!) {
    }
  `;
 
- export const DEPART_TO_DB = gql`
+export const DEPART_TO_DB = gql `
    mutation departToDB($time: Int!, $id: ID!) {
      depart(time: $time, id: $id) {
        workOrders {
-         timeClock {
+        billableTime {
            departed
          }
        }
@@ -68,7 +68,7 @@ mutation login($email: String!, $password: String!) {
    }
  `;
 
- export const NOTE_TO_DB = gql`
+export const NOTE_TO_DB = gql `
    mutation noteToDB($noteText: String!) {
      noteToDB(notetext: $noteText) {
        clients {
@@ -81,3 +81,13 @@ mutation login($email: String!, $password: String!) {
      }
    }
  `;
+
+// export const ADD_EMPLOYEE = gql `
+//    mutation addEmployee($firstName: String!, $lastname: String!, $email: String!, $phone: String!, $address: String!) {
+//      addEmployee(firstName: $firstName, lastname: $lastName, email: $email, phone: $phone, address: $address) {
+//        user {
+//          timecard
+//        }
+//      }
+//    }
+//  `;
