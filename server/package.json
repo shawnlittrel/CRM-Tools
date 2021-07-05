@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "seed": "node config/seeds.js"
+    "seed": "node config/seeds.js",
+    "watch": "nodemon"
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +18,8 @@
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
   }
 }

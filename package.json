@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A CRM suite used to manage employees, clients, work orders, and invoicing",
   "main": "server/server.js",
-  "dependencies": {},
+  "dependencies": {
+    "if-env": "^1.0.4"
+  },
   "devDependencies": {
     "concurrently": "^6.2.0"
   },
