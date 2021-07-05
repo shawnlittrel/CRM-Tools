@@ -1,21 +1,23 @@
 const faker = require('faker');
 
 const db = require('./connection');
-const {
-    Employee
-} = require('../models');
+// const {
+//     Employee
+// } = require('../models');
 
-const{
-    Client
-} = require('../models')
+// const{
+//     Client
+// } = require('../models')
 
-const{
-    Part
-} = require('../models')
+// const{
+//     Part
+// } = require('../models')
 
-const{
-    WorkOrder
-} = require('../models')
+// const{
+//     WorkOrder
+// } = require('../models')
+
+const { Employee, Client, Part, WorkOrder } = require('../models');
 
 db.once('open', async () => {
     await Employee.deleteMany({});
@@ -178,7 +180,7 @@ db.once('open', async () => {
         const workOrderNotes = faker.lorem.words(Math.round(Math.random() * 20) + 1);
         const workOrderParts = [createdParts];
         const workOrderInvoice = [];
-        const workOrderBillableTime = [];
+        const workOrderTimeClock = [];
         
         workOrderData.push({
             workOrderDate,
@@ -186,7 +188,7 @@ db.once('open', async () => {
             workOrderNotes,
             workOrderParts,
             workOrderInvoice,
-            workOrderBillableTime
+            workOrderTimeClock
         });
     }
 
@@ -214,7 +216,7 @@ db.once('open', async () => {
             }
         })
 
-        // const createdWorkOrder = await WorkOrder.create({ workOrderDate, workOrderDescription, workOrderNotes, workOrderParts, workOrderInvoice, workOrderBillableTime, username });
+        // const createdWorkOrder = await WorkOrder.create({ workOrderDate, workOrderDescription, workOrderNotes, workOrderParts, workOrderInvoice, workOrderTimeClock, username });
 
         // const updatedClient = await Client.updateOne(
         //     { _id: userId },
@@ -231,8 +233,8 @@ db.once('open', async () => {
 
     // create invoice
 
-    // create billableTime
-    // const billableTimeSchema =  new Schema ({
+    // create timeClock
+    // const timeClockSchema =  new Schema ({
     //     dispatched: {
     //       type: Date,
     //         default: Date.now,
@@ -278,7 +280,7 @@ db.once('open', async () => {
 //       notes [],
 //       parts [],
 //       invoice
-//       billableTime {
+//       timeClock {
 //         dispatched
 //         arrived
 //         departed

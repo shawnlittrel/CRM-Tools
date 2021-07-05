@@ -1,5 +1,5 @@
 
-const workorderSchema =require('./workorders').schema
+//const workorderSchema = require('./WorkOrder').schema
 const { Schema, model } = require("mongoose");
 
 const clientSchema = new Schema(
@@ -28,19 +28,19 @@ const clientSchema = new Schema(
       type: String,
       required: true,
     },
-    workorders: [
+    workOrders: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'Workorder'
+        ref: 'WorkOrder'
       }
     ],
   },
   
 );
 
-const client = model("Client", clientSchema);
+const Client = model("Client", clientSchema);
 
-module.exports = client;
+module.exports = Client;
 
 // clients: {
 //   {

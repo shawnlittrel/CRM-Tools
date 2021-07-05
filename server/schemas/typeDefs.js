@@ -63,11 +63,11 @@ const typeDefs = gql`
 
   type Query {
     me: Employee
-    employees(_id: ID): [Employee]
+    employees(_id: ID): [Employee]!
     employee(_id: ID!): Employee
-    clients: [Client]
+    clients: [Client]!
     client(_id: ID!): Client
-    workOrders: [WorkOrder]
+    workOrders: [WorkOrder]!
     workOrder(_id: ID!): WorkOrder
   }
 

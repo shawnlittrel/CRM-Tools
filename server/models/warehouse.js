@@ -6,9 +6,9 @@ const warehouseSchema = new Schema({
   
 });
 
-const warehouse = model("warehouse", warehouseSchema);
+const Warehouse = model("warehouse", warehouseSchema);
 
-module.exports = warehouse;
+module.exports = Warehouse;
 // warehouse {
 // [Parts],
 // [LaborItems]

@@ -34,6 +34,6 @@ const employeesSchema = new Schema(
 
 
 
-const employees = model("employees", employeesSchema);
+const Employee = model("employees", employeesSchema);
 
-module.exports = employees;
+module.exports = Employee;
