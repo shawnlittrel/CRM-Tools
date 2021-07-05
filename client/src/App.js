@@ -5,6 +5,7 @@ import ApolloClient from "apollo-boost";
 import { StoreProvider } from "./state/State";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./utils/theme";
+import Auth from './utils/auth';
 
 //import components and pages
 import Home from "./assets/pages/Home";
@@ -41,7 +42,9 @@ function App() {
     height: "5vh"
   };
 
-  return (
+  //const loggedIn = Auth.loggedIn();
+
+    return (
     <ApolloProvider client={client}>
       <ChakraProvider theme={theme}>
         <Router>
@@ -50,9 +53,10 @@ function App() {
               className="pageWrapper"
               height="100%"
               background-color="#E0FBFC"
+              zIndex="-1"
             >
               <Switch>
-                <Route exact path="/home" component={Home} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/timecard" component={Timecard} />
                 <Route exact path="/schedule" component={Schedule} />
                 <Route exact path="/directory" component={Directory} />
@@ -69,6 +73,6 @@ function App() {
       </ChakraProvider>
     </ApolloProvider>
   );
-}
+} 
 
 export default App;

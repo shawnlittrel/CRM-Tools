@@ -27,7 +27,7 @@ const resolvers = {
 
     // get all employees
     employees: async () => {
-      return Employee.find().select("-__v -password").populate("timeCards");
+      return Employee.find().select("-__v").populate("timeCards");
     },
 
     // get single employee
@@ -50,10 +50,28 @@ const resolvers = {
   Mutation: {
     addEmployee: async (parent, args) => {
       const employee = await Employee.create(args);
-      const token = signToken(employee);
+      //const token = signToken(employee);
 
-      return { token, employee };
+      return employee;
     },
+
+    login: async(parent, { email, password }) => {
+      const user = await Employee.findOne({ email });
+      //TODO: remove pointers to incorrect option
+      if (!user){
+        throw new AuthenticationError('Incorrect Credentials -> Email');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if(!correctPw) {
+        throw new AuthenticationError('Incorrect Credentials  -> PW');
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
+    }
     // addClient: async (parent, args) => {
     //     const client = await Client.create(args);
 

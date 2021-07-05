@@ -7,6 +7,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_APPOINTMENTS } from '../../../database/queries';
+import { Box } from '@chakra-ui/react';
 
 
 //TODO: Render appointments in Calendar, figure out how to interact with appointments.  
@@ -25,6 +26,9 @@ function Calendar(props) {
 
     if (isPageWide) {
           return (
+      <Box
+          zIndex="-1"
+      >
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -38,7 +42,7 @@ function Calendar(props) {
         weekends={true}
         //events={events}
       />
-    
+    </Box>
 
 
     )
