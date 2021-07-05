@@ -4,14 +4,10 @@
   "description": "A CRM suite used to manage employees, clients, work orders, and invoicing",
   "main": "server/server.js",
   "dependencies": {
-<<<<<<< HEAD
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.15.1",
     "axios": "^0.21.1",
     "stripe": "^8.160.0"
-=======
-    "if-env": "^1.0.4"
->>>>>>> team-develop
   },
   "devDependencies": {
     "concurrently": "^6.2.0"
