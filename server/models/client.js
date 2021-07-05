@@ -28,7 +28,7 @@ const clientSchema = new Schema(
       type: String,
       required: true,
     },
-    workorders: [
+    workOrders: [
       { 
         type: Schema.Types.ObjectId,
         ref: 'WorkOrder'
