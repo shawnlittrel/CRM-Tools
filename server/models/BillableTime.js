@@ -5,17 +5,14 @@ const billableTimeSchema =  new Schema ({
   dispatched: {
     type: Date,
       default: Date.now,
-      get: timestamp => dateFormat(timestamp)
   },
   arrived:{
     type: Date,
       default: Date.now,
-      get: timestamp => dateFormat(timestamp)
   },
   departed:{
     type: Date,
       default: Date.now,
-      get: timestamp => dateFormat(timestamp)
   },
 },
  

@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const billableTimeSchema = require('./BillableTime').schema;
 const timeCardSchema = require('./Timecard').schema;
+//const noteSchema = require('./Note');
 
 
 const workorderSchema = new Schema(
@@ -37,16 +38,12 @@ const workorderSchema = new Schema(
       }
     ],
   },
-  {
-    toJSON: {
-      getters: true,
-    },
-  }
+
 );
 
-const workorders = model("workOrder", workorderSchema);
+const WorkOrder = model('WorkOrder', workorderSchema);
 
-module.exports = workorders;
+module.exports = WorkOrder;
 
 // workOrders {
 //     id,

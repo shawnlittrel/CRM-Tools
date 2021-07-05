@@ -15,20 +15,14 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    // workOrders: async () => {
-    //   return Client.find();
-    // },
-    // workOrder: async (parent, { _id }) => {
-    //   return Client.findOne({ _id })
-    // },
     // get all clients
     clients: async () => {
-      return Client.find().populate("workOrders");
+      return Client.find().populate("WorkOrders");
     },
 
     // get single client
     client: async (parent, { _id }) => {
-      return Client.findOne({ _id }).populate("workOrders");
+      return Client.findOne({ _id }).populate("WorkOrders");
     },
 
     // get all employees
@@ -43,11 +37,15 @@ const resolvers = {
         .populate("timeCards");
     },
 
-    // resolver function for workOrders
-    // workorders: async (parent, { _id }) => {
-    //   const params = _id ? { _id } : {};
-    //   return WorkOrder.findOne({ _id });
-    // },
+    //resolver function for workOrders -> get all workorders
+    workOrders: async () => {
+      return WorkOrder.find()
+    },
+
+    //find workOrder by id
+    workOrder: async(parent, { _id }) => {
+        return WorkOrder.findOne({ _id })
+    }
   },
   Mutation: {
     addEmployee: async (parent, args) => {
