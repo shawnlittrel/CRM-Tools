@@ -16,7 +16,7 @@ export default function CheckoutForm() {
   const elements = useElements();
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
+    // fetchds and creates payment intent right away
     window
       .fetch("/create-payment-intent", {
         method: "POST",
@@ -52,14 +52,20 @@ export default function CheckoutForm() {
   };
 
   const handleChange = async (event) => {
-    // Listen for changes in the CardElement
-    // and display any errors as the customer types their card details
+    
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   };
 
   const handleSubmit = async ev => {
     ev.preventDefault();
+    
+    const billingDetails ={
+
+    }
+    
+    
+    
     setProcessing(true);
 
     const payload = await stripe.confirmCardPayment(clientSecret, {
@@ -93,7 +99,7 @@ export default function CheckoutForm() {
           )}
         </span>
       </button>
-      {/* Show any error that happens when processing the payment */}
+      {/* this will show payment errors */}
       {error && (
         <div className="card-error" role="alert">
           {error}
