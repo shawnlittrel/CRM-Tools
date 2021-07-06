@@ -1,12 +1,17 @@
 const { Client, Employee, WorkOrder } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
+const stripe = require("stripe")(
+  "sk_test_51J9IXHF9OL10HIOg6r2H0mwKo4ZrYMnJv65Oqc9UU9XXgPWxaQ3Fb7Th2k0M3Ewvadvt9QEwTMoFlWcmI4jhUD5M00cAiiuIYB"
+);
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.employee) {
-        const employeeData = await Employee.findOne({ _id: context.employee._id })
+        const employeeData = await Employee.findOne({
+          _id: context.employee._id,
+        })
           .select("-__v -password")
           .populate("timeCards");
 
@@ -37,6 +42,47 @@ const resolvers = {
         .populate("timeCards");
     },
 
+<<<<<<< HEAD
+    payment: async (parents, args, context) => {
+      const url = new URL(context.header.referer).origin;
+      const order = new WorkOrder({ workOrderInvoice: args.workOrderInvoice });
+      const { workOrderInvoice } = await order
+        .populate("workOrderInvoice")
+        .execPopulate();
+      const lineItems = [];
+
+      for (let i = 0; i < workOrderInvoice.length; i++) {
+        const workOrder = await stripe.workOrderInvoic.create({
+          //    billabletime:workOrderInvoice.billabletime,
+          parts: workOrderInvoice[i].parts,
+        });
+        const price = await stripe.prices.create({
+          part: part.id,
+          unit_amount: parts[i].partPrice * 100,
+          currency: "usd",
+        });
+        lineItems.push({
+          price: price.id,
+          quantity: 1,
+        });
+      }
+      stripe = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items: lineItems,
+        mode: "payment",
+        success_url:
+          `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/cancel`,
+      });
+      return{session:session.id}
+    },
+
+    // resolver function for workOrders
+    // workorders: async (parent, { _id }) => {
+    //   const params = _id ? { _id } : {};
+    //   return WorkOrder.findOne({ _id });
+    // },
+=======
     //resolver function for workOrders -> get all workorders
     workOrders: async () => {
       return WorkOrder.find()
@@ -46,6 +92,7 @@ const resolvers = {
     workOrder: async(parent, { _id }) => {
         return WorkOrder.findOne({ _id })
     }
+>>>>>>> 6c780eace94a44af2704a8725b1c48003ff6d71a
   },
   Mutation: {
     addEmployee: async (parent, args) => {
@@ -87,16 +134,16 @@ const resolvers = {
 
     //     return updatedWorkOrder;
 
-        // await Client.findByIdAndUpdate(
-        //   { _id: context.client._id },
-        //   { $push: { workOrders: workOrder._id } },
-        //   { new: true }
-        // );
+    // await Client.findByIdAndUpdate(
+    //   { _id: context.client._id },
+    //   { $push: { workOrders: workOrder._id } },
+    //   { new: true }
+    // );
 
-        // return workOrder;
-      }
+    // return workOrder;
+  },
 
-      // throw new AuthenticationError('You need to be logged in!');
+  // throw new AuthenticationError('You need to be logged in!');
 };
 
 module.exports = resolvers;
