@@ -17,7 +17,13 @@ function Footer() {
 
   if (Auth.loggedIn) {
     return (
-      <Box as="footer" role="contentinfo" mx="auto" style={{ height: "100%" }}>
+      <Box 
+        as="footer" 
+        role="contentinfo" 
+        mx="auto"
+        h="100%"
+        zIndex="9999"
+      >
         <SimpleGrid
           as="footer"
           columns={3}
@@ -38,7 +44,7 @@ function Footer() {
             <AiOutlineCalendar />
           </Button>
           <Button
-            value="/home"
+            value="/"
             onClick={handleClick}
             backgroundColor="brand.100"
             w="30%"

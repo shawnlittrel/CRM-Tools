@@ -11,12 +11,15 @@ const typeDefs = gql`
     address: String
     email: String
     phone: String
+    password: String
     timeCards: [TimeCard]
   }
 
   type TimeCard {
     _id: ID
-    timecard: String
+    timestamp: String
+    status: String
+    newField: String
   }
 
   type Part {
@@ -72,9 +75,11 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addEmployee(_id: ID, firstName: String!, lastName: String!, address: String!, email: String, phone: String!): Auth
+    addEmployee(firstName: String!, lastName: String!, address: String!, email: String, phone: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addWorkOrder(_id: ID, workOrderDate: String!, workOrderDescription: String, workOrderNotes: [String], workOrderParts: [String], workOrderInvoice: [String],workOrderBillableTime: [Int]): Client
+    addWorkOrder(workOrderDate: String!, workOrderDescription: String, workOrderNotes: [String], workOrderParts: [String], workOrderInvoice: [String],workOrderBillableTime: [Int]): Client
+    clockIn(timestamp: String!, status: String!): Employee
+    clockOut(timestamp: String!, status: String!): Employee
   }
 `;
     // TODO would addWorkOrder in type mutation return Client parent?

@@ -1,10 +1,15 @@
 import gql from "graphql-tag";
 
-export const QUERY_TIMECARD = gql`
-  query getTimecard($ID: ID!) {
-    user(ID: $ID) {
-      _id
-      timecard
+export const QUERY_ME = gql`
+  query me {
+    me {
+      firstName
+      lastName
+      timeCards {
+        _id
+        timestamp
+        status
+      }
     }
   }
 `;

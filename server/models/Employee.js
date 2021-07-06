@@ -1,6 +1,27 @@
-const { Schema, model } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
+//const timeCardSchema = require("./timecard");
+const bcrypt = require('bcrypt');
 
-const timeCardSchema = require("./timecard");
+const timeCardSchema = new Schema(
+  {
+    // timeStampId: {
+    //   type: Schema.Types.ObjectId,
+    //   default: () => new Types.ObjectId()
+    // },
+
+    timestamp: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    
+    status: {
+      type: String,
+      trim: true
+    }
+  }
+  
+);
 
 const employeesSchema = new Schema(
   {
@@ -27,10 +48,31 @@ const employeesSchema = new Schema(
       type: String,
       required: true,
     },
-    timeCard: [timeCardSchema],
+    password: {
+      type: String,
+      required: true,
+      minlength: 5
+    },
+    timeCards: [timeCardSchema]
   },
-  
+
 );
+
+//hash password
+employeesSchema.pre('save', async function(next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
+});
+
+//compare password with hashed password
+employeesSchema.methods.isCorrectPassword = async function(password) {
+  return bcrypt.compare(password, this.password);
+};
+
 
 
 

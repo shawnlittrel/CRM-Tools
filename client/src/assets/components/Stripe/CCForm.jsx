@@ -13,13 +13,13 @@ const FormFieldContainer = styled.div`
   }
 `;
 
-const Title = styled.h1 ` 
-font-size: 25px;
-  width: 100%;
-  padding: 11px 15px 11px 8px;
-  color: #fff;
-  text-align: center;
-`;
+// const Title = styled.h1 ` 
+// font-size: 25px;
+//   width: 100%;
+//   padding: 11px 15px 11px 8px;
+//   color: #fff;
+//   text-align: center;
+// `;
 
 const Label = styled.label`
   width: 30%;
