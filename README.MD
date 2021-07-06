@@ -1,9 +1,5 @@
-# Tech Blog
----
-    
-    
-![Licensing](https://img.shields.io/github/license/shawnlittrel/tech-blog-mvc)   ![GitHub language count](https://img.shields.io/github/languages/count/shawnlittrel/tech-blog-mvc)      ![GitHub issues](https://img.shields.io/github/issues/shawnlittrel/tech-blog-mvc)   ![GitHub closed issues](https://img.shields.io/github/issues-closed/shawnlittrel/tech-blog-mvc)      ![GitHub last commit](https://img.shields.io/github/last-commit/shawnlittrel/tech-blog-mvc)
----
+# Trade Secret: A CRM Tool    
+
 
 
     
@@ -12,13 +8,12 @@
 * [Installation](#installation)
 * [Usage](#usage)
 * [Licensing](#licensing)
-* [Contribute To This Project](#contribute)
-* [Questions and Contact Info](#questions-and-contact)
+* [Contributors](#contributors)
 
     
 ## Description
 ---
-A full-stack application to blog about tech news, notes, developments, etc.
+This is a full-stack MERN application designed to help you grow and manage your business right from your phone. Some features include, employee time card managments, client work order managment, scheduling, parts and inventory managment, along with invoicing and electronis payment collections. 
     
 
     
@@ -31,13 +26,17 @@ This app is fully functional on Heroku.  No install required.
     
 ## Usage
 ---
-This is a full-stack MERN application designed to help you grow and manage your business right from your phone. 
-
+For businesses to manage their day to day operations from their phone. At the moment this app would be better suited for a smaller operations that want to be able to see thier business operations all in one app.
 ### Screenshots
 ---
+Login Page
 
+![Screen Shot 2021-07-06 at 3 18 30 PM](https://user-images.githubusercontent.com/76604281/124673766-53491780-de6e-11eb-8f46-8fca9d469b76.png)
 
-    
+Payment Page
+
+![Screen Shot 2021-07-06 at 3 26 23 PM](https://user-images.githubusercontent.com/76604281/124673890-8db2b480-de6e-11eb-8ab0-4b70de808fb8.png)
+   
     
 ## Licensing
 ---
@@ -59,16 +58,19 @@ Copyright 2021
 
 
     
-##  Contributor's Information 
+##  Contributors 
 ---
-* Author: [Shawn Littrel](www.github.com/shawnlittrel)
-* Email: shawnlittre
-
-* Author: [Cat Westover](www.github.com/shawnlittrel)
-* Email: 
-
-* Author: [Brian Breedlove](www.github.com/shawnlittrel)
+* Developer: [Shawn Littrel](www.github.com/shawnlittrel)
+* Email: shawnlittrel@gmail.com 
+* Guthub: www.github.com/shawnlittrel
+---
+* Developer: [Cat Westover](https://github.com/thecatwest)
+* Email: Catwestover@outlook.com
+* Github: https://github.com/thecatwest 
+-------------------------------
+* Developer: [Brian Breedlove](https://github.com/Cerberus0013)
 * Email: b.breeedlove@outlook.com
+* Github: https://github.com/Cerberus0013
 
 
 
