@@ -52,6 +52,16 @@ query getClients {
 }
 `;
 
+export const QUERY_CLIENT_NAMES = gql`
+  query getClients {
+    clients {
+      _id
+      firstName
+      lastName
+    }
+  }
+`;
+
 export const QUERY_APPOINTMENTS = gql`
   query getClients($name: String) {
     client(name: $name) {
