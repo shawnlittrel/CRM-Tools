@@ -1,6 +1,27 @@
-const { Schema, model } = require("mongoose");
-const timeCardSchema = require("./timecard");
+const { Schema, Types, model } = require("mongoose");
+//const timeCardSchema = require("./timecard");
 const bcrypt = require('bcrypt');
+
+const timeCardSchema = new Schema(
+  {
+    // timeStampId: {
+    //   type: Schema.Types.ObjectId,
+    //   default: () => new Types.ObjectId()
+    // },
+
+    timestamp: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    
+    status: {
+      type: String,
+      trim: true
+    }
+  }
+  
+);
 
 const employeesSchema = new Schema(
   {
@@ -32,7 +53,7 @@ const employeesSchema = new Schema(
       required: true,
       minlength: 5
     },
-    timeCard: [timeCardSchema],
+    timeCards: [timeCardSchema]
   },
 
 );

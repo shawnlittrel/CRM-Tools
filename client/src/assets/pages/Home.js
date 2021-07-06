@@ -53,7 +53,7 @@ function Home() {
           </Grid>
         </GridItem>
         <GridItem rowStart={5} rowSpan={4} colStart={2} colSpan={3}>
-          <Button backgroundColor="brand.400" color="brand.200" w="100%" h="100%" value="/timecard" onClick={handleClick}>
+          <Button backgroundColor="brand.400" color="brand.200" boxShadow="2xl" w="100%" h="100%" value="/timecard" onClick={handleClick}>
             Timecard
           </Button>
         </GridItem>
@@ -62,6 +62,7 @@ function Home() {
             width="100%"
             height="100%"
             backgroundColor="brand.300"
+            boxShadow="lg"
             color="brand.200"
             value="/directory"
             onClick={handleClick}
@@ -75,6 +76,7 @@ function Home() {
             height="100%"
             backgroundColor="brand.300"
             color="brand.200"
+            boxShadow="lg"
             value="/clients"
             onClick={handleClick}
           >
@@ -87,6 +89,7 @@ function Home() {
             height="100%"
             backgroundColor="brand.400"
             color="brand.200"
+            boxShadow="2xl"
             value="/schedule"
             onClick={handleClick}
           >
@@ -99,6 +102,7 @@ function Home() {
             height="100%"
             backgroundColor="brand.300"
             color="brand.200"
+            boxShadow="lg"
             value="/warehouse"
             onClick={handleClick}
           >
@@ -111,6 +115,7 @@ function Home() {
             height="100%"
             backgroundColor="brand.300"
             color="brand.200"
+            boxShadow="lg"
             value="/documents"
             onClick={handleClick}
           >

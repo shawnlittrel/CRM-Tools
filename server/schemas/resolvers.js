@@ -71,28 +71,53 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
+    },
+    
+    clockIn: async(parent, { timestamp, status }, context) => {
+      console.log(context.employee);
+
+      if (context.employee) {
+        console.log('timestamp', timestamp);
+        console.log('choice', status);
+        
+        const updatedUser = await Employee.findOneAndUpdate(
+          { _id: context.employee._id },
+          { $push: { timeCards: { timestamp, status } } },
+          { new: true }
+        ).populate('timeCards')
+
+        return updatedUser;
+      }
+      throw new AuthenticationError('You must log in first');
+
+    },
+
+    clockOut: async(parent, { timestamp, status }, context) => {
+      console.log(context.employee);
+
+      if (context.employee) {
+        console.log('timestamp', timestamp);
+        console.log('choice', status);
+        
+        const updatedUser = await Employee.findOneAndUpdate(
+          { _id: context.employee._id },
+          { $push: { timeCards: { timestamp, status } } },
+          { new: true }
+        ).populate('timeCards')
+
+        return updatedUser;
+      }
+      throw new AuthenticationError('You must log in first');
+
+    },
+
+    
     // addClient: async (parent, args) => {
     //     const client = await Client.create(args);
 
     //     return client;
     //   },
-    // login: async (parent, { email, password }) => {
-    //   const employee = await Employee.findOne({ email });
 
-    //   if (!employee) {
-    //     throw new AuthenticationError("Incorrect email and/or password");
-    //   }
-
-    //   const correctPw = await employee.isCorrectPassword(password);
-
-    //   if (!correctPw) {
-    //     throw new AuthenticationError("Incorrect email and/or password");
-    //   }
-
-    //   const token = signToken(employee);
-    //   return { token, employee };
-    // },
     // TODO this would only be available to logged in employees?
     // TODO Would this just be used to push a new workorder to client? so confused
     // addWorkOrder: async (parent, { clientId, workOrderDate, workOrderDescription, workOrderNotes, workOrderParts, workOrderInvoice, workOrderbillableTime }, context) => {

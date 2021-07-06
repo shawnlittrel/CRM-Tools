@@ -34,6 +34,7 @@ db.once('open', async () => {
         const email = faker.internet.email(username);
         const password = 'test12345';
         const phone = faker.phone.phoneNumber();
+        const timeCards = [];
         // TODO add username and set email as?
         // TODO sort out timecard details
 
@@ -44,7 +45,8 @@ db.once('open', async () => {
             username,
             email,
             password,
-            phone
+            phone,
+            timeCards
         });
     }
 
