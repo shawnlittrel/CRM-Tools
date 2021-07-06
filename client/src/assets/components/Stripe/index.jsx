@@ -59,12 +59,7 @@ export default function CheckoutForm() {
 
   const handleSubmit = async ev => {
     ev.preventDefault();
-    
-    const billingDetails ={
-
-    }
-    
-    
+   
     
     setProcessing(true);
 

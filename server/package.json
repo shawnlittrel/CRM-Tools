@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.15.1",
     "apollo-server-express": "^2.25.2",
     "faker": "^5.5.3",
     "graphql": "^15.5.1",
