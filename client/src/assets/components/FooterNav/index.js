@@ -22,7 +22,6 @@ function Footer() {
         role="contentinfo" 
         mx="auto"
         h="100%"
-        zIndex="9999"
       >
         <SimpleGrid
           as="footer"

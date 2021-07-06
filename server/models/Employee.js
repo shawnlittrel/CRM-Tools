@@ -4,11 +4,6 @@ const bcrypt = require('bcrypt');
 
 const timeCardSchema = new Schema(
   {
-    // timeStampId: {
-    //   type: Schema.Types.ObjectId,
-    //   default: () => new Types.ObjectId()
-    // },
-
     timestamp: {
       type: String,
       required: true,

@@ -26,9 +26,7 @@ function Calendar(props) {
 
     if (isPageWide) {
           return (
-      <Box
-          zIndex="-1"
-      >
+      <Box>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"

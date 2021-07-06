@@ -10,7 +10,7 @@ const Part = require('./Part');
 
 const WorkOrder = require('./WorkOrder');
 
-const TimeCard = require('./Timecard');
+//const TimeCard = require('./Timecard');
 
 const BillableTime = require('./BillableTime');
 
@@ -18,4 +18,4 @@ const Note = require('./Note');
 
 
 
-module.exports = { Employee, Client, LaborItem, Warehouse, Part, WorkOrder, TimeCard, BillableTime, Note };
+module.exports = { Employee, Client, LaborItem, Warehouse, Part, WorkOrder, BillableTime, Note };
