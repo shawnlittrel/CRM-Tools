@@ -1,4 +1,4 @@
-
+/* 
 
 
 
@@ -103,7 +103,7 @@ button:disabled {
 }
 
 /* spinner/processing state, errors */
-.spinner,
+/* .spinner,
 .spinner:before,
 .spinner:after {
   border-radius: 50%;
@@ -170,7 +170,7 @@ button:disabled {
   form {
     width: 80vw;
   }
-}
+}  */
 
 
 
