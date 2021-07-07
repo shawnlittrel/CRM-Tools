@@ -7,22 +7,54 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_APPOINTMENTS } from "../../../database/queries";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Spinner, Center } from "@chakra-ui/react";
 
 //TODO: Render appointments in Calendar, figure out how to interact with appointments.
 //fullcalendar.io
 function Calendar(props) {
   //const { user } = useStoreContext(user);
   let isPageWide = useMediaQuery("(min-width: 800px)");
-  const data = useQuery(QUERY_APPOINTMENTS);
-  //const events = data.clients.workorders; //TODO: Is this path right????
-  //const myEvents = events.filter(user.id === event.employee.id)  //TODO: Check logic when data has been imported
+  const { loading, data } = useQuery(QUERY_APPOINTMENTS);
+
+
+
+
+
   const handleDateClick = () => {
     //TODO: Redirect to single appointment detail page
     <Link to={`workorder/:id`} />;
   };
 
-  if (isPageWide) {
+  if(loading) return (
+    <Center>
+          <Spinner
+      thickness="5px"
+      emptyColor="brand.300"
+      color="brand.100"
+      size="xl"
+    />
+    </Center>
+  )
+
+  if (data) {
+
+    try {
+      // const myEventsObj = data.clients.map(client => (
+      //   client.workOrders.map(wo => (
+      //       {
+      //         id: wo._id,
+      //         title: `${client.firstName} ${client.lastName}`,
+      //         start: `${wo.workOrderDate.toLocaleString()}`,
+      //         description: wo.workOrderDescription
+      //       }
+      console.log(data)
+
+
+      //console.log(myEventsArr);
+    } catch (err) {
+      console.log(err);
+    }
+
     return (
       <>
         <Box h="85vh" overflow="hidden">
@@ -35,6 +67,7 @@ function Calendar(props) {
               right: "dayGridMonth, timeGridWeek, timeGridDay"
             }}
             editable={true}
+            
             selectable={true}
             weekends={true}
             customButtons={{

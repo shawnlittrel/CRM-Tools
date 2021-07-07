@@ -12,21 +12,25 @@ import {
 } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { QUERY_CLIENT_NAMES } from "../../database/queries";
+import { ADD_WORK_ORDER } from "../../database/mutations";
 
 function AddWorkOrder() {
   const { loading, data } = useQuery(QUERY_CLIENT_NAMES);
+  const [saveWorkOrder, { saveWorkOrderError }] = useMutation(ADD_WORK_ORDER);
 
-  const [startDate, setStartDate] = useState();
+  const [startDate, setStartDate] = useState(new Date());
   const [clientState, setClientState] = useState();
+const [clientNameState, setClientNameState] = useState();
   const [descriptionState, SetDescriptionState] = useState();
 
   const handleClientChange = async event => {
        const updatedClient = event.target.value;
+       const updatedClientName = event.target.dataName;
      try {
-          setClientState(updatedClient)
-          console.log('client', clientState);
+          setClientState(updatedClient);
+          setClientNameState(updatedClientName);
      } catch (err) {
           console.log(err);
      }
@@ -37,18 +41,30 @@ function AddWorkOrder() {
 
        try {
             SetDescriptionState(updatedDescription);
-            console.log('description', descriptionState);
        } catch (err) {
             console.log(err);
        }
   }
 
-  const handleFormSubmit = event => {
-       const workOrderDate = new Date(startDate).getTime()/1000.0;
-       const workOrderClient = clientState;
+  const handleFormSubmit = async event => {
+       event.preventDefault();
+
+       const workOrderDateInt = startDate.getTime();
+       const workOrderDate = workOrderDateInt.toString();
+       const clientId = clientState;
        const workOrderDescription = descriptionState;
+       const workOrderClient = clientNameState;
 
        //mutate database on these params
+       try {
+          await saveWorkOrder({ variables: {workOrderDate, workOrderClient, workOrderDescription, clientId} });  
+
+       } catch (err) {
+            console.error(saveWorkOrderError);
+            console.log('err', err);
+       }
+          
+
        //return to calendar
        window.location.replace('/schedule');
   }
@@ -93,7 +109,11 @@ function AddWorkOrder() {
         <FormLabel>Client: </FormLabel>
         <Select placeholder="Select Client" onChange={handleClientChange} value={clientState}>
           {clientList.map(client => (
-            <option key={client._id} value={client._id}>
+            <option 
+               key={client._id} 
+               value={client._id}
+               dataName={`${client.firstName} ${client.lastName}`}
+               >
               {client.lastName}, {client.firstName}
             </option>
           ))}

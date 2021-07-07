@@ -10,7 +10,6 @@ const workorderSchema = new Schema(
   {
     workOrderDate: {
       type: Date,
-      default: Date.now,
     },
     workOrderDescription: {
       type: String,
@@ -18,28 +17,33 @@ const workorderSchema = new Schema(
     workOrderNotes: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'Note'
+        ref: 'Note',
+        default: []
       }
     ],
     workOrderParts: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'Part'
+        ref: 'Part',
+        default: []
       }
     ],
     workOrderInvoice: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'Invoice'
+        ref: 'Invoice',
+        default: []
       }
     ],
     workOrderBillableTime: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'BillableTime'
+        ref: 'BillableTime',
+        default: []
       }
     ],
   },
+
 
 );
 

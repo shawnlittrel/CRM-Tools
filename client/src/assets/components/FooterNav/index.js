@@ -11,7 +11,6 @@ import Auth from "../../../utils/auth";
 function Footer() {
   const handleClick = event => {
     event.preventDefault();
-    console.log(event.target.value);
     window.location.replace(event.target.value);
   };
 

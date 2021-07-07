@@ -89,6 +89,18 @@ export const NOTE_TO_DB = gql`
   }
 `;
 
+export const ADD_WORK_ORDER = gql `
+mutation addWorkOrder($workOrderDate: String!, $workOrderClient: String!, $workOrderDescription: String!, $clientId: ID!) {
+  addWorkOrder(clientId: $clientId, workOrderClient: $workOrderClient, workOrderDate: $workOrderDate, workOrderDescription: $workOrderDescription) {
+    workOrders {
+      _id
+      workOrderDate
+      workOrderDescription
+    }
+  }
+}
+`;
+
 // export const ADD_EMPLOYEE = gql `
 //    mutation addEmployee($firstName: String!, $lastname: String!, $email: String!, $phone: String!, $address: String!) {
 //      addEmployee(firstName: $firstName, lastname: $lastName, email: $email, phone: $phone, address: $address) {

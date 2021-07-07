@@ -63,23 +63,16 @@ export const QUERY_CLIENT_NAMES = gql`
 `;
 
 export const QUERY_APPOINTMENTS = gql`
-  query getClients($name: String) {
-    client(name: $name) {
-      workOrders {
-        id
-        date
-        description
-        notes
-        parts
-        invoice
-        billableTime {
-          dispatched
-          arrived
-          departed
-        }
-      }
+query getClients {
+  clients {
+    workOrders {
+      _id
+      workOrderClient
+      workOrderDate
+      workOrderDescription
     }
   }
+}
 `;
 
 export const QUERY_WAREHOUSE_SHORT = gql`

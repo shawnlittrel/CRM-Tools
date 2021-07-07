@@ -17,7 +17,7 @@ const resolvers = {
     },
     // get all clients
     clients: async () => {
-      return Client.find().populate("WorkOrders");
+      return Client.find().select('-__typename').populate("WorkOrders");
     },
 
     // get single client
@@ -36,16 +36,6 @@ const resolvers = {
         .select("-__v -password")
         .populate("timeCards");
     },
-
-    //resolver function for workOrders -> get all workorders
-    workOrders: async () => {
-      return WorkOrder.find()
-    },
-
-    //find workOrder by id
-    workOrder: async(parent, { _id }) => {
-        return WorkOrder.findOne({ _id })
-    }
   },
   Mutation: {
     addEmployee: async (parent, args) => {
@@ -93,7 +83,6 @@ const resolvers = {
     },
 
     clockOut: async(parent, { timestamp, status }, context) => {
-      console.log(context.employee);
 
       if (context.employee) {
         console.log('timestamp', timestamp);
@@ -110,6 +99,23 @@ const resolvers = {
       throw new AuthenticationError('You must log in first');
 
     },
+
+    addWorkOrder: async(parent, { workOrderClient, workOrderDate, workOrderDescription, clientId }, context) => {
+      console.log(context.employee);
+
+
+      if(context.employee) {
+        
+        const updatedClient = await Client.findOneAndUpdate(
+          { _id: clientId},
+          { $push: { workOrders: { workOrderClient, workOrderDate, workOrderDescription } } },
+          { new: true }
+        ).populate('workOrders')
+
+        return updatedClient;
+      }
+
+    }
 
     
     // addClient: async (parent, args) => {
