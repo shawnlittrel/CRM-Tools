@@ -38,8 +38,7 @@ db.once('open', () => {
 });
 
 
-const express = require("express");
-const app = express();
+
 // This is your real test secret API key.
 const stripe = require("stripe")(
   "sk_test_51J9IXHF9OL10HIOg6r2H0mwKo4ZrYMnJv65Oqc9UU9XXgPWxaQ3Fb7Th2k0M3Ewvadvt9QEwTMoFlWcmI4jhUD5M00cAiiuIYB"
