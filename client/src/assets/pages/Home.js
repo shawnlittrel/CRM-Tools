@@ -17,7 +17,6 @@ function Home() {
   const loggedIn = Auth.loggedIn();
   console.log('logged in', loggedIn);
   const handleClick= event => {
-       console.log(event.target.value)
        window.location.replace(event.target.value)
   }
 

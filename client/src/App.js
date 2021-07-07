@@ -18,7 +18,11 @@ import Directory from './assets/pages/Directory';
 import Customers from './assets/pages/Clients';
 import Inventory from './assets/pages/Warehouse';
 import Documents from './assets/pages/Documents';
+<<<<<<< HEAD
 import Stripe from './assets/pages/Stripe'
+=======
+import AddWorkOrder from './assets/pages/AddWorkOrder';
+>>>>>>> shawn/pages
 
 const client = new ApolloClient({
   request: operation => {
@@ -64,7 +68,11 @@ function App() {
                 <Route exact path="/clients" component={Customers} />
                 <Route exact path="/warehouse" component={Inventory} />
                 <Route exact path="/documents" component={Documents} />
+<<<<<<< HEAD
                 <Route exact path= "/stripe" component={Stripe}/>
+=======
+                <Route exact path="/addWorkOrder" component={AddWorkOrder} />
+>>>>>>> shawn/pages
               </Switch>
             </div>      
             <div style={footerStyle}>

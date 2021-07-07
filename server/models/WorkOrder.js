@@ -1,14 +1,15 @@
 const { Schema, model } = require("mongoose");
 const billableTimeSchema = require('./BillableTime').schema;
-const timeCardSchema = require('./Timecard').schema;
+//const timeCardSchema = require('./Timecard').schema;
 //const noteSchema = require('./Note');
+
+
 
 
 const workorderSchema = new Schema(
   {
     workOrderDate: {
       type: Date,
-      default: Date.now,
     },
     workOrderDescription: {
       type: String,
@@ -16,28 +17,33 @@ const workorderSchema = new Schema(
     workOrderNotes: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'Note'
+        ref: 'Note',
+        default: []
       }
     ],
     workOrderParts: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'Part'
+        ref: 'Part',
+        default: []
       }
     ],
     workOrderInvoice: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'Invoice'
+        ref: 'Invoice',
+        default: []
       }
     ],
     workOrderBillableTime: [
       { 
         type: Schema.Types.ObjectId,
-        ref: 'BillableTime'
+        ref: 'BillableTime',
+        default: []
       }
     ],
   },
+
 
 );
 

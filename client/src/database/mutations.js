@@ -12,9 +12,11 @@ export const LOGIN = gql`
 `;
 
 export const CLOCK_IN = gql`
-  mutation clockIn($timestamp: String!, $status: String!) {
-    clockIn(timestamp: $timestamp, status: $status) {
-      timeCards {
+mutation clockIn($timestamp: String!, $status: String!) {
+  clockIn(timestamp: $timestamp, status: $status) {
+      firstName
+    	lastName
+    	timeCards{
         _id
         timestamp
         status
@@ -24,9 +26,11 @@ export const CLOCK_IN = gql`
 `;
 
 export const CLOCK_OUT = gql`
-  mutation clockOut($timestamp: String!, $status: String!) {
-    clockOut(timestamp: $timestamp, status: $status) {
-      timeCards {
+mutation clockOut($timestamp: String!, $status: String!) {
+  clockOut(timestamp: $timestamp, status: $status) {
+      firstName
+    	lastName
+    	timeCards{
         _id
         timestamp
         status
@@ -83,6 +87,18 @@ export const NOTE_TO_DB = gql`
       }
     }
   }
+`;
+
+export const ADD_WORK_ORDER = gql `
+mutation addWorkOrder($workOrderDate: String!, $workOrderClient: String!, $workOrderDescription: String!, $clientId: ID!) {
+  addWorkOrder(clientId: $clientId, workOrderClient: $workOrderClient, workOrderDate: $workOrderDate, workOrderDescription: $workOrderDescription) {
+    workOrders {
+      _id
+      workOrderDate
+      workOrderDescription
+    }
+  }
+}
 `;
 
 // export const ADD_EMPLOYEE = gql `

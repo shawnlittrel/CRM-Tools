@@ -11,7 +11,6 @@ import Auth from "../../../utils/auth";
 function Footer() {
   const handleClick = event => {
     event.preventDefault();
-    console.log(event.target.value);
     window.location.replace(event.target.value);
   };
 
@@ -22,7 +21,6 @@ function Footer() {
         role="contentinfo" 
         mx="auto"
         h="100%"
-        zIndex="9999"
       >
         <SimpleGrid
           as="footer"

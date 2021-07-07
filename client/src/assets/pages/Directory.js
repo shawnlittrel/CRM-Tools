@@ -30,11 +30,10 @@ function Employees() {
       return employeeFirstName.includes(query);
     });
   };
-  console.log("query", query);
+
 
   //filter clients based on search text and populate on page
   const filteredEmployees = filterEmployees(employees, searchQuery);
-  console.log(filteredEmployees);
 
   if(loading) return (
     <Center>
