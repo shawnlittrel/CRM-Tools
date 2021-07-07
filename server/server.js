@@ -38,13 +38,17 @@ db.once('open', () => {
 });
 
 
+const express = require("express");
+const app = express();
 // This is your real test secret API key.
-const stripe = require("stripe")(sk_test_51J9IXHF9OL10HIOg6r2H0mwKo4ZrYMnJv65Oqc9UU9XXgPWxaQ3Fb7Th2k0M3Ewvadvt9QEwTMoFlWcmI4jhUD5M00cAiiuIYB);
+const stripe = require("stripe")(
+  "sk_test_51J9IXHF9OL10HIOg6r2H0mwKo4ZrYMnJv65Oqc9UU9XXgPWxaQ3Fb7Th2k0M3Ewvadvt9QEwTMoFlWcmI4jhUD5M00cAiiuIYB"
+);
 
 app.use(express.static("."));
 app.use(express.json());
 
-const calculateOrderAmount = invoice => {
+const calculateOrderAmount = (items) => {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
@@ -52,16 +56,16 @@ const calculateOrderAmount = invoice => {
 };
 
 app.post("/create-payment-intent", async (req, res) => {
-  const { invoice } = req.body;
+  const { items } = req.body;
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
-   amount: 1000,
-    currency: "usd"
+    amount: calculateOrderAmount(items),
+    currency: "usd",
   });
 
   res.send({
-    clientSecret: paymentIntent.client_secret
+    clientSecret: paymentIntent.client_secret,
   });
 });
 
-app.listen(4242, () => console.log('Node server listening on port 4242!'));
+app.listen(4242, () => console.log("Node server listening on port 4242!"));
