@@ -14,7 +14,7 @@ const BillableTime = require('./BillableTime');
 
 const Note = require('./Note');
 
-const Client = require('./Client');
+const Client = require('./client');
 
 
 
