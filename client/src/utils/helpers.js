@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+
+//determine which site to return based on size of user's screen
 export function useMediaQuery(query) {
      //set state for window size
      const [matches, setMatches] = useState(false);
