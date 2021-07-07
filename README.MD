@@ -13,20 +13,20 @@
     
 ## Description
 ---
-This is a full-stack MERN application designed to help you grow and manage your business right from your phone. Some features include, employee time card managments, client work order managment, scheduling, parts and inventory managment, along with invoicing and electronis payment collections. 
+This is a full-stack MERN application designed to help you grow and manage your business right from your phone. Some features include employee time card management, client work order management, scheduling, parts and inventory management, along with invoicing and electronic payment collections. 
     
 
     
 ## Installation
 ---
 This app is fully functional on Heroku.  No install required.
-[Check it out on Heroku now!] waiting on deployment
+[Check it out on Heroku now!](https://www.shawnlittrel-trade-secret.herokuapp.com)
 
 
     
 ## Usage
 ---
-For businesses to manage their day to day operations from their phone. At the moment this app would be better suited for a smaller operations that want to be able to see thier business operations all in one app.
+For businesses to manage their day to day operations from their phone. At the moment this app would be better suited for a smaller operations that want to be able to see their business operations all in one app.
 ### Screenshots
 ---
 Login Page
