@@ -55,7 +55,6 @@ function App() {
               className="pageWrapper"
               height="100%"
               background-color="#E0FBFC"
-              zIndex="-1"
             >
               <Switch>
                 <Route exact path="/" component={Home} />
