@@ -1,7 +1,7 @@
 import React, { useState, Redirect } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { Box, Spinner, Container, Button, Flex, Center } from "@chakra-ui/react";
+import { Box, Spinner, Button, Flex, Center, Grid, GridItem } from "@chakra-ui/react";
 import Auth from "../../utils/auth";
 import { QUERY_ME } from "../../database/queries";
 import { CLOCK_IN, CLOCK_OUT } from "../../database/mutations";
@@ -27,12 +27,12 @@ function TimeCard() {
   if (loading) {
     timecards = [];
   } else {
-    timecards = data.me.timeCards;
+    let arr = data.me.timeCards;
+    timecards = arr.slice(Math.max(arr.length - 10, 0));
   }
 
   //TODO: Make error handling more robust -> user needs to know what happened
   const handleClockInSubmit = async event => {
-    event.preventDefault();
     const newClockInTime = event.target.value;
 
     try {
@@ -53,7 +53,6 @@ function TimeCard() {
   };
 
   const handleClockOutSubmit = async event => {
-    event.preventDefault();
     const newClockOutTime = event.target.value;
 
     try {
@@ -65,9 +64,12 @@ function TimeCard() {
         timestamp: clockOutTime
       });
 
+
       await clockOut({
         variables: { timestamp: clockOutTime, status: "Clock Out" }
       });
+
+
     } catch (err) {
       console.error(err);
     }
@@ -91,11 +93,11 @@ function TimeCard() {
 
   return (
     <div>
-      <Container>
+      
         {timecards ? (
-          <div>
+          <Grid gap={4}>
             {timecards.map(punch => (
-              <Box key={punch._id} _id={punch._id}>
+              <GridItem key={punch._id} _id={punch._id}>
                 <Box
                   backgroundColor="brand.300"
                   color="brand.200"
@@ -108,11 +110,11 @@ function TimeCard() {
                 <Box backgroundColor="brand.300" color="brand.200">
                   {handleDate(punch.timestamp)}
                 </Box>
-              </Box>
+              </GridItem>
             ))}
-          </div>
+          </Grid>
         ) : null}
-      </Container>
+      
       <Flex justifyContent="center" position="fixed" width="100%" bottom="20">
         {isClockedIn ? (
           <Button

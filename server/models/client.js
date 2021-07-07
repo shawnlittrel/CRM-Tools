@@ -1,6 +1,49 @@
 
-//const workorderSchema = require('./WorkOrder').schema
+//const workorderSchema = require('./WorkOrder')
 const { Schema, model } = require("mongoose");
+
+const workOrderSchema = new Schema(
+  {
+    workOrderClient: {
+      type: String
+    },
+    workOrderDate: {
+      type: Date,
+    },
+    workOrderDescription: {
+      type: String,
+    },
+    // workOrderNotes: [
+    //   { 
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Note',
+    //     default: []
+    //   }
+    // ],
+    // workOrderParts: [
+    //   { 
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Part',
+    //     default: []
+    //   }
+    // ],
+    // workOrderInvoice: [
+    //   { 
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Invoice',
+    //     default: []
+    //   }
+    // ],
+    // workOrderBillableTime: [
+    //   { 
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'BillableTime',
+    //     default: []
+    //   }
+  },
+
+
+);
 
 const clientSchema = new Schema(
   {
@@ -28,38 +71,13 @@ const clientSchema = new Schema(
       type: String,
       required: true,
     },
-    workOrders: [
-      { 
-        type: Schema.Types.ObjectId,
-        ref: 'WorkOrder'
-      }
-    ],
+
+    workOrders: [workOrderSchema]
   },
   
 );
 
+
 const Client = model("Client", clientSchema);
 
 module.exports = Client;
-
-// clients: {
-//   {
-//   id,
-//   name,
-//   address,
-//   email,
-//   phone,
-//   workOrders {
-//     id,
-//     date,
-//     description,
-//     notes [],
-//     parts [],
-//     invoice
-  //   billableTime {
-//     dispatched
-//     arrived
-//     departed
-//   }
-// }
-// }

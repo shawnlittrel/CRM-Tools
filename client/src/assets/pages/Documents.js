@@ -28,7 +28,6 @@ function Documents () {
                return documentName.includes(query);
           });
      };
-     console.log('query', query);
      
      //filter clients based on search text and populate on page
      const filteredDocuments = filterDocuments(documents, searchQuery);

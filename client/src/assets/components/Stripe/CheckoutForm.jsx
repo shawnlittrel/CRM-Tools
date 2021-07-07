@@ -66,15 +66,15 @@ export default function CheckoutForm() {
       },
     });
 
-    if (payload.error) {
-      setError(`Payment failed ${payload.error.message}`);
-      setProcessing(false);
-    } else {
-      setError(null);
-      setProcessing(false);
-      setSucceeded(true);
-    }
-  };
+//     if (payload.error) {
+//       setError(`Payment failed ${payload.error.message}`);
+//       setProcessing(false);
+//     } else {
+//       setError(null);
+//       setProcessing(false);
+//       setSucceeded(true);
+//     }
+//   };
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
@@ -109,4 +109,5 @@ export default function CheckoutForm() {
       </p>
     </form>
   );
+}
 }

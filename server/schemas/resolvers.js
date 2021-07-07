@@ -22,7 +22,7 @@ const resolvers = {
     },
     // get all clients
     clients: async () => {
-      return Client.find().populate("WorkOrders");
+      return Client.find().select('-__typename').populate("WorkOrders");
     },
 
     // get single client
@@ -137,7 +137,6 @@ const resolvers = {
     },
 
     clockOut: async(parent, { timestamp, status }, context) => {
-      console.log(context.employee);
 
       if (context.employee) {
         console.log('timestamp', timestamp);
@@ -154,6 +153,23 @@ const resolvers = {
       throw new AuthenticationError('You must log in first');
 
     },
+
+    addWorkOrder: async(parent, { workOrderClient, workOrderDate, workOrderDescription, clientId }, context) => {
+      console.log(context.employee);
+
+
+      if(context.employee) {
+        
+        const updatedClient = await Client.findOneAndUpdate(
+          { _id: clientId},
+          { $push: { workOrders: { workOrderClient, workOrderDate, workOrderDescription } } },
+          { new: true }
+        ).populate('workOrders')
+
+        return updatedClient;
+      }
+
+    }
 
     
     // addClient: async (parent, args) => {
@@ -180,10 +196,8 @@ const resolvers = {
     //   { new: true }
     // );
 
-    // return workOrder;
-  },
-
-  // throw new AuthenticationError('You need to be logged in!');
+        // return workOrder;
+      }
 };
 
 module.exports = resolvers;

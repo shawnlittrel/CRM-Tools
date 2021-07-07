@@ -17,7 +17,6 @@ function Home() {
   const loggedIn = Auth.loggedIn();
   console.log('logged in', loggedIn);
   const handleClick= event => {
-       console.log(event.target.value)
        window.location.replace(event.target.value)
   }
 
@@ -41,7 +40,7 @@ function Home() {
       >
         <GridItem rowStart={2} rowSpan={2} colStart={1} colSpan={9} backgroundColor="brand.300">
           <Grid templateRows="repeat(3, 1fr)" templateColumns="repeat(10, 1fr)">
-              <GridItem color="brand.100" rowStart={1} rowSpan={3} colStart={2} colSpan={3}>
+              <GridItem color="brand.100" rowStart={1} rowSpan={3} colStart={2} colSpan={2}>
                   <Shield />
               </GridItem>
               <GridItem rowStart={1} colStart={5} colSpan={4}>

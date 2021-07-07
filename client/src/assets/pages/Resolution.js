@@ -95,7 +95,7 @@ function ResolveWorkOrder() {
             backgroundColor="brand.400"
             color="color.200"
           >
-            Save to Workorder
+            Save to Work Order
           </Button>
         </Flex>
       <Divider />

@@ -37,6 +37,7 @@ const typeDefs = gql`
   type WorkOrder {
     _id: ID
     workOrderDate: String
+    workOrderClient: String
     workOrderDescription: String
     workOrderNotes: [String]
     workOrderParts: [Part]
@@ -77,7 +78,7 @@ const typeDefs = gql`
   type Mutation {
     addEmployee(firstName: String!, lastName: String!, address: String!, email: String, phone: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addWorkOrder(workOrderDate: String!, workOrderDescription: String, workOrderNotes: [String], workOrderParts: [String], workOrderInvoice: [String],workOrderBillableTime: [Int]): Client
+    addWorkOrder(clientId: ID!, workOrderClient: String!, workOrderDate: String!, workOrderDescription: String!, workOrderNotes: [String], workOrderParts: [String], workOrderInvoice: [String],workOrderBillableTime: [Int]): Client
     clockIn(timestamp: String!, status: String!): Employee
     clockOut(timestamp: String!, status: String!): Employee
   }
