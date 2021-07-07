@@ -128,5 +128,5 @@ export const QUERY_EMPLOYEES_SHORT = gql`
   }
 `;
 
-export const QUERY_INVOICE = gql `
-`
+// export const QUERY_INVOICE = gql `
+// `

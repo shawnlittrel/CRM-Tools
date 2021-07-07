@@ -42,39 +42,39 @@ const resolvers = {
         .populate("timeCards");
     },
 
-    payment: async (parents, args, context) => {
-      const url = new URL(context.header.referer).origin;
-      const order = new WorkOrder({ workOrderInvoice: args.workOrderInvoice });
-      const { workOrderInvoice } = await order
-        .populate("workOrderInvoice")
-        .execPopulate();
-      const lineItems = [];
+    // payment: async (parents, args, context) => {
+    //   const url = new URL(context.header.referer).origin;
+    //   const order = new WorkOrder({ workOrderInvoice: args.workOrderInvoice });
+    //   const { workOrderInvoice } = await order
+    //     .populate("workOrderInvoice")
+    //     .execPopulate();
+    //   const lineItems = [];
 
-      for (let i = 0; i < workOrderInvoice.length; i++) {
-        const workOrder = await stripe.workOrderInvoic.create({
-          //    billabletime:workOrderInvoice.billabletime,
-          parts: workOrderInvoice[i].parts,
-        });
-        const price = await stripe.prices.create({
-          part: part.id,
-          unit_amount: parts[i].partPrice * 100,
-          currency: "usd",
-        });
-        lineItems.push({
-          price: price.id,
-          quantity: 1,
-        });
-      }
-      stripe = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items: lineItems,
-        mode: "payment",
-        success_url:
-          `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/cancel`,
-      });
-      return{session:session.id}
-    },
+    //   for (let i = 0; i < workOrderInvoice.length; i++) {
+    //     const workOrder = await stripe.workOrderInvoic.create({
+    //       //    billabletime:workOrderInvoice.billabletime,
+    //       parts: workOrderInvoice[i].parts,
+    //     });
+    //     const price = await stripe.prices.create({
+    //       part: part.id,
+    //       unit_amount: parts[i].partPrice * 100,
+    //       currency: "usd",
+    //     });
+    //     lineItems.push({
+    //       price: price.id,
+    //       quantity: 1,
+    //     });
+    //   }
+    //   stripe = await stripe.checkout.sessions.create({
+    //     payment_method_types: ["card"],
+    //     line_items: lineItems,
+    //     mode: "payment",
+    //     success_url:
+    //       `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+    //     cancel_url: `${url}/cancel`,
+    //   });
+    //   return{session:session.id}
+    // },
 
     // resolver function for workOrders
     // workorders: async (parent, { _id }) => {
