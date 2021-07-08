@@ -31,11 +31,12 @@ For businesses to manage their day to day operations from their phone. At the mo
 ---
 Login Page
 
-![Screen Shot 2021-07-06 at 3 18 30 PM](https://user-images.githubusercontent.com/76604281/124673766-53491780-de6e-11eb-8f46-8fca9d469b76.png)
 
-Payment Page
 
-![Screen Shot 2021-07-06 at 3 26 23 PM](https://user-images.githubusercontent.com/76604281/124673890-8db2b480-de6e-11eb-8ab0-4b70de808fb8.png)
+Directory
+
+![Screen Shot 2021-07-07 at 5 21 42 PM](https://user-images.githubusercontent.com/76604281/124846950-bc07c100-df4e-11eb-809c-a45d9493f1bb.png)
+
    
     
 ## Licensing
