@@ -196,10 +196,8 @@ const resolvers = {
     //   { new: true }
     // );
 
-    // return workOrder;
-  },
-
-  // throw new AuthenticationError('You need to be logged in!');
+        // return workOrder;
+      }
 };
 
 module.exports = resolvers;

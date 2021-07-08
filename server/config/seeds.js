@@ -1,21 +1,6 @@
 const faker = require('faker');
 
 const db = require('./connection');
-// const {
-//     Employee
-// } = require('../models');
-
-// const{
-//     Client
-// } = require('../models')
-
-// const{
-//     Part
-// } = require('../models')
-
-// const{
-//     WorkOrder
-// } = require('../models')
 
 const { Employee, Client, Part, WorkOrder } = require('../models');
 

@@ -12,14 +12,15 @@ import Home from "./assets/pages/Home";
 import Register from "./assets/pages/Register";
 import Login from "./assets/pages/Login";
 import Footer from "./assets/components/FooterNav";
-import Schedule from './assets/components/Calendar';
+//import Schedule from './assets/components/Calendar';
+import Calendar from './assets/pages/Calendar';
 import Timecard from './assets/pages/Timecard';
 import Directory from './assets/pages/Directory';
 import Customers from './assets/pages/Clients';
 import Inventory from './assets/pages/Warehouse';
 import Documents from './assets/pages/Documents';
-import Stripe from './assets/pages/Stripe'
 import AddWorkOrder from './assets/pages/AddWorkOrder';
+import Stripe from "./assets/pages/Stripe.jsx"
 
 const client = new ApolloClient({
   request: operation => {
@@ -55,18 +56,17 @@ function App() {
               className="pageWrapper"
               height="100%"
               background-color="#E0FBFC"
-              zIndex="-1"
             >
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/timecard" component={Timecard} />
-                <Route exact path="/schedule" component={Schedule} />
+                <Route exact path="/schedule" component={Calendar} />
                 <Route exact path="/directory" component={Directory} />
                 <Route exact path="/clients" component={Customers} />
                 <Route exact path="/warehouse" component={Inventory} />
                 <Route exact path="/documents" component={Documents} />
-                <Route exact path= "/stripe" component={Stripe} />
                 <Route exact path="/addWorkOrder" component={AddWorkOrder} />
+                <Route exact path="/stripe" component = {Stripe}/>
               </Switch>
             </div>      
             <div style={footerStyle}>

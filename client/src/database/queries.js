@@ -65,6 +65,8 @@ export const QUERY_CLIENT_NAMES = gql`
 export const QUERY_APPOINTMENTS = gql`
 query getClients {
   clients {
+    firstName
+    lastName
     workOrders {
       _id
       workOrderClient
