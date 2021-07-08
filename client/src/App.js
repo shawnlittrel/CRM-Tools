@@ -12,7 +12,8 @@ import Home from "./assets/pages/Home";
 import Register from "./assets/pages/Register";
 import Login from "./assets/pages/Login";
 import Footer from "./assets/components/FooterNav";
-import Schedule from './assets/components/Calendar';
+//import Schedule from './assets/components/Calendar';
+import Calendar from './assets/pages/Calendar';
 import Timecard from './assets/pages/Timecard';
 import Directory from './assets/pages/Directory';
 import Customers from './assets/pages/Clients';
@@ -59,7 +60,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/timecard" component={Timecard} />
-                <Route exact path="/schedule" component={Schedule} />
+                <Route exact path="/schedule" component={Calendar} />
                 <Route exact path="/directory" component={Directory} />
                 <Route exact path="/clients" component={Customers} />
                 <Route exact path="/warehouse" component={Inventory} />

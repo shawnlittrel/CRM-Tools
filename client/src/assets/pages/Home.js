@@ -3,7 +3,7 @@ import { useMediaQuery } from "../../utils/helpers";
 import { Grid, Box, Button, GridItem, Text } from "@chakra-ui/react";
 import Login from "./Login";
 import Timecard from "./Timecard";
-import Calendar from "../components/Calendar";
+import Calendar from "./Calendar";
 import Clients from "./Clients";
 import Workorder from "./WorkOrder";
 import Resolution from "./Resolution";
