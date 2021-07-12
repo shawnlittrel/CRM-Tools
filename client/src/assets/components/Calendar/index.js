@@ -14,16 +14,41 @@ import { Box, Button, Spinner, Center } from "@chakra-ui/react";
 function Calendar(props) {
   //const { user } = useStoreContext(user);
   let isPageWide = useMediaQuery("(min-width: 800px)");
+  const workOrders = [];
+  const events = [];
   const { loading, data } = useQuery(QUERY_APPOINTMENTS);
 
-
-
-
-
-  const handleDateClick = () => {
+  const handleDateClick = (clickInfo) => {
     //TODO: Redirect to single appointment detail page
-    <Link to={`workorder/:id`} />;
+
+    console.log('id', clickInfo.event.id)
+    //<Link to={`workorder/:${clickInfo.event.id}} />;
   };
+
+  if (data) {
+    data.clients.map(client => {
+      if (client.workOrders.length) {
+        workOrders.push(
+          client.workOrders.map(workOrder => {
+            return {
+              id: workOrder._id,
+              title: workOrder.workOrderClient,
+              start: new Date(parseInt(workOrder.workOrderDate)).toISOString().replace(/T.*$/, ''),
+              workOrderDescription: workOrder.workOrderDescription
+            };
+          })
+        );
+      }
+    });
+    for (let i = 0; i < workOrders.length; i++) {
+      let innerArrayLength = workOrders[i].length;
+
+      for (let j = 0; j < innerArrayLength; j++) {
+        events.push(workOrders[i][j]);
+      }
+    }
+  }
+
 
   if(loading) return (
     <Center>
@@ -46,8 +71,8 @@ function Calendar(props) {
       //         title: `${client.firstName} ${client.lastName}`,
       //         start: `${wo.workOrderDate.toLocaleString()}`,
       //         description: wo.workOrderDescription
-      //       }
-      console.log(data)
+      //       }, 
+      console.log('events', events)
 
 
       //console.log(myEventsArr);
@@ -67,9 +92,10 @@ function Calendar(props) {
               right: "dayGridMonth, timeGridWeek, timeGridDay"
             }}
             editable={true}
-            
+            initialEvents={events}
             selectable={true}
             weekends={true}
+            eventClick={handleDateClick}
             customButtons={{
               addWorkOrder: {
                 text: 'New Work Order',

@@ -8,7 +8,8 @@ import {
   Textarea,
   Container,
   Divider,
-  Button
+  Button,
+  Heading
 } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -88,11 +89,13 @@ const [clientNameState, setClientNameState] = useState();
      const clientList = data.clients;   
 
   return (
-    <Container>
-      <Center>Create New Work Order</Center>
-      <Divider />
+    <Container marginTop="30px">
+      <Center>
+        <Heading as="h2">Create New Work Order</Heading>
+      </Center>
+      <Divider color="brand.300" />
       <FormControl id="workOrderDate">
-        <FormLabel>Work Order Date and Time: </FormLabel>
+        <FormLabel marginTop="10px">Work Order Date and Time: </FormLabel>
         <DatePicker
           selected={startDate}
           showTimeSelect
@@ -128,6 +131,7 @@ const [clientNameState, setClientNameState] = useState();
         <Button onClick={handleFormSubmit}>Save Work Order</Button>
       </Center>
     </Container>
+
   );
 }
 };
