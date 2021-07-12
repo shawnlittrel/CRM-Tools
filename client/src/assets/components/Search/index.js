@@ -1,13 +1,14 @@
-import { Center, Button } from "@chakra-ui/react";
+import { Center, Box } from "@chakra-ui/react";
 
 function Search(props) {
   const { searchQuery, setSearchQuery, searchCategory } = props;
 
   return (
-    <Center>
-      <form action="/" method="get">
-        <Center>
-          <label htmlFor="header-search">
+    <Center marginTop="10px" fontSize="lg">
+      <Box borderWidth="1px" borderRadius="lg">
+         <form action="/" method="get">
+        <Center padding="5px">
+          <label htmlFor="header-search" >
             <span className="visually-hidden">Search {searchCategory}:</span>
           </label>
         </Center>
@@ -19,10 +20,9 @@ function Search(props) {
           onChange={e => setSearchQuery(e.target.value)}
           value={searchQuery}
         />
-        <Button type="submit" backgroundColor="brand.400" color="brand.200">
-          Search
-        </Button>
       </form>
+      </Box>
+     
     </Center>
   );
 }

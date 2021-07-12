@@ -69,7 +69,19 @@ function Clients() {
               margin="2px"
               w="80%"
             >
-              <Grid
+              <Box color="brand.100">
+                <strong>{client.firstName} {client.lastName}</strong>
+              </Box>
+              <Box fontSize="sm">
+                <strong>A: </strong> {client.address}
+              </Box>
+              <Box fontSize="sm">
+                <strong>P: </strong> {client.phone}
+              </Box>
+              <Box fontSize="sm">
+                <strong>E: </strong> {client.email}
+              </Box>
+              {/* <Grid
                 templateRows="repeat(5, 1fr)"
                 templateColumns="repeat(6, 1fr)"
                 gap={1}
@@ -89,7 +101,7 @@ function Clients() {
                   <strong>E: </strong>
                   {client.email}
                 </GridItem>
-              </Grid>
+              </Grid> */}
             </Box>
           </Center>
         ))}

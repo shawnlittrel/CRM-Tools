@@ -9,8 +9,6 @@ import Auth from './utils/auth';
 
 //import components and pages
 import Home from "./assets/pages/Home";
-import Register from "./assets/pages/Register";
-import Login from "./assets/pages/Login";
 import Footer from "./assets/components/FooterNav";
 import Schedule from './assets/components/Calendar';
 import Timecard from './assets/pages/Timecard';

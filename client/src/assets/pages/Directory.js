@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Center, Box, Grid, GridItem, Spinner } from "@chakra-ui/react";
+import { Center, Box, Grid, GridItem, Spinner, Container } from "@chakra-ui/react";
 import Search from "../components/Search";
 import { useQuery, useLazyQuery } from "@apollo/react-hooks";
 import { QUERY_EMPLOYEES_SHORT } from "../../database/queries";
@@ -69,27 +69,20 @@ return (
              margin="2px"
              w="80%"
            >
-             <Grid
-               templateRows="repeat(5, 1fr)"
-               templateColumns="repeat(6, 1fr)"
-               gap={1}
-             >
-               <GridItem colSpan={5} color="brand.100">
-                 <strong>{employee.firstName} {employee.lastName}</strong>
-               </GridItem>
-               <GridItem rowStart={2} colStart={2} colSpan={4}>
-                 <strong>A: </strong>
-                 {employee.address}
-               </GridItem>
-               <GridItem rowStart={3} colStart={2} colSpan={4}>
-                 <strong>P: </strong>
-                 {employee.phone}
-               </GridItem>
-               <GridItem rowStart={4} colStart={2} colSpan={4}>
-                 <strong>E: </strong>
-                 {employee.email}
-               </GridItem>
-             </Grid>
+             <Container>
+             <Box color="brand.100">
+               <strong>{employee.firstName} {employee.lastName}</strong>  
+             </Box>
+             <Box fontSize="sm">
+               <strong>A:</strong> {employee.address}
+             </Box>
+             <Box fontSize="sm">
+               <strong>P: </strong> {employee.phone}
+             </Box>
+             <Box fontSize="sm">
+               <strong>E: </strong> {employee.email}
+             </Box>
+              </Container>
            </Box>
          </Center>
        ))}
