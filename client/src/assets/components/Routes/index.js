@@ -4,7 +4,7 @@ import Auth from "../../../utils/auth";
 
 //import components and pages
 import Home from "../../pages/Home";
-import Calendar from "./assets/components/Calendar";
+import Calendar from "../Calendar";
 //import Calendar from "../../pages/Calendar";
 import Timecard from "../../pages/Timecard";
 import Directory from "../../pages/Directory";
