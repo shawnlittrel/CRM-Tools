@@ -9,10 +9,10 @@ import Workorder from "./WorkOrder";
 import Resolution from "./Resolution";
 import {ReactComponent as Shield } from '../images/shield.svg';
 import Auth from '../../utils/auth';
-
+import SideNav from '../components/SideNav';
 
 function Home() {
-  // let isPageWide = useMediaQuery('(min-width: 800px)')
+ let isPageWide = useMediaQuery('(min-width: 800px)')
 
   const loggedIn = Auth.loggedIn();
   console.log('logged in', loggedIn);
@@ -20,17 +20,20 @@ function Home() {
        window.location.replace(event.target.value)
   }
 
-  // if (isPageWide) {
-  //      return(
-  //           //<Login />
-  //           //<Calendar />
-  //           //<Clients />
-  //           //<Workorder />
-  //           <Resolution />
-  //      )
-  // }
+  
 
   if(loggedIn) {
+    if (isPageWide) {
+          return(
+                //<Login />
+                //<Calendar />
+                //<Clients />
+                //<Workorder />
+                <SideNav />
+          )
+      }
+
+
     return (
       <Grid
         style={{ height: "90vh", margin: 0, padding: 0 }}

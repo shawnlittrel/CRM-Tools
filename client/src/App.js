@@ -1,24 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import { StoreProvider } from "./state/State";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./utils/theme";
-import Auth from './utils/auth';
+import { useMediaQuery } from "./utils/helpers";
 
 //import components and pages
-import Home from "./assets/pages/Home";
-import Footer from "./assets/components/FooterNav";
-//import Schedule from './assets/components/Calendar';
-import Calendar from './assets/pages/Calendar';
-import Timecard from './assets/pages/Timecard';
-import Directory from './assets/pages/Directory';
-import Customers from './assets/pages/Clients';
-import Inventory from './assets/pages/Warehouse';
-import Documents from './assets/pages/Documents';
-import AddWorkOrder from './assets/pages/AddWorkOrder';
-import Stripe from "./assets/pages/Stripe.jsx"
+import Routes from "./assets/components/Routes";
+import SideNav from "./assets/components/SideNav";
+import FooterNav from "./assets/components/FooterNav";
 
 const client = new ApolloClient({
   request: operation => {
@@ -34,7 +25,9 @@ const client = new ApolloClient({
 
 function App() {
   document.body.style = "background: #E0FBFC";
-
+  //set breakpoint for mobile and desktop apps
+  const pageIsWide = useMediaQuery("(min-width: 800px)");
+  //manually position footerNav
   const footerStyle = {
     overflow: "hidden",
     position: "fixed",
@@ -43,38 +36,22 @@ function App() {
     height: "5vh"
   };
 
-  //const loggedIn = Auth.loggedIn();
-
-    return (
+  //render desktop app
+  return (
     <ApolloProvider client={client}>
       <ChakraProvider theme={theme}>
-        <Router>
-          <StoreProvider>
-            <div
-              className="pageWrapper"
-              height="100%"
-              background-color="#E0FBFC"
-            >
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/timecard" component={Timecard} />
-                <Route exact path="/schedule" component={Calendar} />
-                <Route exact path="/directory" component={Directory} />
-                <Route exact path="/clients" component={Customers} />
-                <Route exact path="/warehouse" component={Inventory} />
-                <Route exact path="/documents" component={Documents} />
-                <Route exact path="/addWorkOrder" component={AddWorkOrder} />
-                <Route exact path="/stripe" component = {Stripe}/>
-              </Switch>
-            </div>      
+        <StoreProvider>
+          {pageIsWide && <SideNav />}
+          <Routes />
+          {!pageIsWide && (
             <div style={footerStyle}>
-              <Footer />
+              <FooterNav />
             </div>
-          </StoreProvider>
-        </Router>
+          )}
+        </StoreProvider>
       </ChakraProvider>
     </ApolloProvider>
   );
-} 
+}
 
 export default App;
