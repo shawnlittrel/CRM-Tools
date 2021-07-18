@@ -37,12 +37,20 @@ import { RiCustomerService2Fill, RiCustomerServiceFill } from "react-icons/ri";
 import { HiCode, HiCollection } from "react-icons/hi";
 import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import { ReactComponent as Shield } from "../../images/shield.svg";
+import { useHistory } from "react-router-dom";
+import Routes from '../Routes';
 
 export default function App() {
   const sidebar = useDisclosure();
   const integrations = useDisclosure();
   const employeesMenu = useDisclosure();
   const clientsMenu = useDisclosure();
+  let history = useHistory();
+
+  // function handleClick(target) {
+  //   //console.log("value", target);
+  //   history.push(target);
+  // }
 
   const NavItem = props => {
     const { icon, children, ...rest } = props;
@@ -113,7 +121,9 @@ export default function App() {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <NavItem icon={MdHome}>Home</NavItem>
+        <NavItem icon={MdHome} onClick={() => window.location.replace('/')}>
+          Home
+        </NavItem>
         <NavItem icon={RiCustomerService2Fill} onClick={clientsMenu.onToggle}>
           Clients
           <Icon
@@ -123,7 +133,12 @@ export default function App() {
           />
         </NavItem>
         <Collapse in={clientsMenu.isOpen}>
-          <NavItem pl="12" py="2" icon={RiCustomerServiceFill}>
+          <NavItem
+            pl="12"
+            py="2"
+            icon={RiCustomerServiceFill}
+            onClick={() => window.location.replace('/clients')}
+          >
             View Clients
           </NavItem>
           <NavItem pl="12" py="2" icon={FiPlus}>
@@ -142,7 +157,12 @@ export default function App() {
           />
         </NavItem>
         <Collapse in={employeesMenu.isOpen}>
-          <NavItem pl="12" py="2" icon={FiUserCheck}>
+          <NavItem
+            pl="12"
+            py="2"
+            icon={FiUserCheck}
+            onClick={() => window.location.replace('/directory')}
+          >
             View Employees
           </NavItem>
           <NavItem pl="12" py="2" icon={FiUserPlus}>
@@ -152,7 +172,9 @@ export default function App() {
             Remove Employee
           </NavItem>
         </Collapse>
-        <NavItem icon={FiCalendar}>Schedule</NavItem>
+        <NavItem icon={FiCalendar} onClick={() => window.location.replace("/schedule")}>
+          Schedule
+        </NavItem>
         <NavItem icon={FiFileText} onClick={integrations.onToggle}>
           Work Orders
           <Icon
@@ -165,14 +187,21 @@ export default function App() {
           <NavItem pl="12" py="2" icon={FiMonitor}>
             View Work Orders
           </NavItem>
-          <NavItem pl="12" py="2" icon={FiPlus}>
+          <NavItem
+            pl="12"
+            py="2"
+            icon={FiPlus}
+            onClick={() => window.location.replace("/addWorkOrder")}
+          >
             Create Work Order
           </NavItem>
           <NavItem pl="12" py="2" icon={FiDollarSign}>
             Invoice Work Orders
           </NavItem>
         </Collapse>
-        <NavItem icon={FiBox}>Warehouse</NavItem>
+        <NavItem icon={FiBox} onClick={() => history.push("/warehouse")}>
+          Warehouse
+        </NavItem>
         <NavItem icon={BsGearFill}>Settings</NavItem>
       </Flex>
     </Box>
@@ -216,10 +245,7 @@ export default function App() {
         </Flex>
 
         <Box as="main" p="4">
-          {/* Add content here, remove div below  */}
-          <Box>
-               Some text
-          </Box>
+          <Routes />
         </Box>
       </Box>
     </Box>

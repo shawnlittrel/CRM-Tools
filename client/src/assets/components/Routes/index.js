@@ -23,7 +23,7 @@ function Routes() {
   }
 
   return (
-    <Router>
+<Router>
       <div className="pageWrapper" height="100%" background-color="#E0FBFC">
         <Switch>
           <Route exact path="/" component={Home} />
@@ -37,7 +37,7 @@ function Routes() {
           <Route exact path="/stripe" component={Stripe} />
         </Switch>
       </div>
-    </Router>
+</Router>
   );
 }
 

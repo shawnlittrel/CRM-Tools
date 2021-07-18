@@ -1,10 +1,11 @@
-import React from "react";
+import { useHistory } from "react-router-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import { StoreProvider } from "./state/State";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./utils/theme";
 import { useMediaQuery } from "./utils/helpers";
+import {BrowserRouter as Router } from 'react-router-dom';
 
 //import components and pages
 import Routes from "./assets/components/Routes";
@@ -37,17 +38,29 @@ function App() {
   };
 
   //render desktop app
+  if (pageIsWide) {
+    return (
+      <ApolloProvider client={client}>
+        <ChakraProvider theme={theme}>
+          <StoreProvider>
+
+              <SideNav />
+
+          </StoreProvider>
+        </ChakraProvider>
+      </ApolloProvider>
+    );
+  }
+
+  //render mobile app
   return (
     <ApolloProvider client={client}>
       <ChakraProvider theme={theme}>
         <StoreProvider>
-          {pageIsWide && <SideNav />}
           <Routes />
-          {!pageIsWide && (
-            <div style={footerStyle}>
-              <FooterNav />
-            </div>
-          )}
+          <div style={footerStyle}>
+            <FooterNav />
+          </div>
         </StoreProvider>
       </ChakraProvider>
     </ApolloProvider>

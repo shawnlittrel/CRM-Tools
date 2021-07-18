@@ -15,7 +15,6 @@ function Home() {
  let isPageWide = useMediaQuery('(min-width: 800px)')
 
   const loggedIn = Auth.loggedIn();
-  console.log('logged in', loggedIn);
   const handleClick= event => {
        window.location.replace(event.target.value)
   }
@@ -25,11 +24,9 @@ function Home() {
   if(loggedIn) {
     if (isPageWide) {
           return(
-                //<Login />
-                //<Calendar />
-                //<Clients />
-                //<Workorder />
-                <SideNav />
+              <div>
+                Home
+              </div>
           )
       }
 
