@@ -14,6 +14,8 @@ import SideNav from '../components/SideNav';
 //temp imports
 import AddClient from '../pages/AddClient';
 import AddEmployee from '../pages/AddEmployee';
+import EditClient from '../pages/EditClient';
+import EditEmployee from '../pages/EditEmployee';
 
 function Home() {
  let isPageWide = useMediaQuery('(min-width: 800px)')
@@ -28,7 +30,7 @@ function Home() {
   if(loggedIn) {
     if (isPageWide) {
           return(
-              <AddEmployee />
+              <EditClient />
           )
       }
 

@@ -16,6 +16,8 @@ import Stripe from "../../pages/Stripe.jsx";
 import Login from "../../pages/Login";
 import AddClient from '../../pages/AddClient';
 import AddEmployee from '../../pages/AddEmployee';
+import EditClient from '../../pages/EditClient';
+import EditEmployee from '../../pages/EditEmployee';
 
 function Routes() {
   const loggedIn = Auth.loggedIn();
@@ -39,6 +41,8 @@ function Routes() {
           <Route exact path="/stripe" component={Stripe} />
           <Route exact path="/addEmployee" component={AddEmployee} />
           <Route exact path="/addClient" component={AddClient} />
+          <Route exact path="/editClient" component={EditClient} />
+          <Route exact path="/editEmployee" component={EditEmployee} />
         </Switch>
       </div>
 </Router>

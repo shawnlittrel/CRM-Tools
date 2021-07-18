@@ -149,8 +149,13 @@ export default function App() {
           >
             Create New Client
           </NavItem>
-          <NavItem pl="12" py="2" icon={FiX}>
-            Remove Client
+          <NavItem
+            pl="12"
+            py="2"
+            icon={FiX}
+            onClick={() => window.location.replace("/editClient")}
+          >
+            Edit Client
           </NavItem>
         </Collapse>
         <NavItem icon={FiUsers} onClick={employeesMenu.onToggle}>
@@ -178,8 +183,13 @@ export default function App() {
           >
             Create New Employee
           </NavItem>
-          <NavItem pl="12" py="2" icon={FiUserMinus}>
-            Remove Employee
+          <NavItem
+            pl="12"
+            py="2"
+            icon={FiUserMinus}
+            onClick={() => window.location.replace("/editEmployee")}
+          >
+            Edit Employee
           </NavItem>
         </Collapse>
         <NavItem

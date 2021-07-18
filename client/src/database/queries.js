@@ -23,7 +23,7 @@ export const QUERY_CLIENTS = gql`
       email
       phone
       workOrders {
-        id
+        _id
         date
         description
         notes
