@@ -101,12 +101,20 @@ mutation addWorkOrder($workOrderDate: String!, $workOrderClient: String!, $workO
 }
 `;
 
-// export const ADD_EMPLOYEE = gql `
-//    mutation addEmployee($firstName: String!, $lastname: String!, $email: String!, $phone: String!, $address: String!) {
-//      addEmployee(firstName: $firstName, lastname: $lastName, email: $email, phone: $phone, address: $address) {
-//        user {
-//          timecard
-//        }
-//      }
-//    }
-//  `;
+export const ADD_CLIENT = gql`
+mutation addClient($firstName: String!, $lastName: String!, $address: String!, $email: String!,  $phone: String!) {
+  addClient(firstName: $firstName, lastName: $lastName, address: $address, phone: $phone, email: $email) {
+    _id
+  }
+}
+`;
+
+export const ADD_EMPLOYEE = gql`
+mutation addEmployee($firstName: String!, $lastName: String!, $address: String!, $email: String!, $phone: String!, $password: String!) {
+  addEmployee(firstName:$firstName, lastName:$lastName, address:$address, email:$email, phone:$phone, password: $password){
+		_id
+    firstName
+    lastName
+  }
+}
+ `;

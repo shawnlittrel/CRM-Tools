@@ -43,9 +43,7 @@ function App() {
       <ApolloProvider client={client}>
         <ChakraProvider theme={theme}>
           <StoreProvider>
-
               <SideNav />
-
           </StoreProvider>
         </ChakraProvider>
       </ApolloProvider>

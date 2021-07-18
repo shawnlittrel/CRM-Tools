@@ -1,5 +1,4 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
-import * as React from "react";
 import { Icon, Button } from "@chakra-ui/react";
 import {
   AiFillHome,

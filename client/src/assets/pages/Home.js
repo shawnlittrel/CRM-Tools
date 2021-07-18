@@ -11,6 +11,10 @@ import {ReactComponent as Shield } from '../images/shield.svg';
 import Auth from '../../utils/auth';
 import SideNav from '../components/SideNav';
 
+//temp imports
+import AddClient from '../pages/AddClient';
+import AddEmployee from '../pages/AddEmployee';
+
 function Home() {
  let isPageWide = useMediaQuery('(min-width: 800px)')
 
@@ -24,9 +28,7 @@ function Home() {
   if(loggedIn) {
     if (isPageWide) {
           return(
-              <div>
-                Home
-              </div>
+              <AddEmployee />
           )
       }
 

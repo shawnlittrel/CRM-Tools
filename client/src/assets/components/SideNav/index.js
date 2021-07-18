@@ -38,7 +38,7 @@ import { HiCode, HiCollection } from "react-icons/hi";
 import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import { ReactComponent as Shield } from "../../images/shield.svg";
 import { useHistory } from "react-router-dom";
-import Routes from '../Routes';
+import Routes from "../Routes";
 
 export default function App() {
   const sidebar = useDisclosure();
@@ -121,7 +121,7 @@ export default function App() {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <NavItem icon={MdHome} onClick={() => window.location.replace('/')}>
+        <NavItem icon={MdHome} onClick={() => window.location.replace("/")}>
           Home
         </NavItem>
         <NavItem icon={RiCustomerService2Fill} onClick={clientsMenu.onToggle}>
@@ -137,11 +137,16 @@ export default function App() {
             pl="12"
             py="2"
             icon={RiCustomerServiceFill}
-            onClick={() => window.location.replace('/clients')}
+            onClick={() => window.location.replace("/clients")}
           >
             View Clients
           </NavItem>
-          <NavItem pl="12" py="2" icon={FiPlus}>
+          <NavItem
+            pl="12"
+            py="2"
+            icon={FiPlus}
+            onClick={() => window.location.replace("/addClient")}
+          >
             Create New Client
           </NavItem>
           <NavItem pl="12" py="2" icon={FiX}>
@@ -161,18 +166,26 @@ export default function App() {
             pl="12"
             py="2"
             icon={FiUserCheck}
-            onClick={() => window.location.replace('/directory')}
+            onClick={() => window.location.replace("/directory")}
           >
             View Employees
           </NavItem>
-          <NavItem pl="12" py="2" icon={FiUserPlus}>
+          <NavItem
+            pl="12"
+            py="2"
+            icon={FiUserPlus}
+            onClick={() => window.location.replace("/addEmployee")}
+          >
             Create New Employee
           </NavItem>
           <NavItem pl="12" py="2" icon={FiUserMinus}>
             Remove Employee
           </NavItem>
         </Collapse>
-        <NavItem icon={FiCalendar} onClick={() => window.location.replace("/schedule")}>
+        <NavItem
+          icon={FiCalendar}
+          onClick={() => window.location.replace("/schedule")}
+        >
           Schedule
         </NavItem>
         <NavItem icon={FiFileText} onClick={integrations.onToggle}>

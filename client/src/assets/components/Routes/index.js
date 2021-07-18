@@ -14,6 +14,8 @@ import Documents from "../../pages/Documents";
 import AddWorkOrder from "../../pages/AddWorkOrder";
 import Stripe from "../../pages/Stripe.jsx";
 import Login from "../../pages/Login";
+import AddClient from '../../pages/AddClient';
+import AddEmployee from '../../pages/AddEmployee';
 
 function Routes() {
   const loggedIn = Auth.loggedIn();
@@ -35,6 +37,8 @@ function Routes() {
           <Route exact path="/documents" component={Documents} />
           <Route exact path="/addWorkOrder" component={AddWorkOrder} />
           <Route exact path="/stripe" component={Stripe} />
+          <Route exact path="/addEmployee" component={AddEmployee} />
+          <Route exact path="/addClient" component={AddClient} />
         </Switch>
       </div>
 </Router>
