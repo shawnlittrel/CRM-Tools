@@ -82,6 +82,10 @@ const typeDefs = gql`
     clockIn(timestamp: String!, status: String!): Employee
     clockOut(timestamp: String!, status: String!): Employee
     addClient(firstName: String!, lastName: String!, address: String!, email: String!, phone: String!): Client
+    editEmployee(employeeId: ID!, firstName: String!, lastName: String!, address: String!, email: String!, phone: String!, password: String!): Employee
+    editClient(clientId: ID!, firstName: String!, lastName: String!, address: String!, phone: String!, email: String!): Client
+    deleteEmployee(employeeId: ID!): Employee
+    deleteClient(clientId: ID!): Client
   }
 `;
     // TODO would addWorkOrder in type mutation return Client parent?
