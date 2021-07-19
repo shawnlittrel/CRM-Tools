@@ -160,41 +160,27 @@ const resolvers = {
 
       return await Employee.findByIdAndUpdate(
         { _id: employeeId },
-        { firstName,
-        lastName,
-        address,
-        phone,
-        email,
-        password
-        },  { new: true });
+        { firstName, lastName, address, phone, email, password },
+        { new: true }
+      );
     },
 
     editClient: async (parent, args) => {
-      const {
-        clientId,
-        firstName,
-        lastName,
-        address,
-        phone,
-        email
-      } = args;
+      const { clientId, firstName, lastName, address, phone, email } = args;
 
       return await Client.findByIdAndUpdate(
-        { _id: clientId }, 
-        { firstName, lastName, address, phone, email }, 
-        { new: true}
-        )},
-
-    deleteEmployee: async (parent, { employeeId }) => {
-      return await Employee.findByIdAndDelete(
-        { _id: employeeId }
+        { _id: clientId },
+        { firstName, lastName, address, phone, email },
+        { new: true }
       );
     },
 
+    deleteEmployee: async (parent, { employeeId }) => {
+      return await Employee.findByIdAndDelete({ _id: employeeId });
+    },
+
     deleteClient: async (parent, { clientId }) => {
-      return await Client.findOneAndDelete(
-        { _id: clientId }
-      );
+      return await Client.findOneAndDelete({ _id: clientId });
     }
   }
 };

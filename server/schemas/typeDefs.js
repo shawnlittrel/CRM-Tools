@@ -2,7 +2,6 @@
 const { gql } = require("apollo-server-express");
 
 // create our typeDefs
-// TODO timecard formatting?
 const typeDefs = gql`
   type Employee {
     _id: ID
@@ -88,7 +87,6 @@ const typeDefs = gql`
     deleteClient(clientId: ID!): Client
   }
 `;
-    // TODO would addWorkOrder in type mutation return Client parent?
 
 // export the typeDefs
 module.exports = typeDefs;
