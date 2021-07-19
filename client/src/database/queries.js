@@ -129,6 +129,7 @@ export const QUERY_EMPLOYEES_SHORT = gql`
       address
       email
       phone
+      password
     }
   }
 `;
