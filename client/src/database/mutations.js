@@ -12,11 +12,11 @@ export const LOGIN = gql`
 `;
 
 export const CLOCK_IN = gql`
-mutation clockIn($timestamp: String!, $status: String!) {
-  clockIn(timestamp: $timestamp, status: $status) {
+  mutation clockIn($timestamp: String!, $status: String!) {
+    clockIn(timestamp: $timestamp, status: $status) {
       firstName
-    	lastName
-    	timeCards{
+      lastName
+      timeCards {
         _id
         timestamp
         status
@@ -26,11 +26,11 @@ mutation clockIn($timestamp: String!, $status: String!) {
 `;
 
 export const CLOCK_OUT = gql`
-mutation clockOut($timestamp: String!, $status: String!) {
-  clockOut(timestamp: $timestamp, status: $status) {
+  mutation clockOut($timestamp: String!, $status: String!) {
+    clockOut(timestamp: $timestamp, status: $status) {
       firstName
-    	lastName
-    	timeCards{
+      lastName
+      timeCards {
         _id
         timestamp
         status
@@ -89,24 +89,141 @@ export const NOTE_TO_DB = gql`
   }
 `;
 
-export const ADD_WORK_ORDER = gql `
-mutation addWorkOrder($workOrderDate: String!, $workOrderClient: String!, $workOrderDescription: String!, $clientId: ID!) {
-  addWorkOrder(clientId: $clientId, workOrderClient: $workOrderClient, workOrderDate: $workOrderDate, workOrderDescription: $workOrderDescription) {
-    workOrders {
-      _id
-      workOrderDate
-      workOrderDescription
+export const ADD_WORK_ORDER = gql`
+  mutation addWorkOrder(
+    $workOrderDate: String!
+    $workOrderClient: String!
+    $workOrderDescription: String!
+    $clientId: ID!
+  ) {
+    addWorkOrder(
+      clientId: $clientId
+      workOrderClient: $workOrderClient
+      workOrderDate: $workOrderDate
+      workOrderDescription: $workOrderDescription
+    ) {
+      workOrders {
+        _id
+        workOrderDate
+        workOrderDescription
+      }
     }
   }
-}
 `;
 
-// export const ADD_EMPLOYEE = gql `
-//    mutation addEmployee($firstName: String!, $lastname: String!, $email: String!, $phone: String!, $address: String!) {
-//      addEmployee(firstName: $firstName, lastname: $lastName, email: $email, phone: $phone, address: $address) {
-//        user {
-//          timecard
-//        }
-//      }
-//    }
-//  `;
+export const ADD_CLIENT = gql`
+  mutation addClient(
+    $firstName: String!
+    $lastName: String!
+    $address: String!
+    $email: String!
+    $phone: String!
+  ) {
+    addClient(
+      firstName: $firstName
+      lastName: $lastName
+      address: $address
+      phone: $phone
+      email: $email
+    ) {
+      _id
+    }
+  }
+`;
+
+export const ADD_EMPLOYEE = gql`
+  mutation addEmployee(
+    $firstName: String!
+    $lastName: String!
+    $address: String!
+    $email: String!
+    $phone: String!
+    $password: String!
+  ) {
+    addEmployee(
+      firstName: $firstName
+      lastName: $lastName
+      address: $address
+      email: $email
+      phone: $phone
+      password: $password
+    ) {
+      _id
+      firstName
+      lastName
+    }
+  }
+`;
+
+export const DELETE_EMPLOYEE = gql`
+  mutation deleteEmployee($employeeId: ID!) {
+    deleteEmployee(employeeId: $employeeId) {
+      _id
+    }
+  }
+`;
+
+export const DELETE_CLIENT = gql`
+  mutation deleteClient($clientId: ID!) {
+    deleteClient(clientId: $clientId) {
+      _id
+    }
+  }
+`;
+
+export const EDIT_EMPLOYEE = gql`
+  mutation editEmployee(
+    $employeeId: ID!
+    $firstName: String!
+    $lastName: String!
+    $address: String!
+    $email: String!
+    $phone: String!
+    $password: String!
+  ) {
+    editEmployee(
+      employeeId: $employeeId
+      firstName: $firstName
+      lastName: $lastName
+      address: $address
+      email: $email
+      phone: $phone
+      password: $password
+    ) {
+      _id
+      firstName
+      lastName
+      address
+      phone
+      email
+      password
+    }
+  }
+`;
+
+export const EDIT_CLIENT = gql`
+  mutation editClient(
+    $clientId: ID!
+    $firstName: String!
+    $lastName: String!
+    $address: String!
+    $email: String!
+    $phone: String!
+  ) {
+    editClient(
+      clientId: $clientId
+      firstName: $firstName
+      lastName: $lastName
+      address: $address
+      email: $email
+      phone: $phone
+    ) {
+      _id
+      firstName
+      lastName
+      address
+      phone
+      email
+    }
+  }
+`;

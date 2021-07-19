@@ -9,28 +9,32 @@ import Workorder from "./WorkOrder";
 import Resolution from "./Resolution";
 import {ReactComponent as Shield } from '../images/shield.svg';
 import Auth from '../../utils/auth';
+import SideNav from '../components/SideNav';
 
+//temp imports
+import AddClient from '../pages/AddClient';
+import AddEmployee from '../pages/AddEmployee';
+import EditClient from '../pages/EditClient';
+import EditEmployee from '../pages/EditEmployee';
 
 function Home() {
-  // let isPageWide = useMediaQuery('(min-width: 800px)')
+ let isPageWide = useMediaQuery('(min-width: 800px)')
 
   const loggedIn = Auth.loggedIn();
-  console.log('logged in', loggedIn);
   const handleClick= event => {
        window.location.replace(event.target.value)
   }
 
-  // if (isPageWide) {
-  //      return(
-  //           //<Login />
-  //           //<Calendar />
-  //           //<Clients />
-  //           //<Workorder />
-  //           <Resolution />
-  //      )
-  // }
+  
 
   if(loggedIn) {
+    if (isPageWide) {
+          return(
+              <EditClient />
+          )
+      }
+
+
     return (
       <Grid
         style={{ height: "90vh", margin: 0, padding: 0 }}

@@ -25,6 +25,7 @@ function LoginForm() {
       const mutationResponse = await login({ variables: { email: formState.email, password: formState.password} })
       const token = mutationResponse.data.login.token;
       Auth.login(token);
+      window.location.replace('/');
       
     } catch (err) {
       console.error(err);

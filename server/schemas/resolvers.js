@@ -10,7 +10,7 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.employee) {
         const employeeData = await Employee.findOne({
-          _id: context.employee._id,
+          _id: context.employee._id
         })
           .select("-__v -password")
           .populate("timeCards");
@@ -22,7 +22,9 @@ const resolvers = {
     },
     // get all clients
     clients: async () => {
-      return Client.find().select('-__typename').populate("WorkOrders");
+      return Client.find()
+        .select("-__typename")
+        .populate("WorkOrders");
     },
 
     // get single client
@@ -32,7 +34,9 @@ const resolvers = {
 
     // get all employees
     employees: async () => {
-      return Employee.find().select("-__v").populate("timeCards");
+      return Employee.find()
+        .select("-__v")
+        .populate("timeCards");
     },
 
     // get single employee
@@ -42,53 +46,13 @@ const resolvers = {
         .populate("timeCards");
     },
 
-    // payment: async (parents, args, context) => {
-    //   const url = new URL(context.header.referer).origin;
-    //   const order = new WorkOrder({ workOrderInvoice: args.workOrderInvoice });
-    //   const { workOrderInvoice } = await order
-    //     .populate("workOrderInvoice")
-    //     .execPopulate();
-    //   const lineItems = [];
-
-    //   for (let i = 0; i < workOrderInvoice.length; i++) {
-    //     const workOrder = await stripe.workOrderInvoic.create({
-    //       //    billabletime:workOrderInvoice.billabletime,
-    //       parts: workOrderInvoice[i].parts,
-    //     });
-    //     const price = await stripe.prices.create({
-    //       part: part.id,
-    //       unit_amount: parts[i].partPrice * 100,
-    //       currency: "usd",
-    //     });
-    //     lineItems.push({
-    //       price: price.id,
-    //       quantity: 1,
-    //     });
-    //   }
-    //   stripe = await stripe.checkout.sessions.create({
-    //     payment_method_types: ["card"],
-    //     line_items: lineItems,
-    //     mode: "payment",
-    //     success_url:
-    //       `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-    //     cancel_url: `${url}/cancel`,
-    //   });
-    //   return{session:session.id}
-    // },
-
-    // resolver function for workOrders
-    // workorders: async (parent, { _id }) => {
-    //   const params = _id ? { _id } : {};
-    //   return WorkOrder.findOne({ _id });
-    // },
-    //resolver function for workOrders -> get all workorders
     workOrders: async () => {
-      return WorkOrder.find()
+      return WorkOrder.find();
     },
 
     //find workOrder by id
-    workOrder: async(parent, { _id }) => {
-        return WorkOrder.findOne({ _id })
+    workOrder: async (parent, { _id }) => {
+      return WorkOrder.findOne({ _id });
     }
   },
   Mutation: {
@@ -99,105 +63,126 @@ const resolvers = {
       return employee;
     },
 
-    login: async(parent, { email, password }) => {
+    login: async (parent, { email, password }) => {
       const user = await Employee.findOne({ email });
       //TODO: remove pointers to incorrect option
-      if (!user){
-        throw new AuthenticationError('Incorrect Credentials -> Email');
+      if (!user) {
+        throw new AuthenticationError("Incorrect Credentials -> Email");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
-      if(!correctPw) {
-        throw new AuthenticationError('Incorrect Credentials  -> PW');
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect Credentials  -> PW");
       }
 
       const token = signToken(user);
 
       return { token, user };
     },
-    
-    clockIn: async(parent, { timestamp, status }, context) => {
+
+    clockIn: async (parent, { timestamp, status }, context) => {
       console.log(context.employee);
 
       if (context.employee) {
-        console.log('timestamp', timestamp);
-        console.log('choice', status);
-        
+        console.log("timestamp", timestamp);
+        console.log("choice", status);
+
         const updatedUser = await Employee.findOneAndUpdate(
           { _id: context.employee._id },
           { $push: { timeCards: { timestamp, status } } },
           { new: true }
-        ).populate('timeCards')
+        ).populate("timeCards");
 
         return updatedUser;
       }
-      throw new AuthenticationError('You must log in first');
-
+      throw new AuthenticationError("You must log in first");
     },
 
-    clockOut: async(parent, { timestamp, status }, context) => {
-
+    clockOut: async (parent, { timestamp, status }, context) => {
       if (context.employee) {
-        console.log('timestamp', timestamp);
-        console.log('choice', status);
-        
+        console.log("timestamp", timestamp);
+        console.log("choice", status);
+
         const updatedUser = await Employee.findOneAndUpdate(
           { _id: context.employee._id },
           { $push: { timeCards: { timestamp, status } } },
           { new: true }
-        ).populate('timeCards')
+        ).populate("timeCards");
 
         return updatedUser;
       }
-      throw new AuthenticationError('You must log in first');
-
+      throw new AuthenticationError("You must log in first");
     },
 
-    addWorkOrder: async(parent, { workOrderClient, workOrderDate, workOrderDescription, clientId }, context) => {
+    addWorkOrder: async (
+      parent,
+      { workOrderClient, workOrderDate, workOrderDescription, clientId },
+      context
+    ) => {
       console.log(context.employee);
 
-
-      if(context.employee) {
-        
+      if (context.employee) {
         const updatedClient = await Client.findOneAndUpdate(
-          { _id: clientId},
-          { $push: { workOrders: { workOrderClient, workOrderDate, workOrderDescription } } },
+          { _id: clientId },
+          {
+            $push: {
+              workOrders: {
+                workOrderClient,
+                workOrderDate,
+                workOrderDescription
+              }
+            }
+          },
           { new: true }
-        ).populate('workOrders')
+        ).populate("workOrders");
 
         return updatedClient;
       }
+    },
 
+    addClient: async (parent, args) => {
+      const client = await Client.create(args);
+
+      return client;
+    },
+
+    editEmployee: async (parent, args) => {
+      const {
+        employeeId,
+        firstName,
+        lastName,
+        address,
+        email,
+        phone,
+        password
+      } = args;
+
+      return await Employee.findByIdAndUpdate(
+        { _id: employeeId },
+        { firstName, lastName, address, phone, email, password },
+        { new: true }
+      );
+    },
+
+    editClient: async (parent, args) => {
+      const { clientId, firstName, lastName, address, phone, email } = args;
+
+      return await Client.findByIdAndUpdate(
+        { _id: clientId },
+        { firstName, lastName, address, phone, email },
+        { new: true }
+      );
+    },
+
+    deleteEmployee: async (parent, { employeeId }) => {
+      return await Employee.findByIdAndDelete({ _id: employeeId });
+    },
+
+    deleteClient: async (parent, { clientId }) => {
+      return await Client.findOneAndDelete({ _id: clientId });
     }
-
-    
-    // addClient: async (parent, args) => {
-    //     const client = await Client.create(args);
-
-    //     return client;
-    //   },
-
-    // TODO this would only be available to logged in employees?
-    // TODO Would this just be used to push a new workorder to client? so confused
-    // addWorkOrder: async (parent, { clientId, workOrderDate, workOrderDescription, workOrderNotes, workOrderParts, workOrderInvoice, workOrderbillableTime }, context) => {
-    //   if (context.client) {
-    //     const updatedWorkOrder = await WorkOrder.findOneAndUpdate(
-    //       { _id: clientId },
-    //       { $addToSet: { workOrders: { workOrderDate, workOrderDescription, workOrderNotes, workOrderParts, workOrderInvoice, BillableTime }}},
-    //       { new: true, runValidators: true }
-    //     );
-
-    //     return updatedWorkOrder;
-
-    // await Client.findByIdAndUpdate(
-    //   { _id: context.client._id },
-    //   { $push: { workOrders: workOrder._id } },
-    //   { new: true }
-    // );
-
-        // return workOrder;
-      }
+  }
 };
 
 module.exports = resolvers;
