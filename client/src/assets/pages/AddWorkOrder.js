@@ -22,16 +22,19 @@ function AddWorkOrder() {
   const [saveWorkOrder, { saveWorkOrderError }] = useMutation(ADD_WORK_ORDER);
 
   const [startDate, setStartDate] = useState(new Date());
-  const [clientState, setClientState] = useState();
+  const [clientIdState, setClientIdState] = useState();
   const [clientNameState, setClientNameState] = useState();
   const [descriptionState, SetDescriptionState] = useState();
 
   const handleClientChange = async event => {
-    const updatedClient = event.target.value;
-    const updatedClientName = event.target.dataName;
+    let container = document.getElementById("selectBox");
+    let index = container.options[container.selectedIndex];
+    let selectedClientId = index.getAttribute("dataid");
+    let selectedClientName = index.getAttribute('dataname');
+
     try {
-      setClientState(updatedClient);
-      setClientNameState(updatedClientName);
+      setClientIdState(selectedClientId);
+      setClientNameState(selectedClientName);
     } catch (err) {
       console.log(err);
     }
@@ -52,12 +55,13 @@ function AddWorkOrder() {
 
     const workOrderDateInt = startDate.getTime();
     const workOrderDate = workOrderDateInt.toString();
-    const clientId = clientState;
+    const clientId = clientIdState;
     const workOrderDescription = descriptionState;
     const workOrderClient = clientNameState;
 
     //mutate database on these params
     try {
+
       await saveWorkOrder({
         variables: {
           workOrderDate,
@@ -66,6 +70,8 @@ function AddWorkOrder() {
           clientId
         }
       });
+
+      console.log('query sent to backend');
     } catch (err) {
       console.error(saveWorkOrderError);
       console.log("err", err);
@@ -113,15 +119,17 @@ function AddWorkOrder() {
         <FormControl id="workOrderClient">
           <FormLabel>Client: </FormLabel>
           <Select
+            id="selectBox"
             placeholder="Select Client"
             onChange={handleClientChange}
-            value={clientState}
+            value={clientIdState}
           >
             {clientList.map(client => (
               <option
                 key={client._id}
                 value={client._id}
-                dataName={`${client.firstName} ${client.lastName}`}
+                dataname={`${client.firstName} ${client.lastName}`}
+                dataid={client._id}
               >
                 {client.lastName}, {client.firstName}
               </option>

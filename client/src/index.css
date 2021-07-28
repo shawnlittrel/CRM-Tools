@@ -12,6 +12,19 @@ code {
     monospace;
 }
 
+.fc-addWorkOrder-button {
+  width: 100px;
+}
+
+.fc-timeGridDay-button {
+  width: 100px;
+}
+
+button:disabled {
+  background-color: #1B252E !important
+}
+
+
 #root {
   background-color: #E0FBFC;
 
