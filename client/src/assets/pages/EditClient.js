@@ -217,6 +217,7 @@ function EditClient() {
             <FormControl id="first-name" isRequired>
               <FormLabel>Client First Name</FormLabel>
               <Input
+                className="inputBox"
                 onChange={handleFormChange}
                 placeholder="First Name"
                 id="firstNameBox"
