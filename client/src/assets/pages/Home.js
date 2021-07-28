@@ -10,11 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { ReactComponent as Shield } from "../images/shield.svg";
 import Auth from "../../utils/auth";
-
 import Login from "./Login";
-
-//temp imports
-import EditClient from "../pages/EditClient";
 
 function Home() {
   let isPageWide = useMediaQuery("(min-width: 800px)");

@@ -34,7 +34,7 @@ import {
   FiBox
 } from "react-icons/fi";
 import { RiCustomerService2Fill, RiCustomerServiceFill } from "react-icons/ri";
-import { HiCode, HiCollection } from "react-icons/hi";
+import { FaRegClock } from "react-icons/fa";
 import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import { ReactComponent as Shield } from "../../images/shield.svg";
 import { useHistory } from "react-router-dom";
@@ -225,7 +225,12 @@ export default function App() {
         <NavItem icon={FiBox} onClick={() => history.push("/warehouse")}>
           Warehouse
         </NavItem>
-        <NavItem icon={BsGearFill}>Settings</NavItem>
+        <NavItem 
+          icon={FaRegClock}
+          onClick={() => window.location.replace('/timecard')}
+        >
+          Timecard
+        </NavItem>
       </Flex>
     </Box>
   );

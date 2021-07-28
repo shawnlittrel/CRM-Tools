@@ -1,4 +1,4 @@
-import React, { useState, Redirect } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import {
@@ -12,24 +12,32 @@ import {
   Container,
   Heading
 } from "@chakra-ui/react";
-import Auth from "../../utils/auth";
 import { QUERY_ME } from "../../database/queries";
 import { CLOCK_IN, CLOCK_OUT } from "../../database/mutations";
 import { useStoreContext } from "../../state/State";
 import { TOGGLE_EMPLOYEE_PUNCH } from "../../state/reducers/actions";
+import { useMediaQuery } from "../../utils/helpers";
 
 function TimeCard() {
   //PULL TIME PUNCHES FOR WEEK FROM DB
   //RENDER PUNCHES IN CARDS
   //RENDER BUTTONS FOR CLOCK IN, CLOCK OUT
 
+  //queries and mutations
   const { loading, data } = useQuery(QUERY_ME);
-  const [clockIn, { clockInError }] = useMutation(CLOCK_IN);
-  const [clockOut, { clockOutError }] = useMutation(CLOCK_OUT);
+  const [clockIn] = useMutation(CLOCK_IN);
+  const [clockOut] = useMutation(CLOCK_OUT);
+
+  //state tracking
   const [clockInTime, setClockInTime] = useState({});
   const [clockOutTime, setClockOutTime] = useState({});
   const [isClockedIn, setIsClockedIn] = useState();
   const [state, dispatch] = useStoreContext();
+
+  //desktop/mobile display
+  const pageIsWide = useMediaQuery("(min-width: 800px)");
+
+  //set up queried data for display
   let timecards;
 
   if (loading) {
@@ -49,12 +57,12 @@ function TimeCard() {
 
       dispatch({
         type: TOGGLE_EMPLOYEE_PUNCH,
-        timestamp: clockInTime
+        timestamp: newClockInTime
       });
 
-      console.log('clock in' , clockInTime);
+      console.log('clock in' , newClockInTime);
       await clockIn({
-        variables: { timestamp: clockInTime.toString(), status: "Clock In" }
+        variables: { timestamp: newClockInTime.toString(), status: "Clock In" }
       });
 
     } catch (err) {
@@ -122,7 +130,7 @@ function TimeCard() {
               <GridItem key={punch._id} _id={punch._id}>
                 <Box
                   backgroundColor="brand.300"
-                  color="brand.200"
+                  color="brand.100"
                   fontWeight="semibold"
                   letterSpacing="wide"
                   textTransform="uppercase"
@@ -143,12 +151,36 @@ function TimeCard() {
         </Container>
       ) : null}
 
-      <Flex justifyContent="center" position="fixed" width="100%" bottom="20">
+      {pageIsWide ? (
+        <Container marginTop="10vh" >
         {state.isClockedIn ? (
           <Button
             backgroundColor="brand.100"
             color="brand.200"
             onClick={handleClockOutSubmit}
+            w="100%"
+          >
+            Clock Out
+          </Button>
+        ) : (
+          <Button
+            backgroundColor="brand.400"
+            color="brand.200"
+            onClick={handleClockInSubmit}
+            w="100%"
+          >
+            Clock In
+          </Button>
+        )}
+        </Container>
+       ) : (
+        <Flex justifyContent="center" position="fixed" width="100%" bottom="20" >
+        {state.isClockedIn ? (
+          <Button
+            backgroundColor="brand.100"
+            color="brand.200"
+            onClick={handleClockOutSubmit}
+            w="60%"
           >
             Clock Out
           </Button>
@@ -163,6 +195,7 @@ function TimeCard() {
           </Button>
         )}
       </Flex>
+      )}  
     </div>
   );
 }
