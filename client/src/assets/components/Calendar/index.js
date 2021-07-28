@@ -80,43 +80,45 @@ function Calendar(props) {
       console.log(err);
     }
 
-    return (
-      <>
-        <Box h="90vh" overflow="auto">
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            headerToolbar={{
-              left: "prev, next, today, addWorkOrder",
-              center: "title",
-              right: "dayGridMonth, timeGridWeek, timeGridDay"
-            }}
-            editable={true}
-            initialEvents={events}
-            selectable={true}
-            weekends={true}
-            eventClick={handleDateClick}
-            customButtons={{
-              addWorkOrder: {
-                text: "New Work Order",
-                click: function() {
-                  window.location.replace("/addWorkOrder");
+    if (isPageWide) {
+      return (
+        <>
+          <Box h="90vh" overflow="auto">
+            <FullCalendar
+              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+              initialView="dayGridMonth"
+              headerToolbar={{
+                left: "prev, next, today, addWorkOrder",
+                center: "title",
+                right: "dayGridMonth, timeGridWeek, timeGridDay"
+              }}
+              editable={true}
+              initialEvents={events}
+              selectable={true}
+              weekends={true}
+              eventClick={handleDateClick}
+              customButtons={{
+                addWorkOrder: {
+                  text: "New Work Order",
+                  click: function() {
+                    window.location.replace("/addWorkOrder");
+                  }
                 }
-              }
-            }}
-          />
-        </Box>
-      </>
-    );
-  } else {
-    return (
-      <FullCalendar
-        plugins={[timeGridPlugin]}
-        initialView="timeGridDay"
-        //dateClick={handleDateClick}
-        initialEvents={events}
-      />
-    );
+              }}
+            />
+          </Box>
+        </>
+      );
+    } else {
+      return (
+        <FullCalendar
+          plugins={[timeGridPlugin]}
+          initialView="timeGridDay"
+          //dateClick={handleDateClick}
+          initialEvents={events}
+        />
+      );
+    }
   }
 }
 export default Calendar;
