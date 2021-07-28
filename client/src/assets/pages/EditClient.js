@@ -30,15 +30,11 @@ import {
 function EditClient() {
   //define queries and mutations
   const { loading, data } = useQuery(QUERY_CLIENTS_SHORT);
-  const [
-    saveUpdatedClient,
-    { loading: updateLoading, error: updateError }
-  ] = useMutation(EDIT_CLIENT);
+  const [saveUpdatedClient, { loading: updateLoading }] = useMutation(
+    EDIT_CLIENT
+  );
 
-  const [
-    deleteClient,
-    { loading: deleteLoading, error: deleteError }
-  ] = useMutation(DELETE_CLIENT);
+  const [deleteClient, { loading: deleteLoading }] = useMutation(DELETE_CLIENT);
 
   //track state
   const [clientIdState, setClientIdState] = useState();
@@ -62,7 +58,6 @@ function EditClient() {
 
   //define toasts
   const successToast = useToast();
-  const errorToast = useToast();
 
   //repopulate client info based on selected client
   const handleClientChange = async event => {
@@ -105,7 +100,7 @@ function EditClient() {
           lastName,
           address,
           email,
-          phone,
+          phone
         }
       });
     } catch (err) {

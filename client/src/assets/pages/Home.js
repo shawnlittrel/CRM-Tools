@@ -1,39 +1,58 @@
-import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "../../utils/helpers";
-import { Grid, Box, Button, GridItem, Text } from "@chakra-ui/react";
+import {
+  Grid,
+  Button,
+  GridItem,
+  Text,
+  Center,
+  Box,
+  Heading
+} from "@chakra-ui/react";
+import { ReactComponent as Shield } from "../images/shield.svg";
+import Auth from "../../utils/auth";
+
 import Login from "./Login";
-import Timecard from "./Timecard";
-import Calendar from "./Calendar";
-import Clients from "./Clients";
-import Workorder from "./WorkOrder";
-import Resolution from "./Resolution";
-import {ReactComponent as Shield } from '../images/shield.svg';
-import Auth from '../../utils/auth';
-import SideNav from '../components/SideNav';
 
 //temp imports
-import AddClient from '../pages/AddClient';
-import AddEmployee from '../pages/AddEmployee';
-import EditClient from '../pages/EditClient';
-import EditEmployee from '../pages/EditEmployee';
+import EditClient from "../pages/EditClient";
 
 function Home() {
- let isPageWide = useMediaQuery('(min-width: 800px)')
+  let isPageWide = useMediaQuery("(min-width: 800px)");
 
   const loggedIn = Auth.loggedIn();
-  const handleClick= event => {
-       window.location.replace(event.target.value)
-  }
+  const handleClick = event => {
+    window.location.replace(event.target.value);
+  };
 
-  
-
-  if(loggedIn) {
+  if (loggedIn) {
     if (isPageWide) {
-          return(
-              <EditClient />
-          )
-      }
-
+      return (
+        <>
+          <Heading as="h2" size="2xl" textAlign="center" siz>
+            Placeholder home page
+          </Heading>
+          <br />
+          <Center>
+            <Box>
+              <Heading as="h3" size="lg">
+                Some ideas for content:{" "}
+              </Heading>
+              <br />
+              <Box>
+                <ul>
+                  <li>Current status of all workorders</li>
+                  <li>
+                    Accounting information - number of past due invoices,
+                    invoices paid today, etc.
+                  </li>
+                  <li>Company specific info, maybe change daily?</li>
+                </ul>
+              </Box>
+            </Box>
+          </Center>
+        </>
+      );
+    }
 
     return (
       <Grid
@@ -42,21 +61,43 @@ function Home() {
         templateRows="repeat(16, 1fr)"
         templateColumns="repeat(9, 1fr)"
       >
-        <GridItem rowStart={2} rowSpan={2} colStart={1} colSpan={9} backgroundColor="brand.300">
+        <GridItem
+          rowStart={2}
+          rowSpan={2}
+          colStart={1}
+          colSpan={9}
+          backgroundColor="brand.300"
+        >
           <Grid templateRows="repeat(3, 1fr)" templateColumns="repeat(10, 1fr)">
-              <GridItem color="brand.100" rowStart={1} rowSpan={3} colStart={2} colSpan={2}>
-                  <Shield />
-              </GridItem>
-              <GridItem rowStart={1} colStart={5} colSpan={4}>
-                <Text fontSize="2xl" color="brand.100">TRADE SECRET</Text>
-              </GridItem>
-              <GridItem rowStart={2} colStart={5} colSpan={5} color="brand.200">
-                Keeping Your Secrets Safe
-              </GridItem>
+            <GridItem
+              color="brand.100"
+              rowStart={1}
+              rowSpan={3}
+              colStart={2}
+              colSpan={2}
+            >
+              <Shield />
+            </GridItem>
+            <GridItem rowStart={1} colStart={5} colSpan={4}>
+              <Text fontSize="2xl" color="brand.100">
+                TRADE SECRET
+              </Text>
+            </GridItem>
+            <GridItem rowStart={2} colStart={5} colSpan={5} color="brand.200">
+              Keeping Your Secrets Safe
+            </GridItem>
           </Grid>
         </GridItem>
         <GridItem rowStart={5} rowSpan={4} colStart={2} colSpan={3}>
-          <Button backgroundColor="brand.400" color="brand.200" boxShadow="2xl" w="100%" h="100%" value="/timecard" onClick={handleClick}>
+          <Button
+            backgroundColor="brand.400"
+            color="brand.200"
+            boxShadow="2xl"
+            w="100%"
+            h="100%"
+            value="/timecard"
+            onClick={handleClick}
+          >
             Timecard
           </Button>
         </GridItem>
@@ -128,11 +169,8 @@ function Home() {
       </Grid>
     );
   } else {
-    return (
-      <Login />
-    )
+    return <Login />;
   }
-  
 }
 
 export default Home;
