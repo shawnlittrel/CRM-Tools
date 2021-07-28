@@ -1,7 +1,15 @@
 import { useState } from "react";
-import { Center, Box, Grid, GridItem, Spinner, Container } from "@chakra-ui/react";
+import {
+  Center,
+  Box,
+  Grid,
+  GridItem,
+  Spinner,
+  Container,
+  Heading
+} from "@chakra-ui/react";
 import Search from "../components/Search";
-import { useQuery, useLazyQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { QUERY_EMPLOYEES_SHORT } from "../../database/queries";
 
 function Employees() {
@@ -9,11 +17,11 @@ function Employees() {
   const { search } = window.location;
   //query clients list from database
   const { loading, data } = useQuery(QUERY_EMPLOYEES_SHORT);
- let employees;
+  let employees;
 
- if(data) {
-   employees = data.employees;
- }
+  if (data) {
+    employees = data.employees;
+  }
 
   //search query is whatever is typed into searchbar
   const query = new URLSearchParams(search).get("searchbar");
@@ -31,65 +39,83 @@ function Employees() {
     });
   };
 
-
   //filter clients based on search text and populate on page
   const filteredEmployees = filterEmployees(employees, searchQuery);
 
-  if(loading) return (
-    <Center>
-          <Spinner
-      thickness="5px"
-      emptyColor="brand.300"
-      color="brand.100"
-      size="xl"
-    />
-    </Center>
-  )
-
-return (
-     <>
-     <Search
-       searchQuery={searchQuery}
-       setSearchQuery={setSearchQuery}
-       searchCategory="Employees"
-       margin="10px"
-       key="search"
-     />
-     <br />
-     <Grid gap={4}>
-       {filteredEmployees.map(employee => (
-         <Center key={`container${employee._id}`}>
-           <Box
-             as="a"
-             backgroundColor="brand.300"
-             color="brand.200"
-             key={employee._id}
-             name={employee._id}
-             href={`/employees/${employee._id}`}
-             margin="2px"
-             w="80%"
-           >
-             <Container>
-             <Box color="brand.100">
-               <strong>{employee.firstName} {employee.lastName}</strong>  
-             </Box>
-             <Box fontSize="sm">
-               <strong>A:</strong> {employee.address}
-             </Box>
-             <Box fontSize="sm">
-               <strong>P: </strong> {employee.phone}
-             </Box>
-             <Box fontSize="sm">
-               <strong>E: </strong> {employee.email}
-             </Box>
-              </Container>
-           </Box>
-         </Center>
-       ))}
-     </Grid>
-   </>
+  //display spinner until data is returned from server
+  if (loading)
+    return (
+      <Center>
+        <Spinner
+          thickness="5px"
+          emptyColor="brand.300"
+          color="brand.100"
+          size="xl"
+        />
+      </Center>
     );
 
+  //display page when data is available
+  return (
+    <>
+      <Heading as="h2" size="lg" textAlign="center">
+        Employees:
+      </Heading>
+      <Search
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        searchCategory="Employees"
+        margin="10px"
+        key="search"
+      />
+      <br />
+      <Grid gap={4}>
+        {filteredEmployees.map(employee => (
+          <Center key={`container${employee._id}`}>
+            <Box
+              as="a"
+              backgroundColor="brand.300"
+              color="brand.200"
+              key={employee._id}
+              name={employee._id}
+              href={`/employees/${employee._id}`}
+              margin="2px"
+              w="80%"
+            >
+              <Grid
+                templateRows="repeat(4, 1fr)"
+                templateColumns="repeat(12, 1fr)"
+                gap={1}
+              >
+                <GridItem colStart={1} colSpan={12} rowStart={1}>
+                  <Box color="brand.100">
+                    <strong>
+                      {employee.firstName} {employee.lastName}
+                    </strong>
+                  </Box>
+                </GridItem>
+                <GridItem colStart={3} colSpan={9} rowStart={2}>
+                  <Box fontSize="sm">
+                    <strong>A:</strong> {employee.address}
+                  </Box>
+                </GridItem>
+                <GridItem colStart={3} colSpan={9} rowStart={3}>
+                  <Box fontSize="sm">
+                    <strong>P: </strong> {employee.phone}
+                  </Box>
+                </GridItem>
+                <GridItem colStart={3} colSpan={9} rowStart={4}>
+                  <Box fontSize="sm">
+                    <strong>E: </strong> {employee.email}
+                  </Box>
+                </GridItem>
+              </Grid>
+            </Box>
+          </Center>
+        ))}
+      </Grid>
+    </>
+  );
 }
 
 export default Employees;

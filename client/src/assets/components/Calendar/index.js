@@ -18,10 +18,10 @@ function Calendar(props) {
   const events = [];
   const { loading, data } = useQuery(QUERY_APPOINTMENTS);
 
-  const handleDateClick = (clickInfo) => {
+  const handleDateClick = clickInfo => {
     //TODO: Redirect to single appointment detail page
 
-    console.log('id', clickInfo.event.id)
+    console.log("id", clickInfo.event.id);
     //<Link to={`workorder/:${clickInfo.event.id}} />;
   };
 
@@ -33,7 +33,9 @@ function Calendar(props) {
             return {
               id: workOrder._id,
               title: workOrder.workOrderClient,
-              start: new Date(parseInt(workOrder.workOrderDate)).toISOString().replace(/T.*$/, ''),
+              start: new Date(parseInt(workOrder.workOrderDate))
+                .toISOString()
+                .replace(/T.*$/, ""),
               workOrderDescription: workOrder.workOrderDescription
             };
           })
@@ -49,20 +51,19 @@ function Calendar(props) {
     }
   }
 
-
-  if(loading) return (
-    <Center>
-          <Spinner
-      thickness="5px"
-      emptyColor="brand.300"
-      color="brand.100"
-      size="xl"
-    />
-    </Center>
-  )
+  if (loading)
+    return (
+      <Center>
+        <Spinner
+          thickness="5px"
+          emptyColor="brand.300"
+          color="brand.100"
+          size="xl"
+        />
+      </Center>
+    );
 
   if (data) {
-
     try {
       // const myEventsObj = data.clients.map(client => (
       //   client.workOrders.map(wo => (
@@ -71,9 +72,8 @@ function Calendar(props) {
       //         title: `${client.firstName} ${client.lastName}`,
       //         start: `${wo.workOrderDate.toLocaleString()}`,
       //         description: wo.workOrderDescription
-      //       }, 
-      console.log('events', events)
-
+      //       },
+      console.log("events", events);
 
       //console.log(myEventsArr);
     } catch (err) {
@@ -82,7 +82,7 @@ function Calendar(props) {
 
     return (
       <>
-        <Box h="85vh" overflow="hidden">
+        <Box h="90vh" overflow="auto">
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
@@ -98,13 +98,12 @@ function Calendar(props) {
             eventClick={handleDateClick}
             customButtons={{
               addWorkOrder: {
-                text: 'New Work Order',
+                text: "New Work Order",
                 click: function() {
-                  window.location.replace('/addWorkOrder')}
+                  window.location.replace("/addWorkOrder");
                 }
               }
-            }
-            //events={events}
+            }}
           />
         </Box>
       </>
@@ -115,7 +114,7 @@ function Calendar(props) {
         plugins={[timeGridPlugin]}
         initialView="timeGridDay"
         //dateClick={handleDateClick}
-        //events={myEvents}
+        initialEvents={events}
       />
     );
   }

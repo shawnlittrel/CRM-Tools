@@ -30,15 +30,13 @@ import {
 function EditEmployee() {
   //define queries and mutations
   const { loading, data } = useQuery(QUERY_EMPLOYEES_SHORT);
-  const [
-    saveUpdatedEmployee,
-    { loading: updateLoading, error: updateError }
-  ] = useMutation(EDIT_EMPLOYEE);
+  const [saveUpdatedEmployee, { loading: updateLoading }] = useMutation(
+    EDIT_EMPLOYEE
+  );
 
-  const [
-    deleteEmployee,
-    { loading: deleteLoading, error: deleteError }
-  ] = useMutation(DELETE_EMPLOYEE);
+  const [deleteEmployee, { loading: deleteLoading }] = useMutation(
+    DELETE_EMPLOYEE
+  );
 
   //track state
   const [employeeIdState, setEmployeeIdState] = useState();
@@ -74,7 +72,6 @@ function EditEmployee() {
 
   //define toasts
   const successToast = useToast();
-  const errorToast = useToast();
 
   //repopulate employee info based on selected employee
   const handleEmployeeChange = async event => {

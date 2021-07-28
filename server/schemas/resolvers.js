@@ -121,9 +121,13 @@ const resolvers = {
       context
     ) => {
       console.log(context.employee);
+      console.log('client', workOrderClient);
+      console.log('date', workOrderDate);
+      console.log('desc', workOrderDescription);
+      console.log('id', clientId);
 
       if (context.employee) {
-        const updatedClient = await Client.findOneAndUpdate(
+                const updatedClient = await Client.findOneAndUpdate(
           { _id: clientId },
           {
             $push: {
@@ -138,7 +142,11 @@ const resolvers = {
         ).populate("workOrders");
 
         return updatedClient;
+      } else {
+        return console.error('Not logged in');
       }
+
+
     },
 
     addClient: async (parent, args) => {
